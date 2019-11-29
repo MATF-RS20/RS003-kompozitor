@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(Test4 LANGUAGES CXX)
+project(Kompozitor LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -14,14 +14,14 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(Qt5 COMPONENTS Core Quick REQUIRED)
 
 if(ANDROID)
-    add_library(Test4 SHARED main.cpp qml.qrc)
+    add_library(Kompozitor SHARED main.cpp qml.qrc)
 else()
-    add_executable(Test4 main.cpp qml.qrc)
+    add_executable(Kompozitor main.cpp qml.qrc)
 endif()
 
-target_compile_definitions(Test4
+target_compile_definitions(Kompozitor
   PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
-target_link_libraries(Test4
+target_link_libraries(Kompozitor
   PRIVATE Qt5::Core Qt5::Quick)
 
 # QtCreator supports the following variables for Android, which are identical to qmake Android variables.
