@@ -13,11 +13,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Qt5 COMPONENTS Core Quick REQUIRED)
 
-if(ANDROID)
-    add_library(Kompozitor SHARED main.cpp qml.qrc)
-else()
-    add_executable(Kompozitor main.cpp qml.qrc)
-endif()
+add_executable(Kompozitor main.cpp qml.qrc ui_model/main_model.cpp ui_model/main_model.hpp)
 
 target_compile_definitions(Kompozitor
   PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)

@@ -1,6 +1,8 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 
+#include "ui_model/main_model.hpp"
+
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
@@ -15,6 +17,11 @@ int main(int argc, char *argv[])
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
     engine.load(url);
+
+    MainModel mainModel;
+
+    auto *printButton = engine.rootObjects().first()->findChild<QObject *>("print_button");
+    QObject::connect(printButton, SIGNAL(clicked()), &mainModel, SLOT(printSomething()));
 
     return app.exec();
 }
