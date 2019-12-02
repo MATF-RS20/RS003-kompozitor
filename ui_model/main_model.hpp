@@ -8,7 +8,7 @@ class MainModel : public QObject {
 Q_OBJECT
 
 public slots:
-    void printSomething();
+    void playSomething();
 };
 
 #endif //KOMPOZITOR_MAIN_MODEL_HPP

@@ -9,7 +9,7 @@ Window {
     title: "Kompozitor"
 
     Button {
-        objectName: "print_button"
-        text: "Print"
+        objectName: "play_button"
+        text: "Play"
     }
 }

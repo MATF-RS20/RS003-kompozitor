@@ -20,8 +20,8 @@ int main(int argc, char *argv[])
 
     MainModel mainModel;
 
-    auto *printButton = engine.rootObjects().first()->findChild<QObject *>("print_button");
-    QObject::connect(printButton, SIGNAL(clicked()), &mainModel, SLOT(printSomething()));
+    auto *playButton = engine.rootObjects().first()->findChild<QObject *>("play_button");
+    QObject::connect(playButton, SIGNAL(clicked()), &mainModel, SLOT(playSomething()));
 
     return app.exec();
 }

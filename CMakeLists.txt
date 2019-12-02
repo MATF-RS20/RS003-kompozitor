@@ -13,12 +13,18 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Qt5 COMPONENTS Core Quick REQUIRED)
 
-add_executable(Kompozitor main.cpp qml.qrc ui_model/main_model.cpp ui_model/main_model.hpp)
+add_executable(Kompozitor
+        main.cpp
+        qml.qrc
+        ui_model/main_model.cpp ui_model/main_model.hpp
+        playback/playback.cpp playback/playback.hpp)
 
 target_compile_definitions(Kompozitor
   PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
 target_link_libraries(Kompozitor
-  PRIVATE Qt5::Core Qt5::Quick)
+  PRIVATE   Qt5::Core
+            Qt5::Quick
+            -lsfml-audio)
 
 # QtCreator supports the following variables for Android, which are identical to qmake Android variables.
 # Check http://doc.qt.io/qt-5/deployment-android.html for more information.
