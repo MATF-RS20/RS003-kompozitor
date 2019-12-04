@@ -11,8 +11,11 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt5 COMPONENTS Core Quick REQUIRED)
-find_package(SFML 2.5 COMPONENTS audio REQUIRED)
+find_package(Qt5 COMPONENTS Core Quick Widgets REQUIRED)
+if (APPLE)
+    find_package(SFML COMPONENTS audio REQUIRED)
+endif()
+
 
 add_executable(Kompozitor
         main.cpp
@@ -23,9 +26,10 @@ add_executable(Kompozitor
 target_compile_definitions(Kompozitor
         PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
 target_link_libraries(Kompozitor
-        PRIVATE   Qt5::Core
-        Qt5::Quick
-        sfml-audio)
+  PRIVATE   Qt5::Core
+            Qt5::Quick
+            Qt5::Widgets
+            sfml-audio)
 
 # QtCreator supports the following variables for Android, which are identical to qmake Android variables.
 # Check http://doc.qt.io/qt-5/deployment-android.html for more information.
