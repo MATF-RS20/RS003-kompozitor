@@ -20,7 +20,7 @@ static std::vector<sf::Int16> create_sample(unsigned frequency = 440, double dur
     return samples;
 }
 
-static sf::SoundBuffer bufferFromFrequencies(const std::vector<unsigned>& freqs, float duration = 0.5) {
+static sf::SoundBuffer bufferFromFrequencies(const std::vector<float>& freqs, float duration = 0.5) {
 
     std::vector<sf::Int16> samples;
 
@@ -36,10 +36,9 @@ static sf::SoundBuffer bufferFromFrequencies(const std::vector<unsigned>& freqs,
 
 void Playback::play() {
     sf::SoundBuffer buffer = bufferFromFrequencies({
-        334, 419, 334, 419, 334, 419, 334, 419,
-        317, 419, 317, 419,
-        334, 334, 334, 317, 334, 334, 334
-
+        E5, Gs5, E5, Gs5, E5, Gs5, E5, Gs5,
+        Ds5, Gs5, Ds5, Gs5,
+        E5, E5, E5, Ds5, E5, E5, E5
     }, 0.45);
 
     sf::Sound sound;
