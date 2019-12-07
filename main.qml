@@ -9,7 +9,7 @@ Window {
     title: "Kompozitor"
 
     Button {
-        objectName: "play_button"
         text: "Play"
+        onClicked: mainModel.playSomething()
     }
 }
