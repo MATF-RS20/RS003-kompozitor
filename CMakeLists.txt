@@ -24,7 +24,8 @@ target_compile_definitions(Kompozitor
 target_link_libraries(Kompozitor
   PRIVATE   Qt5::Core
             Qt5::Quick
-            -lsfml-audio)
+            sfml-audio
+            pthread)
 
 # QtCreator supports the following variables for Android, which are identical to qmake Android variables.
 # Check http://doc.qt.io/qt-5/deployment-android.html for more information.

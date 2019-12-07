@@ -35,15 +35,21 @@ static sf::SoundBuffer bufferFromFrequencies(const std::vector<float>& freqs, fl
 }
 
 void Playback::play() {
-    sf::SoundBuffer buffer = bufferFromFrequencies({
-        E5, Gs5, E5, Gs5, E5, Gs5, E5, Gs5,
-        Ds5, Gs5, Ds5, Gs5,
-        E5, E5, E5, Ds5, E5, E5, E5
-    }, 0.45);
+    // Start on a separate thread so that the sound resources don't get deallocated before the playback ends.
+    std::thread playThread([](){
+        sf::SoundBuffer buffer = bufferFromFrequencies({
+            E5, Gs5, E5, Gs5, E5, Gs5, E5, Gs5,
+            Ds5, Gs5, Ds5, Gs5,
+            E5, E5, E5, Ds5, E5, E5, E5
+        }, 0.45);
 
-    sf::Sound sound;
-    sound.setBuffer(buffer);
-    sound.play();
+        sf::Sound sound;
+        sound.setBuffer(buffer);
+        sound.play();
 
-    std::this_thread::sleep_for(std::chrono::seconds((int) ceil(buffer.getSampleCount() / buffer.getSampleRate()) + 1));
+        std::this_thread::sleep_for(std::chrono::seconds((int) ceil(buffer.getSampleCount() / buffer.getSampleRate()) + 1));
+    });
+
+    // Detach the thread because there is currently no need for it to be tracked (it just sleeps and then ends)
+    playThread.detach();
 }
