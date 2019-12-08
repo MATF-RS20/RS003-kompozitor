@@ -9,11 +9,10 @@ static std::vector<sf::Int16> create_sample(unsigned frequency = 440, double dur
 
     std::vector<sf::Int16> samples(duration * sample_rate);
 
-    unsigned phase_size = sample_rate / frequency;
+    unsigned samples_per_phase = sample_rate / frequency;
 
     for (unsigned long i = 0; i < samples.size(); ++i) {
-        unsigned i_phased = i % phase_size;
-        double rad_value_inside_phase = ((double) i_phased / (double) phase_size) * M_PI / 2;
+        double rad_value_inside_phase = ((double) i / (double) samples_per_phase) * M_PI * 2;
         samples[i] = pow(2, 15) * sin(rad_value_inside_phase);
     }
 
