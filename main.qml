@@ -12,4 +12,11 @@ Window {
         text: "Play"
         onClicked: mainModel.playSomething()
     }
+
+    Button {
+        x: 155
+        y: 0
+        text: "Record"
+        onClicked: mainModel.recordSomething()
+    }
 }

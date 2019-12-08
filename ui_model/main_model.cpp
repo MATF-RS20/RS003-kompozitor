@@ -8,4 +8,8 @@ void MainModel::playSomething() {
     Playback::play();
 }
 
+void MainModel::recordSomething() {
+    Playback::record();
+}
+
 #include "main_model.hpp"

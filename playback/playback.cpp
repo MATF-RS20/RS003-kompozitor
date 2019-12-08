@@ -4,6 +4,7 @@
 #include <thread>
 #include <chrono>
 #include <cmath>
+#include <iostream>
 
 static std::vector<sf::Int16> create_sample(unsigned frequency = 440, double duration = 10, unsigned sample_rate = 44100) {
 
@@ -51,4 +52,27 @@ void Playback::play() {
 
     // Detach the thread because there is currently no need for it to be tracked (it just sleeps and then ends)
     playThread.detach();
+}
+
+
+void Playback::record() {
+// TODO
+
+//    std::vector<std::string> availableDevices = sf::SoundRecorder::getAvailableDevices();
+//
+//    std::string inputDevice = availableDevices[0];
+//    sf::SoundBufferRecorder recorder;
+//
+//    recorder.start();
+//    std::this_thread::sleep_for(std::chrono::seconds(2));
+//    recorder.stop();
+//
+//    const sf::SoundBuffer& buffer = recorder.getBuffer();
+//    sf::Sound sound(buffer);
+//    sound.play();
+//    std::cout << buffer.getSamples() << std::endl;
+//    sound.setVolume(100);
+//    std::this_thread::sleep_for(std::chrono::seconds(3));
+//
+//    buffer.saveToFile("andja_record.ogg");
 }

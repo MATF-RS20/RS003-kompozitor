@@ -16,6 +16,7 @@ const float B5 = 493.88;
 
 namespace Playback {
     void play();
+    void record();
 }
 
 #endif //KOMPOZITOR_PLAYBACK_HPP
