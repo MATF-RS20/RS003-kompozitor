@@ -1,6 +1,5 @@
 #include "playback.hpp"
 #include <vector>
-#include <SFML/Audio.hpp>
 #include <thread>
 #include <chrono>
 #include <cmath>

@@ -1,9 +1,8 @@
 #ifndef KOMPOZITOR_PLAYBACK_HPP
 #define KOMPOZITOR_PLAYBACK_HPP
 
-#include <SFML/Audio/SoundBuffer.hpp>
 #include <memory>
-#include <SFML/Audio/Sound.hpp>
+#include <SFML/Audio.hpp>
 
 const float C5 = 261.63;
 const float Cs5 = 277.18;
