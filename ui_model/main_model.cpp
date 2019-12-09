@@ -1,4 +1,3 @@
-#include <iostream>
 #include "main_model.hpp"
 #include "playback/playback.hpp"
 
@@ -12,9 +11,3 @@ void MainModel::recordSomething() {
     Playback::record();
 }
 
-void MainModel::MyTimerSlot() {
-    Playback::makeTimer();
-}
-
-
-#include "main_model.hpp"

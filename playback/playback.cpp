@@ -5,8 +5,9 @@
 #include <chrono>
 #include <cmath>
 #include <iostream>
-//#include <QTimer>
 #include <memory>
+#include <timer/mytimer.hpp>
+
 std::unique_ptr<sf::SoundBuffer> buff;
 sf::Sound sound;
 
@@ -39,7 +40,6 @@ static sf::SoundBuffer bufferFromFrequencies(const std::vector<float>& freqs, fl
 }
 
 void Playback::play() {
-    // Start on a separate thread so that the sound resources don't get deallocated before the playback ends.
     sf::SoundBuffer buffer = bufferFromFrequencies({
             E5, Gs5, E5, Gs5, E5, Gs5, E5, Gs5,
             Ds5, Gs5, Ds5, Gs5,
@@ -47,11 +47,12 @@ void Playback::play() {
             }, 0.45);
 
     buff = std::make_unique<sf::SoundBuffer>(buffer);
-
     sound.setBuffer(*buff.get());
     sound.play();
 
-    // std::this_thread::sleep_for(std::chrono::seconds((int) ceil(buffer.getSampleCount() / buffer.getSampleRate()) + 1));
+    auto mili = 1000*((int) ceil(buffer.getSampleCount() / buffer.getSampleRate()) + 1);
+    static MyTimer time(mili);
+
 }
 
 void Playback::record() {
@@ -78,8 +79,6 @@ void Playback::record() {
     buffer.saveToFile("andja_record.ogg");
 }
 
-void Playback::makeTimer() {
 
-}
 
 

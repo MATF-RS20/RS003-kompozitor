@@ -21,7 +21,7 @@ add_executable(Kompozitor
         main.cpp
         qml.qrc
         ui_model/main_model.cpp ui_model/main_model.hpp
-        playback/playback.cpp playback/playback.hpp)
+        playback/playback.cpp playback/playback.hpp timer/mytimer.cpp timer/mytimer.hpp)
 
 target_compile_definitions(Kompozitor
         PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)

@@ -7,13 +7,12 @@
 class MainModel : public QObject {
 
 Q_OBJECT
-
-public:
-    static QTimer *timer;
+//public:
+//    static QTimer *timer;
 public slots:
     void playSomething();
     void recordSomething();
-    void MyTimerSlot();
+    //void MyTimerSlot();
 };
 
 #endif //KOMPOZITOR_MAIN_MODEL_HPP
