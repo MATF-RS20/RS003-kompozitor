@@ -7,9 +7,8 @@
 #include <iostream>
 #include <memory>
 #include <timer/mytimer.hpp>
-
-std::unique_ptr<sf::SoundBuffer> buff;
 sf::Sound sound;
+std::unique_ptr<sf::SoundBuffer> buffer;
 
 static std::vector<sf::Int16> create_sample(unsigned frequency = 440, double duration = 10, unsigned sample_rate = 44100) {
 
@@ -34,24 +33,24 @@ static sf::SoundBuffer bufferFromFrequencies(const std::vector<float>& freqs, fl
         samples.insert(samples.end(), tmp_sample.begin(), tmp_sample.end());
     }
 
-    sf::SoundBuffer buffer;
-    buffer.loadFromSamples(&samples[0], samples.size(), 1, 44100);
-    return buffer;
+    sf::SoundBuffer my_buffer;
+    my_buffer.loadFromSamples(&samples[0], samples.size(), 1, 44100);
+    return my_buffer;
 }
 
 void Playback::play() {
-    sf::SoundBuffer buffer = bufferFromFrequencies({
+    sf::SoundBuffer my_buffer = bufferFromFrequencies({
             E5, Gs5, E5, Gs5, E5, Gs5, E5, Gs5,
             Ds5, Gs5, Ds5, Gs5,
             E5, E5, E5, Ds5, E5, E5, E5
             }, 0.45);
 
-    buff = std::make_unique<sf::SoundBuffer>(buffer);
-    sound.setBuffer(*buff.get());
+    buffer = std::make_unique<sf::SoundBuffer>(my_buffer);
+    sound.setBuffer(*buffer.get());
     sound.play();
 
-    auto mili = 1000*((int) ceil(buffer.getSampleCount() / buffer.getSampleRate()) + 1);
-    static MyTimer time(mili);
+    auto miliseconds = 1000*((int) ceil(my_buffer.getSampleCount() / my_buffer.getSampleRate()) + 1);
+    static MyTimer time(miliseconds);
 }
 
 void Playback::record() {

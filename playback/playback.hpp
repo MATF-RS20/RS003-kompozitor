@@ -1,6 +1,10 @@
 #ifndef KOMPOZITOR_PLAYBACK_HPP
 #define KOMPOZITOR_PLAYBACK_HPP
 
+#include <SFML/Audio/SoundBuffer.hpp>
+#include <memory>
+#include <SFML/Audio/Sound.hpp>
+
 const float C5 = 261.63;
 const float Cs5 = 277.18;
 const float D5 = 293.66;
@@ -13,6 +17,8 @@ const float Gs5 = 415.30;
 const float A5 = 440.00;
 const float As5 = 466.16;
 const float B5 = 493.88;
+
+extern std::unique_ptr<sf::SoundBuffer> buffer;
 
 namespace Playback {
     void play();

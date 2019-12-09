@@ -14,6 +14,9 @@ MyTimer::MyTimer(int time) {
 }
 
 void MyTimer::MyTimerSlot (){
-    std::cout << "Timer..." << std::endl;
+    std::cout << "Music finished..." << std::endl;
+    auto over = std::move(buffer);
+    if (!buffer)
+        std::cout << "Memory deallocated!" << std::endl;
 }
 
