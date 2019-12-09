@@ -14,9 +14,13 @@ const float A5 = 440.00;
 const float As5 = 466.16;
 const float B5 = 493.88;
 
+
+
 namespace Playback {
     void play();
     void record();
+    void makeTimer();
+
 }
 
 #endif //KOMPOZITOR_PLAYBACK_HPP

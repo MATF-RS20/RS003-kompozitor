@@ -5,6 +5,10 @@
 #include <chrono>
 #include <cmath>
 #include <iostream>
+//#include <QTimer>
+#include <memory>
+std::unique_ptr<sf::SoundBuffer> buff;
+sf::Sound sound;
 
 static std::vector<sf::Int16> create_sample(unsigned frequency = 440, double duration = 10, unsigned sample_rate = 44100) {
 
@@ -36,43 +40,46 @@ static sf::SoundBuffer bufferFromFrequencies(const std::vector<float>& freqs, fl
 
 void Playback::play() {
     // Start on a separate thread so that the sound resources don't get deallocated before the playback ends.
-    std::thread playThread([](){
-        sf::SoundBuffer buffer = bufferFromFrequencies({
+    sf::SoundBuffer buffer = bufferFromFrequencies({
             E5, Gs5, E5, Gs5, E5, Gs5, E5, Gs5,
             Ds5, Gs5, Ds5, Gs5,
             E5, E5, E5, Ds5, E5, E5, E5
-        }, 0.45);
+            }, 0.45);
 
-        sf::Sound sound;
-        sound.setBuffer(buffer);
-        sound.play();
+    buff = std::make_unique<sf::SoundBuffer>(buffer);
 
-        std::this_thread::sleep_for(std::chrono::seconds((int) ceil(buffer.getSampleCount() / buffer.getSampleRate()) + 1));
-    });
+    sound.setBuffer(*buff.get());
+    sound.play();
 
-    // Detach the thread because there is currently no need for it to be tracked (it just sleeps and then ends)
-    playThread.detach();
+    // std::this_thread::sleep_for(std::chrono::seconds((int) ceil(buffer.getSampleCount() / buffer.getSampleRate()) + 1));
 }
-
 
 void Playback::record() {
 // TODO
 
-//    std::vector<std::string> availableDevices = sf::SoundRecorder::getAvailableDevices();
-//
-//    std::string inputDevice = availableDevices[0];
-//    sf::SoundBufferRecorder recorder;
-//
-//    recorder.start();
-//    std::this_thread::sleep_for(std::chrono::seconds(2));
-//    recorder.stop();
-//
-//    const sf::SoundBuffer& buffer = recorder.getBuffer();
-//    sf::Sound sound(buffer);
-//    sound.play();
-//    std::cout << buffer.getSamples() << std::endl;
-//    sound.setVolume(100);
-//    std::this_thread::sleep_for(std::chrono::seconds(3));
-//
-//    buffer.saveToFile("andja_record.ogg");
+    std::vector<std::string> availableDevices = sf::SoundRecorder::getAvailableDevices();
+
+    std::string inputDevice = availableDevices[0];
+    sf::SoundBufferRecorder recorder;
+    for (auto i: availableDevices){
+        std::cout << i << std::endl;
+    }
+
+    recorder.start();
+    std::this_thread::sleep_for(std::chrono::seconds(2));
+    recorder.stop();
+
+    const sf::SoundBuffer& buffer = recorder.getBuffer();
+    sf::Sound sound(buffer);
+    sound.play();
+    std::cout << buffer.getSamples() << std::endl;
+    std::this_thread::sleep_for(std::chrono::seconds(10));
+
+    buffer.saveToFile("andja_record.ogg");
 }
+
+void Playback::makeTimer() {
+
+}
+
+

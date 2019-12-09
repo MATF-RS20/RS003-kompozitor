@@ -12,4 +12,9 @@ void MainModel::recordSomething() {
     Playback::record();
 }
 
+void MainModel::MyTimerSlot() {
+    Playback::makeTimer();
+}
+
+
 #include "main_model.hpp"
