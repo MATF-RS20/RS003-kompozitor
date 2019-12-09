@@ -52,7 +52,6 @@ void Playback::play() {
 
     auto mili = 1000*((int) ceil(buffer.getSampleCount() / buffer.getSampleRate()) + 1);
     static MyTimer time(mili);
-
 }
 
 void Playback::record() {
