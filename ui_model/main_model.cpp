@@ -12,7 +12,7 @@ void MainModel::recordSomething() {
 }
 
 void MainModel::playNote(float frequency, bool loop) {
-    Playback::play_note(frequency, loop);
+    Playback::play_note(frequency, timer, loop);
 }
 
 void MainModel::MyTimerSlot() {

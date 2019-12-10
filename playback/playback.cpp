@@ -63,8 +63,8 @@ void Playback::play(QTimer *timer) {
     sound.setBuffer(*buffer.get());
     sound.play();
 
-    auto miliseconds = 1000*((int) ceil(my_buffer.getSampleCount() / my_buffer.getSampleRate()) + 1);
-    make_timer(timer, miliseconds);
+    auto milliseconds = 1000*((int) ceil(my_buffer.getSampleCount() / my_buffer.getSampleRate()) + 1);
+    make_timer(timer, milliseconds);
 }
 
 void Playback::record() {
@@ -91,7 +91,7 @@ void Playback::record() {
     buffer.saveToFile("andja_record.ogg");
 }
 
-void Playback::play_note(float frequency, bool loop) {
+void Playback::play_note(float frequency,  QTimer *timer, bool loop) {
 
     std::vector<float> freqs = {frequency};
 
@@ -102,8 +102,8 @@ void Playback::play_note(float frequency, bool loop) {
     sound.setLoop(loop);
     sound.play();
 
-    auto millis = 1000 * ((int) ceil(my_buffer.getSampleCount() / my_buffer.getSampleRate()) + 1);
-    //static MyTimer time(millis);
+    auto milliseconds = 1000 * ((int) ceil(my_buffer.getSampleCount() / my_buffer.getSampleRate()) + 1);
+    make_timer(timer, milliseconds);
 }
 
 void Playback::make_timer(QTimer* timer, int time) {
