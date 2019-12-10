@@ -13,7 +13,9 @@ std::unique_ptr<sf::SoundBuffer> buffer;
 const double ENDING_INTERVAL = 44100 * 0.005;
 
 static std::vector<sf::Int16> create_sample(unsigned frequency = 440, double duration = 10, unsigned sample_rate = 44100) {
-    static double last_value;
+
+    // This is something that solves our problem with weird initial glitch
+    static double last_value = 0.001;
 
     std::vector<sf::Int16> samples(duration * sample_rate);
 
@@ -87,6 +89,21 @@ void Playback::record() {
     std::this_thread::sleep_for(std::chrono::seconds(10));
 
     buffer.saveToFile("andja_record.ogg");
+}
+
+void Playback::play_note(float frequency, bool loop) {
+
+    std::vector<float> freqs = {frequency};
+
+    sf::SoundBuffer my_buffer = bufferFromFrequencies(freqs, 1);
+
+    buffer = std::make_unique<sf::SoundBuffer>(my_buffer);
+    sound.setBuffer(*buffer);
+    sound.setLoop(loop);
+    sound.play();
+
+    auto millis = 1000 * ((int) ceil(my_buffer.getSampleCount() / my_buffer.getSampleRate()) + 1);
+    static MyTimer time(millis);
 }
 
 

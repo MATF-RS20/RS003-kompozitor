@@ -22,6 +22,7 @@ extern std::unique_ptr<sf::SoundBuffer> buffer;
 namespace Playback {
     void play();
     void record();
+    void play_note(float frequency, bool loop = false);
     //void makeTimer();
 }
 

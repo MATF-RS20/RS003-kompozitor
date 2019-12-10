@@ -11,3 +11,6 @@ void MainModel::recordSomething() {
     Playback::record();
 }
 
+void MainModel::playNote(float frequency, bool loop) {
+    Playback::play_note(frequency, loop);
+}

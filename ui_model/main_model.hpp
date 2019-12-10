@@ -12,6 +12,7 @@ Q_OBJECT
 public slots:
     void playSomething();
     void recordSomething();
+    void playNote(float frequency, bool loop = false);
     //void MyTimerSlot();
 };
 
