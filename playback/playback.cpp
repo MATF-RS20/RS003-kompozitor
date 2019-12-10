@@ -5,7 +5,7 @@
 #include <cmath>
 #include <iostream>
 #include <memory>
-#include <timer/mytimer.hpp>
+
 sf::Sound sound;
 std::unique_ptr<sf::SoundBuffer> buffer;
 
@@ -52,7 +52,7 @@ static sf::SoundBuffer bufferFromFrequencies(const std::vector<float>& freqs, fl
     return my_buffer;
 }
 
-void Playback::play() {
+void Playback::play(QTimer *timer) {
     sf::SoundBuffer my_buffer = bufferFromFrequencies({
             E5, Gs5, E5, Gs5, E5, Gs5, E5, Gs5,
             Ds5, Gs5, Ds5, Gs5,
@@ -64,7 +64,7 @@ void Playback::play() {
     sound.play();
 
     auto miliseconds = 1000*((int) ceil(my_buffer.getSampleCount() / my_buffer.getSampleRate()) + 1);
-    static MyTimer time(miliseconds);
+    make_timer(timer, miliseconds);
 }
 
 void Playback::record() {
@@ -103,8 +103,24 @@ void Playback::play_note(float frequency, bool loop) {
     sound.play();
 
     auto millis = 1000 * ((int) ceil(my_buffer.getSampleCount() / my_buffer.getSampleRate()) + 1);
-    static MyTimer time(millis);
+    //static MyTimer time(millis);
 }
+
+void Playback::make_timer(QTimer* timer, int time) {
+    QObject::connect(timer, SIGNAL(timeout()),
+                     timer->parent(), SLOT(MyTimerSlot()));
+    timer->setSingleShot(true);
+    timer->start(time);
+}
+
+void Playback::my_timer_slot() {
+    std::cout << "Music finished..." << std::endl;
+    auto over = std::move(buffer);
+    if (!buffer)
+        std::cout << "Memory deallocated!" << std::endl;
+}
+
+
 
 
 

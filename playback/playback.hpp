@@ -3,6 +3,7 @@
 
 #include <memory>
 #include <SFML/Audio.hpp>
+#include <QtCore/QTimer>
 
 const float C5 = 261.63;
 const float Cs5 = 277.18;
@@ -20,10 +21,11 @@ const float B5 = 493.88;
 extern std::unique_ptr<sf::SoundBuffer> buffer;
 
 namespace Playback {
-    void play();
+    void play(QTimer *timer);
     void record();
     void play_note(float frequency, bool loop = false);
-    //void makeTimer();
+    void make_timer(QTimer *timer, int time);
+    void my_timer_slot();
 }
 
 #endif //KOMPOZITOR_PLAYBACK_HPP
