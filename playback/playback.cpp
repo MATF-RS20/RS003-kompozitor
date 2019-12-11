@@ -6,7 +6,7 @@
 #include <iostream>
 #include <memory>
 
-sf::Sound sound;
+sf::Sound sound; // FIXME avoid global variables
 std::unique_ptr<sf::SoundBuffer> buffer;
 
 // Empirically chosen
@@ -60,30 +60,29 @@ void Playback::play(QTimer *timer) {
             }, 0.45);
 
     buffer = std::make_unique<sf::SoundBuffer>(my_buffer);
-    sound.setBuffer(*buffer.get());
+    sound.setBuffer(*buffer);
     sound.play();
 
-    auto milliseconds = 1000*((int) ceil(my_buffer.getSampleCount() / my_buffer.getSampleRate()) + 1);
+    auto milliseconds = 1000*((int) ceil(static_cast<double>(my_buffer.getSampleCount()) / my_buffer.getSampleRate()) + 1);
     make_timer(timer, milliseconds);
 }
 
 void Playback::record() {
-// TODO
-
+    // TODO this function needs improving and removal of the debug output
     std::vector<std::string> availableDevices = sf::SoundRecorder::getAvailableDevices();
 
     std::string inputDevice = availableDevices[0];
     sf::SoundBufferRecorder recorder;
-    for (auto i: availableDevices){
-        std::cout << i << std::endl;
+    for (const auto& device: availableDevices){
+        std::cout << device << std::endl;
     }
 
     recorder.start();
     std::this_thread::sleep_for(std::chrono::seconds(2));
     recorder.stop();
 
-    const sf::SoundBuffer& buffer = recorder.getBuffer();
-    sf::Sound sound(buffer);
+    const sf::SoundBuffer& buffer = recorder.getBuffer(); // FIXME remove global variable `buffer`
+    sf::Sound sound(buffer); // FIXME remove global variable `sound`
     sound.play();
     std::cout << buffer.getSamples() << std::endl;
     std::this_thread::sleep_for(std::chrono::seconds(10));
@@ -102,7 +101,7 @@ void Playback::play_note(float frequency,  QTimer *timer, bool loop) {
     sound.setLoop(loop);
     sound.play();
 
-    auto milliseconds = 1000 * ((int) ceil(my_buffer.getSampleCount() / my_buffer.getSampleRate()) + 1);
+    auto milliseconds = 1000 * ((int) ceil(static_cast<double>(my_buffer.getSampleCount()) / my_buffer.getSampleRate()) + 1);
     make_timer(timer, milliseconds);
 }
 
