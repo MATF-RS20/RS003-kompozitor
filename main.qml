@@ -165,6 +165,7 @@ Window {
             width: 46
             height: 110
             text: "F"
+            onClicked: mainModel.playNote(349.23)
         }
 
         Button {
@@ -174,6 +175,7 @@ Window {
             width: 46
             height: 110
             text: "G"
+            onClicked: mainModel.playNote(392.00)
         }
 
         Button {
@@ -183,6 +185,7 @@ Window {
             width: 46
             height: 110
             text: "H"
+            onClicked: mainModel.playNote(440.00)
         }
 
         Button {
@@ -192,6 +195,7 @@ Window {
             width: 46
             height: 110
             text: "J"
+            onClicked: mainModel.playNote(493.88)
         }
 
         Button {
@@ -201,6 +205,7 @@ Window {
             width: 46
             height: 110
             text: "K"
+            onClicked: mainModel.playNote(523.25)
         }
 
         Button {
@@ -221,6 +226,7 @@ Window {
             background: Rectangle {
                 color: "#000000"
             }
+            onClicked: mainModel.playNote(369.99)
         }
 
         Button {
@@ -241,6 +247,7 @@ Window {
             background: Rectangle {
                 color: "#000000"
             }
+            onClicked: mainModel.playNote(415.30)
         }
 
         Button {
@@ -261,6 +268,7 @@ Window {
             background: Rectangle {
                 color: "#000000"
             }
+            onClicked: mainModel.playNote(466.16)
         }
     }
 }
