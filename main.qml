@@ -24,7 +24,7 @@ Window {
         id: frame
         x: 136
         y: 182
-        width: 362
+        width: 389
         height: 110
         focus: true
         Keys.onPressed: {
@@ -48,6 +48,38 @@ Window {
                 event.accepted=true;
                 mainModel.playNote(311.13)
             }
+            else if (event.key === Qt.Key_F && !event.isAutoRepeat){
+                event.accepted=true;
+                mainModel.playNote(349.23)
+             }
+            else if (event.key === Qt.Key_T && !event.isAutoRepeat){
+                event.accepted=true;
+                mainModel.playNote(369.99)
+            }
+            else if (event.key === Qt.Key_G && !event.isAutoRepeat){
+                event.accepted=true;
+                mainModel.playNote(392.00)
+            }
+            else if (event.key === Qt.Key_Y && !event.isAutoRepeat){
+                event.accepted=true;
+                mainModel.playNote(415.30)
+            }
+            else if (event.key === Qt.Key_H && !event.isAutoRepeat){
+                event.accepted=true;
+                mainModel.playNote(440.00)
+            }
+            else if (event.key === Qt.Key_U && !event.isAutoRepeat){
+                event.accepted=true;
+                mainModel.playNote(466.16)
+            }
+            else if (event.key === Qt.Key_J && !event.isAutoRepeat){
+                event.accepted=true;
+                mainModel.playNote(493.88)
+            }
+            else if (event.key === Qt.Key_K && !event.isAutoRepeat){
+                event.accepted=true;
+                mainModel.playNote(523.25)
+            }
         }
         Keys.onReleased: {
             if (event.key === Qt.Key_A) {
@@ -66,7 +98,7 @@ Window {
 
         Button {
             id: button2
-            x: 40
+            x: 37
             y: -12
             width: 46
             height: 110
@@ -76,7 +108,7 @@ Window {
 
         Button {
             id: button3
-            x: 92
+            x: 86
             y: -12
             width: 46
             height: 110
@@ -86,7 +118,7 @@ Window {
 
         Button {
             id: button4
-            x: 26
+            x: 14
             y: -12
             width: 45
             height: 45
@@ -107,7 +139,7 @@ Window {
 
         Button {
             id: button5
-            x: 76
+            x: 63
             y: -12
             width: 45
             height: 45
@@ -124,6 +156,111 @@ Window {
                 color: "#000000"
             }
             onClicked: mainModel.playNote(311.13)
+        }
+
+        Button {
+            id: button6
+            x: 135
+            y: -12
+            width: 46
+            height: 110
+            text: "F"
+        }
+
+        Button {
+            id: button7
+            x: 184
+            y: -12
+            width: 46
+            height: 110
+            text: "G"
+        }
+
+        Button {
+            id: button8
+            x: 233
+            y: -12
+            width: 46
+            height: 110
+            text: "H"
+        }
+
+        Button {
+            id: button9
+            x: 282
+            y: -12
+            width: 46
+            height: 110
+            text: "J"
+        }
+
+        Button {
+            id: button10
+            x: 331
+            y: -12
+            width: 46
+            height: 110
+            text: "K"
+        }
+
+        Button {
+            id: button11
+            x: 161
+            y: -12
+            width: 45
+            height: 45
+            text: "T"
+            contentItem: Text {
+                color: button11.down ? "red" : "white"
+                text: button11.text
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignHCenter
+                font: button11.font
+                elide: Text.ElideRight
+            }
+            background: Rectangle {
+                color: "#000000"
+            }
+        }
+
+        Button {
+            id: button12
+            x: 210
+            y: -12
+            width: 45
+            height: 45
+            text: "Y"
+            contentItem: Text {
+                color: button12.down ? "red" : "white"
+                text: button12.text
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignHCenter
+                font: button12.font
+                elide: Text.ElideRight
+            }
+            background: Rectangle {
+                color: "#000000"
+            }
+        }
+
+        Button {
+            id: button13
+            x: 259
+            y: -12
+            width: 45
+            height: 45
+            text: "U"
+            contentItem: Text {
+                color: button13.down ? "red" : "white"
+                text: button13.text
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignHCenter
+                font: button13.font
+                elide: Text.ElideRight
+            }
+            background: Rectangle {
+                color: "#000000"
+            }
         }
     }
 }

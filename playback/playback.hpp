@@ -17,6 +17,7 @@ const float Gs5 = 415.30;
 const float A5 = 440.00;
 const float As5 = 466.16;
 const float B5 = 493.88;
+const float C6 = 523.25;
 
 extern std::unique_ptr<sf::SoundBuffer> buffer;
 
