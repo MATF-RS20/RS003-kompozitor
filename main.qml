@@ -26,14 +26,41 @@ Window {
         y: 182
         width: 362
         height: 110
-
+        focus: true
+        Keys.onPressed: {
+            if (event.key === Qt.Key_A  && !event.isAutoRepeat){
+                event.accepted=true;
+                mainModel.playNote(261.63)
+            }
+            else if (event.key === Qt.Key_S && !event.isAutoRepeat){
+                event.accepted=true;
+                mainModel.playNote(293.66)
+            }
+            else if (event.key === Qt.Key_D && !event.isAutoRepeat){
+                event.accepted=true;
+                mainModel.playNote(329.63)
+            }
+            else if (event.key === Qt.Key_W && !event.isAutoRepeat){
+                event.accepted=true;
+                mainModel.playNote(277.18)
+            }
+            else if (event.key === Qt.Key_E && !event.isAutoRepeat){
+                event.accepted=true;
+                mainModel.playNote(311.13)
+            }
+        }
+        Keys.onReleased: {
+            if (event.key === Qt.Key_A) {
+                console.log("Key A is Up!")
+            }
+        }
         Button {
             id: button1
             x: -12
             y: -12
             width: 46
             height: 110
-            text: qsTr("A")
+            text: "A"
             onClicked: mainModel.playNote(261.63)
         }
 
@@ -43,7 +70,7 @@ Window {
             y: -12
             width: 46
             height: 110
-            text: qsTr("S")
+            text: "S"
             onClicked: mainModel.playNote(293.66)
         }
 
@@ -53,7 +80,7 @@ Window {
             y: -12
             width: 46
             height: 110
-            text: qsTr("D")
+            text: "D"
             onClicked: mainModel.playNote(329.63)
         }
 
