@@ -1,7 +1,9 @@
 #ifndef KOMPOZITOR_SOUND_MANAGER_HPP
 #define KOMPOZITOR_SOUND_MANAGER_HPP
 
-#include <vector>
+#include <unordered_set>
+#include <SFML/Audio/Sound.hpp>
+#include <SFML/Audio/SoundBuffer.hpp>
 
 class SoundManager {
 public:
@@ -14,9 +16,16 @@ public:
     SoundManager& operator=(SoundManager&& other) = delete;
 
     void add_note(double freq);
+
+    void remove_note(double freq);
 private:
     SoundManager() = default;
-    std::vector<double> current_active;
+
+    void play_notes() const;
+
+    std::unordered_set<double> current_active;
+    sf::Sound sound;
+    sf::SoundBuffer soundBuffer;
 };
 
 #endif //KOMPOZITOR_SOUND_MANAGER_HPP

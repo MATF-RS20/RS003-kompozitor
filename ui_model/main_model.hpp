@@ -15,7 +15,7 @@ public slots:
     void playNote(float frequency, bool loop = false);
     void MyTimerSlot();
 
-
+    void stopNote(float frequency);
 };
 
 #endif //KOMPOZITOR_MAIN_MODEL_HPP

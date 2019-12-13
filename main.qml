@@ -82,8 +82,57 @@ Window {
             }
         }
         Keys.onReleased: {
-            if (event.key === Qt.Key_A) {
-                console.log("Key A is Up!")
+            if (event.key === Qt.Key_A  && !event.isAutoRepeat){
+                event.accepted=true;
+                mainModel.stopNote(261.63)
+            }
+            else if (event.key === Qt.Key_S && !event.isAutoRepeat){
+                event.accepted=true;
+                mainModel.stopNote(293.66)
+            }
+            else if (event.key === Qt.Key_D && !event.isAutoRepeat){
+                event.accepted=true;
+                mainModel.stopNote(329.63)
+            }
+            else if (event.key === Qt.Key_W && !event.isAutoRepeat){
+                event.accepted=true;
+                mainModel.stopNote(277.18)
+            }
+            else if (event.key === Qt.Key_E && !event.isAutoRepeat){
+                event.accepted=true;
+                mainModel.stopNote(311.13)
+            }
+            else if (event.key === Qt.Key_F && !event.isAutoRepeat){
+                event.accepted=true;
+                mainModel.stopNote(349.23)
+             }
+            else if (event.key === Qt.Key_T && !event.isAutoRepeat){
+                event.accepted=true;
+                mainModel.stopNote(369.99)
+            }
+            else if (event.key === Qt.Key_G && !event.isAutoRepeat){
+                event.accepted=true;
+                mainModel.stopNote(392.00)
+            }
+            else if (event.key === Qt.Key_Y && !event.isAutoRepeat){
+                event.accepted=true;
+                mainModel.stopNote(415.30)
+            }
+            else if (event.key === Qt.Key_H && !event.isAutoRepeat){
+                event.accepted=true;
+                mainModel.stopNote(440.00)
+            }
+            else if (event.key === Qt.Key_U && !event.isAutoRepeat){
+                event.accepted=true;
+                mainModel.stopNote(466.16)
+            }
+            else if (event.key === Qt.Key_J && !event.isAutoRepeat){
+                event.accepted=true;
+                mainModel.stopNote(493.88)
+            }
+            else if (event.key === Qt.Key_K && !event.isAutoRepeat){
+                event.accepted=true;
+                mainModel.stopNote(523.25)
             }
         }
         Button {
