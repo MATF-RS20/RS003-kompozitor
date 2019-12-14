@@ -5,6 +5,7 @@
 #include <cmath>
 #include <iostream>
 #include <memory>
+#include <unordered_set>
 
 sf::Sound sound; // FIXME avoid global variables
 std::unique_ptr<sf::SoundBuffer> buffer;
@@ -31,6 +32,20 @@ static std::vector<sf::Int16> create_sample(unsigned frequency = 440, double dur
     last_value = last_value + ((double) ((samples.size() - 1) % samples_per_phase) / (double) samples_per_phase) * M_PI * 2;
 
     return samples;
+}
+
+std::vector<sf::Int16> Playback::buffer_data_from_multiple_notes(const std::unordered_set<double> &notes, unsigned int duration, unsigned int sample_rate) {
+    unsigned buffer_size = duration * sample_rate;
+    std::vector<sf::Int16> buffer_data(buffer_size);
+    for (const auto &note : notes) {
+        auto samples = create_sample(note, duration, sample_rate);
+        for (unsigned i = 0; i < buffer_size; i++) {
+            // Divide by a constant, to avoid overflowing the sample value. This can be done smarter,
+            // by adding the original sine values, and then scaling as far as possible.
+            buffer_data[i] += samples[i] / 4;
+        }
+    }
+    return buffer_data;
 }
 
 static sf::SoundBuffer bufferFromFrequencies(const std::vector<float>& freqs, float duration = 0.5) {

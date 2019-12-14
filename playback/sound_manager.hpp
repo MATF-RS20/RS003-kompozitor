@@ -19,9 +19,12 @@ public:
 
     void remove_note(double freq);
 private:
-    SoundManager() = default;
+    SoundManager() {
+        sound.setBuffer(soundBuffer);
+        sound.setLoop(true);
+    }
 
-    void play_notes() const;
+    void play_notes();
 
     std::unordered_set<double> current_active;
     sf::Sound sound;

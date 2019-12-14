@@ -12,8 +12,7 @@ void MainModel::recordSomething() {
     Playback::record();
 }
 
-void MainModel::playNote(float frequency, bool loop) {
-    Playback::play_note(frequency, timer, loop);
+void MainModel::playNote(float frequency) {
     SoundManager::get_instance().add_note(frequency);
 }
 

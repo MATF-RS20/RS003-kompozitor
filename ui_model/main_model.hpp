@@ -12,7 +12,7 @@ public:
 public slots:
     void playSomething();
     void recordSomething();
-    void playNote(float frequency, bool loop = false);
+    void playNote(float frequency);
     void MyTimerSlot();
 
     void stopNote(float frequency);

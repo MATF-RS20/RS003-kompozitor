@@ -1,5 +1,5 @@
 #include "sound_manager.hpp"
-#include <iostream>
+#include "playback.hpp"
 
 SoundManager &SoundManager::get_instance() {
     static SoundManager instance;
@@ -16,11 +16,14 @@ void SoundManager::remove_note(double freq) {
     play_notes();
 }
 
-void SoundManager::play_notes() const {
-    // TODO only debug output for now
-    std::cout << '[';
-    for (double i: current_active) {
-        std::cout << i << " ";
+void SoundManager::play_notes() {
+    if (!current_active.empty()) {
+        std::vector<sf::Int16> buffer_data = Playback::buffer_data_from_multiple_notes(current_active);
+
+        soundBuffer.loadFromSamples(&buffer_data[0], buffer_data.size(), 1, 44100);
+
+        sound.play();
+    } else {
+        sound.stop();
     }
-    std::cout << ']' << std::endl;
 }
