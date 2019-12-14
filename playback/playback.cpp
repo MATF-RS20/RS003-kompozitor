@@ -6,6 +6,7 @@
 #include <iostream>
 #include <memory>
 #include <unordered_set>
+#include<climits>
 
 sf::Sound sound; // FIXME avoid global variables
 std::unique_ptr<sf::SoundBuffer> buffer;
@@ -13,19 +14,18 @@ std::unique_ptr<sf::SoundBuffer> buffer;
 // Empirically chosen
 const double ENDING_INTERVAL = 44100 * 0.005;
 
-static std::vector<sf::Int16> create_sample(unsigned frequency = 440, double duration = 10, unsigned sample_rate = 44100) {
+static std::vector<double> create_sample(unsigned frequency = 440, double duration = 10, unsigned sample_rate = 44100) {
 
-    // This is something that solves our problem with weird initial glitch
-    static double last_value = 0.001;
+    static double last_value;
 
-    std::vector<sf::Int16> samples(duration * sample_rate);
+    std::vector<double> samples(duration * sample_rate);
 
     unsigned samples_per_phase = sample_rate / frequency;
 
     for (unsigned long i = 0; i < samples.size(); ++i) {
         unsigned long i_phased = i % samples_per_phase;
         double rad_value_inside_phase = last_value + ((double) i_phased / (double) samples_per_phase) * M_PI * 2;
-        samples[i] = pow(2, 15) * sin(rad_value_inside_phase);
+        samples[i] = sin(rad_value_inside_phase);
     }
 
     // This is equal to the value of the rad_value_inside_phase of the last iteration
@@ -36,15 +36,27 @@ static std::vector<sf::Int16> create_sample(unsigned frequency = 440, double dur
 
 std::vector<sf::Int16> Playback::buffer_data_from_multiple_notes(const std::unordered_set<double> &notes, unsigned int duration, unsigned int sample_rate) {
     unsigned buffer_size = duration * sample_rate;
-    std::vector<sf::Int16> buffer_data(buffer_size);
+    std::vector<double> raw_buffer_data(buffer_size);
+    double max_amplitude = 0;
     for (const auto &note : notes) {
         auto samples = create_sample(note, duration, sample_rate);
         for (unsigned i = 0; i < buffer_size; i++) {
-            // Divide by a constant, to avoid overflowing the sample value. This can be done smarter,
-            // by adding the original sine values, and then scaling as far as possible.
-            buffer_data[i] += samples[i] / 4;
+            raw_buffer_data[i] += samples[i];
+            if (abs(raw_buffer_data[i]) > max_amplitude) {
+                max_amplitude = abs(raw_buffer_data[i]);
+            }
         }
     }
+
+    // This is the ratio at which all samples can be amplified, but still avoid clipping
+    double amplification_ratio = SHRT_MAX / max_amplitude;
+
+    std::vector<sf::Int16> buffer_data(raw_buffer_data.size());
+
+    for (unsigned i = 0; i < buffer_size; ++i) {
+        buffer_data[i] = static_cast<sf::Int16>(raw_buffer_data[i] * amplification_ratio);
+    }
+
     return buffer_data;
 }
 
@@ -53,8 +65,8 @@ static sf::SoundBuffer bufferFromFrequencies(const std::vector<float>& freqs, fl
     std::vector<sf::Int16> samples;
 
     for (const auto &freq : freqs) {
-        auto tmp_sample = create_sample(freq, duration);
-        samples.insert(samples.end(), tmp_sample.begin(), tmp_sample.end());
+//        auto tmp_sample = create_sample(freq, duration);
+//        samples.insert(samples.end(), tmp_sample.begin(), tmp_sample.end());
     }
 
     // Lower the volume of the ending interval to avoid glitching sounds
