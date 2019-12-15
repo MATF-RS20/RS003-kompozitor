@@ -25,7 +25,7 @@ extern std::unique_ptr<sf::SoundBuffer> buffer;
 namespace Playback {
     void play(QTimer *timer);
     void record();
-    void play_note(float frequency, QTimer *timer, bool loop = false);
+
     void make_timer(QTimer *timer, int time);
     void my_timer_slot();
 

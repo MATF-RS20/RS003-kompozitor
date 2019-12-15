@@ -117,21 +117,6 @@ void Playback::record() {
     buffer.saveToFile("andja_record.ogg");
 }
 
-void Playback::play_note(float frequency,  QTimer *timer, bool loop) {
-
-    std::vector<float> freqs = {frequency};
-
-    sf::SoundBuffer my_buffer = bufferFromFrequencies(freqs, 1);
-
-    buffer = std::make_unique<sf::SoundBuffer>(my_buffer);
-    sound.setBuffer(*buffer);
-    sound.setLoop(loop);
-    sound.play();
-
-    auto milliseconds = 1000 * ((int) ceil(static_cast<double>(my_buffer.getSampleCount()) / my_buffer.getSampleRate()) + 1);
-    make_timer(timer, milliseconds);
-}
-
 void Playback::make_timer(QTimer* timer, int time) {
     QObject::connect(timer, SIGNAL(timeout()),
                      timer->parent(), SLOT(MyTimerSlot()));
