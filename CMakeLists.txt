@@ -18,10 +18,13 @@ endif()
 
 
 add_executable(Kompozitor
-        main.cpp
+        src/main.cpp
         qml.qrc
-        ui_model/main_model.cpp ui_model/main_model.hpp
-        playback/playback.cpp playback/playback.hpp playback/sound_manager.cpp playback/sound_manager.hpp)
+        src/ui_model/main_model.cpp src/ui_model/main_model.hpp
+        src/playback/playback.cpp src/playback/playback.hpp
+        src/playback/sound_manager.cpp src/playback/sound_manager.hpp)
+
+target_include_directories(Kompozitor PRIVATE src)
 
 target_compile_definitions(Kompozitor
         PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)

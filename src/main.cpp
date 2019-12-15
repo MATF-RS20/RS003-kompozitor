@@ -1,8 +1,7 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
-
-#include "ui_model/main_model.hpp"
+#include <src/ui_model/main_model.hpp>
 
 int main(int argc, char *argv[])
 {
