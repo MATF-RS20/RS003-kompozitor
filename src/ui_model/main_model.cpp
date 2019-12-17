@@ -1,4 +1,5 @@
 #include <playback/sound_manager.hpp>
+#include <src/playback/record_manager.hpp>
 #include "main_model.hpp"
 #include "playback/playback.hpp"
 
@@ -22,6 +23,14 @@ void MainModel::stopNote(float frequency) {
 
 void MainModel::MyTimerSlot() {
     Playback::my_timer_slot();
+}
+
+void MainModel::startRecording() {
+    RecordManager::get_instance().start_recording();
+}
+
+void MainModel::stopRecording() {
+    RecordManager::get_instance().stop_recording();
 }
 
 // For testing purposes

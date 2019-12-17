@@ -8,8 +8,15 @@
 class MainModel : public QObject {
 
 Q_OBJECT
+Q_PROPERTY(bool isRecording READ isRecording)
+
 public:
     QTimer* timer = new QTimer(this);
+
+    bool isRecording() {
+        return _isRecording;
+    }
+
 public slots:
     void playSomething();
     void recordSomething();
@@ -20,6 +27,12 @@ public slots:
     TrackNote* getTrackNote() const;
 
     void stopNote(float frequency);
+
+    void startRecording();
+    void stopRecording();
+
+private:
+    bool _isRecording;
 };
 
 #endif //KOMPOZITOR_MAIN_MODEL_HPP
