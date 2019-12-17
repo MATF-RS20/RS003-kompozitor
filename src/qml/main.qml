@@ -5,6 +5,7 @@ import QtQuick.Controls 2.12
 import kompozitor 1.0
 
 Window {
+
     visible: true
     width: 640
     height: 480
@@ -20,6 +21,27 @@ Window {
         y: 0
         text: "Record"
         onClicked: mainModel.recordSomething()
+    }
+    Button {
+        x: 270
+        y: 0
+        text: "pocetno"
+        contentItem: Text {
+            text: mainModel.isRecording ? "Stop recording" : "Start recording"
+         }
+        onClicked: {
+            //text: text + mainModel.isRecording ? "Stop recording" : "Start recording"
+            if (mainModel.isRecording){
+                console.log("Radim2")
+                mainModel.stopRecording()
+            }
+            else{
+                //mainModel.()
+                console.log(mainModel.isRecording)
+                mainModel.startRecording()
+            }
+
+        }
     }
 
     Track {
