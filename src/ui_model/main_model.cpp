@@ -23,3 +23,12 @@ void MainModel::stopNote(float frequency) {
 void MainModel::MyTimerSlot() {
     Playback::my_timer_slot();
 }
+
+// For testing purposes
+TrackNote* MainModel::getTrackNote() const {
+    auto *track_note = new TrackNote();
+    track_note->setPitch(5);
+    track_note->setStart(0.1);
+    track_note->setEnd(10.0);
+    return track_note;
+}

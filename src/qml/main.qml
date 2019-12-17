@@ -2,6 +2,8 @@ import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQuick.Controls 2.12
 
+import kompozitor 1.0
+
 Window {
     visible: true
     width: 640
@@ -18,6 +20,17 @@ Window {
         y: 0
         text: "Record"
         onClicked: mainModel.recordSomething()
+    }
+
+    Track {
+        x: 200
+        y: 80
+        width: 400
+        height: 50
+
+        // Simulate array of different notes, only for testing purposes
+        notes: [mainModel.getTrackNote(), mainModel.getTrackNote()]
+
     }
 
     Frame {

@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file alias="main.qml">src/qml/main.qml</file>
+        <file alias="Track.qml">src/qml/Track.qml</file>
     </qresource>
 </RCC>

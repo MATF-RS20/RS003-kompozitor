@@ -22,7 +22,8 @@ add_executable(Kompozitor
         qml.qrc
         src/ui_model/main_model.cpp src/ui_model/main_model.hpp
         src/playback/playback.cpp src/playback/playback.hpp
-        src/playback/sound_manager.cpp src/playback/sound_manager.hpp)
+        src/playback/sound_manager.cpp src/playback/sound_manager.hpp
+        src/ui_model/track_note.cpp src/ui_model/track_note.hpp)
 
 target_include_directories(Kompozitor PRIVATE src)
 

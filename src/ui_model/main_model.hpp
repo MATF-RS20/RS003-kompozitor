@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QtCore/QTimer>
+#include "track_note.hpp"
 
 class MainModel : public QObject {
 
@@ -14,6 +15,9 @@ public slots:
     void recordSomething();
     void playNote(float frequency);
     void MyTimerSlot();
+
+    // For testing purposes
+    TrackNote* getTrackNote() const;
 
     void stopNote(float frequency);
 };
