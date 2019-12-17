@@ -32,7 +32,7 @@ public slots:
     void stopRecording();
 
 private:
-    bool _isRecording;
+    bool _isRecording = false;
 };
 
 #endif //KOMPOZITOR_MAIN_MODEL_HPP
