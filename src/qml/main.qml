@@ -25,23 +25,8 @@ Window {
     Button {
         x: 270
         y: 0
-        text: "pocetno"
-        contentItem: Text {
-            text: mainModel.isRecording ? "Stop recording" : "Start recording"
-         }
-        onClicked: {
-            //text: text + mainModel.isRecording ? "Stop recording" : "Start recording"
-            if (mainModel.isRecording){
-                console.log("Radim2")
-                mainModel.stopRecording()
-            }
-            else{
-                //mainModel.()
-                console.log(mainModel.isRecording)
-                mainModel.startRecording()
-            }
-
-        }
+        text: mainModel.isRecording ? "Stop recording" : "Start recording"
+        onClicked: mainModel.isRecording ? mainModel.stopRecording() : mainModel.startRecording()
     }
 
     Track {

@@ -8,7 +8,7 @@
 class MainModel : public QObject {
 
 Q_OBJECT
-Q_PROPERTY(bool isRecording READ isRecording)
+Q_PROPERTY(bool isRecording READ isRecording NOTIFY isRecordingChanged)
 
 public:
     QTimer* timer = new QTimer(this);
@@ -30,6 +30,9 @@ public slots:
 
     void startRecording();
     void stopRecording();
+
+signals:
+    void isRecordingChanged();
 
 private:
     bool _isRecording = false;

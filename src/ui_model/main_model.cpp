@@ -28,11 +28,13 @@ void MainModel::MyTimerSlot() {
 void MainModel::startRecording() {
     _isRecording = true;
     RecordManager::get_instance().start_recording();
+    emit isRecordingChanged();
 }
 
 void MainModel::stopRecording() {
     _isRecording = false;
     RecordManager::get_instance().stop_recording();
+    emit isRecordingChanged();
 }
 
 // For testing purposes
