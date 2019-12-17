@@ -29,7 +29,7 @@ namespace Playback {
     void make_timer(QTimer *timer, int time);
     void my_timer_slot();
 
-    std::vector<sf::Int16> buffer_data_from_multiple_notes(const std::unordered_set<double> &notes, unsigned duration = 1, unsigned sample_rate = 44100);
+    std::vector<sf::Int16> buffer_data_from_multiple_notes(const std::unordered_set<double> &notes, unsigned duration = 5, unsigned sample_rate = 44100);
 }
 
 #endif //KOMPOZITOR_PLAYBACK_HPP
