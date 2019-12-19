@@ -47,111 +47,53 @@ Window {
         height: 110
         focus: true
         Keys.onPressed: {
-            if (event.key === Qt.Key_A  && !event.isAutoRepeat){
-                event.accepted=true;
-                mainModel.playNote(261.63)
+            if (event.isAutoRepeat) {
+                return;
             }
-            else if (event.key === Qt.Key_S && !event.isAutoRepeat){
-                event.accepted=true;
-                mainModel.playNote(293.66)
-            }
-            else if (event.key === Qt.Key_D && !event.isAutoRepeat){
-                event.accepted=true;
-                mainModel.playNote(329.63)
-            }
-            else if (event.key === Qt.Key_W && !event.isAutoRepeat){
-                event.accepted=true;
-                mainModel.playNote(277.18)
-            }
-            else if (event.key === Qt.Key_E && !event.isAutoRepeat){
-                event.accepted=true;
-                mainModel.playNote(311.13)
-            }
-            else if (event.key === Qt.Key_F && !event.isAutoRepeat){
-                event.accepted=true;
-                mainModel.playNote(349.23)
-             }
-            else if (event.key === Qt.Key_T && !event.isAutoRepeat){
-                event.accepted=true;
-                mainModel.playNote(369.99)
-            }
-            else if (event.key === Qt.Key_G && !event.isAutoRepeat){
-                event.accepted=true;
-                mainModel.playNote(392.00)
-            }
-            else if (event.key === Qt.Key_Y && !event.isAutoRepeat){
-                event.accepted=true;
-                mainModel.playNote(415.30)
-            }
-            else if (event.key === Qt.Key_H && !event.isAutoRepeat){
-                event.accepted=true;
-                mainModel.playNote(440.00)
-            }
-            else if (event.key === Qt.Key_U && !event.isAutoRepeat){
-                event.accepted=true;
-                mainModel.playNote(466.16)
-            }
-            else if (event.key === Qt.Key_J && !event.isAutoRepeat){
-                event.accepted=true;
-                mainModel.playNote(493.88)
-            }
-            else if (event.key === Qt.Key_K && !event.isAutoRepeat){
-                event.accepted=true;
-                mainModel.playNote(523.25)
+
+            event.accepted=true;
+
+            switch (event.key) {
+                case Qt.Key_A: mainModel.playNote(261.63); break;
+                case Qt.Key_W: mainModel.playNote(277.18); break;
+                case Qt.Key_S: mainModel.playNote(293.66); break;
+                case Qt.Key_E: mainModel.playNote(311.13); break;
+                case Qt.Key_D: mainModel.playNote(329.63); break;
+                case Qt.Key_F: mainModel.playNote(349.23); break;
+                case Qt.Key_T: mainModel.playNote(369.99); break;
+                case Qt.Key_G: mainModel.playNote(392.00); break;
+                case Qt.Key_Y:
+                case Qt.Key_Z: mainModel.playNote(415.30); break;
+                case Qt.Key_H: mainModel.playNote(440.00); break;
+                case Qt.Key_U: mainModel.playNote(466.16); break;
+                case Qt.Key_J: mainModel.playNote(493.88); break;
+                case Qt.Key_K: mainModel.playNote(523.25); break;
+                default: event.accepted=false;
             }
         }
         Keys.onReleased: {
-            if (event.key === Qt.Key_A  && !event.isAutoRepeat){
-                event.accepted=true;
-                mainModel.stopNote(261.63)
+            if (event.isAutoRepeat) {
+                return;
             }
-            else if (event.key === Qt.Key_S && !event.isAutoRepeat){
-                event.accepted=true;
-                mainModel.stopNote(293.66)
-            }
-            else if (event.key === Qt.Key_D && !event.isAutoRepeat){
-                event.accepted=true;
-                mainModel.stopNote(329.63)
-            }
-            else if (event.key === Qt.Key_W && !event.isAutoRepeat){
-                event.accepted=true;
-                mainModel.stopNote(277.18)
-            }
-            else if (event.key === Qt.Key_E && !event.isAutoRepeat){
-                event.accepted=true;
-                mainModel.stopNote(311.13)
-            }
-            else if (event.key === Qt.Key_F && !event.isAutoRepeat){
-                event.accepted=true;
-                mainModel.stopNote(349.23)
-             }
-            else if (event.key === Qt.Key_T && !event.isAutoRepeat){
-                event.accepted=true;
-                mainModel.stopNote(369.99)
-            }
-            else if (event.key === Qt.Key_G && !event.isAutoRepeat){
-                event.accepted=true;
-                mainModel.stopNote(392.00)
-            }
-            else if (event.key === Qt.Key_Y && !event.isAutoRepeat){
-                event.accepted=true;
-                mainModel.stopNote(415.30)
-            }
-            else if (event.key === Qt.Key_H && !event.isAutoRepeat){
-                event.accepted=true;
-                mainModel.stopNote(440.00)
-            }
-            else if (event.key === Qt.Key_U && !event.isAutoRepeat){
-                event.accepted=true;
-                mainModel.stopNote(466.16)
-            }
-            else if (event.key === Qt.Key_J && !event.isAutoRepeat){
-                event.accepted=true;
-                mainModel.stopNote(493.88)
-            }
-            else if (event.key === Qt.Key_K && !event.isAutoRepeat){
-                event.accepted=true;
-                mainModel.stopNote(523.25)
+
+            event.accepted=true;
+
+            switch (event.key) {
+                case Qt.Key_A: mainModel.stopNote(261.63); break;
+                case Qt.Key_W: mainModel.stopNote(277.18); break;
+                case Qt.Key_S: mainModel.stopNote(293.66); break;
+                case Qt.Key_E: mainModel.stopNote(311.13); break;
+                case Qt.Key_D: mainModel.stopNote(329.63); break;
+                case Qt.Key_F: mainModel.stopNote(349.23); break;
+                case Qt.Key_T: mainModel.stopNote(369.99); break;
+                case Qt.Key_G: mainModel.stopNote(392.00); break;
+                case Qt.Key_Y:
+                case Qt.Key_Z: mainModel.stopNote(415.30); break;
+                case Qt.Key_H: mainModel.stopNote(440.00); break;
+                case Qt.Key_U: mainModel.stopNote(466.16); break;
+                case Qt.Key_J: mainModel.stopNote(493.88); break;
+                case Qt.Key_K: mainModel.stopNote(523.25); break;
+                default: event.accepted=false;
             }
         }
         Button {
@@ -161,7 +103,8 @@ Window {
             width: 46
             height: 110
             text: "A"
-            onClicked: mainModel.playNote(261.63)
+            onPressed: mainModel.playNote(261.63)
+            onReleased: mainModel.stopNote(261.63)
         }
 
         Button {
@@ -171,7 +114,9 @@ Window {
             width: 46
             height: 110
             text: "S"
-            onClicked: mainModel.playNote(293.66)
+            onPressed: mainModel.playNote(293.66)
+            onReleased: mainModel.stopNote(293.66)
+
         }
 
         Button {
@@ -181,7 +126,8 @@ Window {
             width: 46
             height: 110
             text: "D"
-            onClicked: mainModel.playNote(329.63)
+            onPressed: mainModel.playNote(329.63)
+            onReleased: mainModel.stopNote(329.63)
         }
 
         Button {
@@ -202,7 +148,8 @@ Window {
                 verticalAlignment: Text.AlignVCenter
                 elide: Text.ElideRight
             }
-            onClicked: mainModel.playNote(277.18)
+            onPressed: mainModel.playNote(277.18)
+            onReleased: mainModel.stopNote(277.18)
         }
 
         Button {
@@ -223,7 +170,8 @@ Window {
             background: Rectangle {
                 color: "#000000"
             }
-            onClicked: mainModel.playNote(311.13)
+            onPressed: mainModel.playNote(311.13)
+            onReleased: mainModel.stopNote(311.13)
         }
 
         Button {
@@ -233,7 +181,8 @@ Window {
             width: 46
             height: 110
             text: "F"
-            onClicked: mainModel.playNote(349.23)
+            onPressed: mainModel.playNote(349.23)
+            onReleased: mainModel.stopNote(349.23)
         }
 
         Button {
@@ -243,7 +192,8 @@ Window {
             width: 46
             height: 110
             text: "G"
-            onClicked: mainModel.playNote(392.00)
+            onPressed: mainModel.playNote(392.00)
+            onReleased: mainModel.stopNote(392.00)
         }
 
         Button {
@@ -253,7 +203,8 @@ Window {
             width: 46
             height: 110
             text: "H"
-            onClicked: mainModel.playNote(440.00)
+            onPressed: mainModel.playNote(440.00)
+            onReleased: mainModel.stopNote(440.00)
         }
 
         Button {
@@ -263,7 +214,8 @@ Window {
             width: 46
             height: 110
             text: "J"
-            onClicked: mainModel.playNote(493.88)
+            onPressed: mainModel.playNote(493.88)
+            onReleased: mainModel.stopNote(493.88)
         }
 
         Button {
@@ -273,7 +225,8 @@ Window {
             width: 46
             height: 110
             text: "K"
-            onClicked: mainModel.playNote(523.25)
+            onPressed: mainModel.playNote(523.25)
+            onReleased: mainModel.stopNote(523.25)
         }
 
         Button {
@@ -294,7 +247,8 @@ Window {
             background: Rectangle {
                 color: "#000000"
             }
-            onClicked: mainModel.playNote(369.99)
+            onPressed: mainModel.playNote(369.99)
+            onReleased: mainModel.stopNote(369.99)
         }
 
         Button {
@@ -315,7 +269,8 @@ Window {
             background: Rectangle {
                 color: "#000000"
             }
-            onClicked: mainModel.playNote(415.30)
+            onPressed: mainModel.playNote(415.30)
+            onReleased: mainModel.stopNote(415.30)
         }
 
         Button {
@@ -336,7 +291,8 @@ Window {
             background: Rectangle {
                 color: "#000000"
             }
-            onClicked: mainModel.playNote(466.16)
+            onPressed: mainModel.playNote(466.16)
+            onReleased: mainModel.stopNote(466.16)
         }
     }
 }
