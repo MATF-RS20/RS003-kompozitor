@@ -38,10 +38,9 @@ void MainModel::stopRecording() {
 }
 
 // For testing purposes
-TrackNote* MainModel::getTrackNote() const {
-    auto *track_note = new TrackNote();
-    track_note->setPitch(5);
-    track_note->setStart(0.1);
-    track_note->setEnd(10.0);
-    return track_note;
+QList<QObject *> MainModel::getTrackNotes() const {
+    return {
+            new TrackNote(2, 0, 2),
+            new TrackNote(5, 3, 4)
+    };
 }

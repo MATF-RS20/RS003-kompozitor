@@ -36,8 +36,7 @@ Window {
         height: 50
 
         // Simulate array of different notes, only for testing purposes
-        notes: [mainModel.getTrackNote(), mainModel.getTrackNote()]
-
+        notes: mainModel.notes
     }
 
     Frame {

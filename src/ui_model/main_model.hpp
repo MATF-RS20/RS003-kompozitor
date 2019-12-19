@@ -9,6 +9,7 @@ class MainModel : public QObject {
 
 Q_OBJECT
 Q_PROPERTY(bool isRecording READ isRecording NOTIFY isRecordingChanged)
+Q_PROPERTY(QList<QObject*> notes READ getTrackNotes NOTIFY notesChanged)
 
 public:
     QTimer* timer = new QTimer(this);
@@ -17,14 +18,15 @@ public:
         return _isRecording;
     }
 
+    // For testing purposes
+    [[nodiscard]]
+    QList<QObject*> getTrackNotes() const;
+
 public slots:
     void playSomething();
     void recordSomething();
     void playNote(float frequency);
     void MyTimerSlot();
-
-    // For testing purposes
-    TrackNote* getTrackNote() const;
 
     void stopNote(float frequency);
 
@@ -33,6 +35,8 @@ public slots:
 
 signals:
     void isRecordingChanged();
+
+    void notesChanged();
 
 private:
     bool _isRecording = false;

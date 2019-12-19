@@ -12,6 +12,9 @@ class TrackNote : public QObject {
 public:
     explicit TrackNote(QObject *parent = nullptr);
 
+    TrackNote(int pitch, double start, double end)
+        : _pitch(pitch), _start(start), _end(end) {};
+
     [[nodiscard]]
     int pitch() const;
     void setPitch(int pitch);
