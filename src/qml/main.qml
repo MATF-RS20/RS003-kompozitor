@@ -11,11 +11,34 @@ ApplicationWindow {
     height: 600
     title: "Kompozitor"
 
+    Row {
+        id: trackListControls
+        spacing: 10
+
+        Button {
+            text: "Add microphone track (WIP)"
+        }
+
+        Button {
+            text: "Add keyboard track (WIP)"
+        }
+
+        Button {
+            text: "Record"
+            onClicked: mainModel.recordSomething()
+        }
+        Button {
+            text: mainModel.isRecording ? "Stop recording" : "Start recording"
+            onClicked: mainModel.isRecording ? mainModel.stopRecording() : mainModel.startRecording()
+        }
+    }
+
     ListView {
-        anchors.top: playButton.bottom
+        id: trackListView
+        anchors.top: trackListControls.bottom
         anchors.left: parent.left
         width: 300
-        height: 600
+        height: 400
 
         model: TrackListModel {}
 
@@ -23,43 +46,32 @@ ApplicationWindow {
             Text {
                 text: "Track #"
             }
-            Track {
-                width: 400
-                height: 50
 
-                // Simulate array of different notes, only for testing purposes
-                notes: mainModel.notes
+            Row {
+                Button {
+                    text: "Start recording \n(WIP)"
+                }
+
+                Track {
+                    width: 400
+                    height: 100
+
+                    // Simulate array of different notes, only for testing purposes
+                    notes: mainModel.notes
+                }
             }
+
         }
 
         spacing: 10.0
 
     }
 
-    Button {
-        id: playButton
-        text: "Play"
-        onClicked: mainModel.playSomething()
-    }
-
-    Button {
-        x: 155
-        y: 0
-        text: "Record"
-        onClicked: mainModel.recordSomething()
-    }
-    Button {
-        x: 270
-        y: 0
-        text: mainModel.isRecording ? "Stop recording" : "Start recording"
-        onClicked: mainModel.isRecording ? mainModel.stopRecording() : mainModel.startRecording()
-    }
-
     Frame {
         id: frame
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: 50
-        anchors.right: parent.right
+        anchors.top: trackListView.bottom
+        anchors.topMargin: 50
+        anchors.left: parent.left
         anchors.rightMargin: 50
 
         width: 389
