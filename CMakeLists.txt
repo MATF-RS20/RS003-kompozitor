@@ -24,7 +24,8 @@ add_executable(Kompozitor
         src/playback/playback.cpp src/playback/playback.hpp
         src/playback/sound_manager.cpp src/playback/sound_manager.hpp
         src/ui_model/track_note.cpp src/ui_model/track_note.hpp
-        src/playback/record_manager.cpp src/playback/record_manager.hpp)
+        src/playback/record_manager.cpp src/playback/record_manager.hpp
+        src/ui_model/tracks_list_model.cpp src/ui_model/tracks_list_model.hpp)
 
 target_include_directories(Kompozitor PRIVATE src)
 

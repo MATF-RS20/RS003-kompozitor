@@ -4,14 +4,40 @@ import QtQuick.Controls 2.12
 
 import kompozitor 1.0
 
-Window {
+ApplicationWindow {
 
     visible: true
-    width: 640
-    height: 480
+    width: 800
+    height: 600
     title: "Kompozitor"
 
+    ListView {
+        anchors.top: playButton.bottom
+        anchors.left: parent.left
+        width: 300
+        height: 600
+
+        model: TrackListModel {}
+
+        delegate: Column {
+            Text {
+                text: "Track #"
+            }
+            Track {
+                width: 400
+                height: 50
+
+                // Simulate array of different notes, only for testing purposes
+                notes: mainModel.notes
+            }
+        }
+
+        spacing: 10.0
+
+    }
+
     Button {
+        id: playButton
         text: "Play"
         onClicked: mainModel.playSomething()
     }
@@ -29,20 +55,13 @@ Window {
         onClicked: mainModel.isRecording ? mainModel.stopRecording() : mainModel.startRecording()
     }
 
-    Track {
-        x: 200
-        y: 80
-        width: 400
-        height: 50
-
-        // Simulate array of different notes, only for testing purposes
-        notes: mainModel.notes
-    }
-
     Frame {
         id: frame
-        x: 136
-        y: 182
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 50
+        anchors.right: parent.right
+        anchors.rightMargin: 50
+
         width: 389
         height: 110
         focus: true

@@ -2,6 +2,7 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <src/ui_model/main_model.hpp>
+#include <src/ui_model/tracks_list_model.hpp>
 #include "src/ui_model/track_note.hpp"
 
 int main(int argc, char *argv[])
@@ -12,6 +13,7 @@ int main(int argc, char *argv[])
 
     //Register type so that it can be used within QML
     qmlRegisterType<TrackNote>("kompozitor", 1, 0, "TrackNote");
+    qmlRegisterType<TracksListModel>("kompozitor", 1, 0, "TrackListModel");
 
     QQmlApplicationEngine engine;
     // This enables using the "mainModel" variable inside main.qml
