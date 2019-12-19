@@ -1,5 +1,6 @@
 #include <playback/sound_manager.hpp>
 #include <src/playback/record_manager.hpp>
+#include <utility>
 #include "main_model.hpp"
 #include "playback/playback.hpp"
 
@@ -37,10 +38,11 @@ void MainModel::stopRecording() {
     emit isRecordingChanged();
 }
 
-// For testing purposes
-QList<QObject *> MainModel::getTrackNotes() const {
-    return {
-            new TrackNote(2, 0, 2),
-            new TrackNote(5, 3, 4)
-    };
+QList<QObject *> MainModel::trackNotes() const {
+    return _trackNotes;
+}
+
+void MainModel::setTrackNotes(QList<QObject *> trackNotes) {
+    _trackNotes = std::move(trackNotes);
+    emit trackNotesChanged();
 }

@@ -9,7 +9,7 @@ class MainModel : public QObject {
 
 Q_OBJECT
 Q_PROPERTY(bool isRecording READ isRecording NOTIFY isRecordingChanged)
-Q_PROPERTY(QList<QObject*> notes READ getTrackNotes NOTIFY notesChanged)
+Q_PROPERTY(QList<QObject*> notes READ trackNotes NOTIFY trackNotesChanged)
 
 public:
     QTimer* timer = new QTimer(this);
@@ -18,9 +18,10 @@ public:
         return _isRecording;
     }
 
-    // For testing purposes
     [[nodiscard]]
-    QList<QObject*> getTrackNotes() const;
+    QList<QObject*> trackNotes() const;
+
+    void setTrackNotes(QList<QObject*>);
 
 public slots:
     void playSomething();
@@ -36,10 +37,16 @@ public slots:
 signals:
     void isRecordingChanged();
 
-    void notesChanged();
+    void trackNotesChanged();
 
 private:
     bool _isRecording = false;
+
+    // Test data, for now
+    QList<QObject*> _trackNotes {
+            new TrackNote(2, 0, 2),
+            new TrackNote(5, 3, 4)
+    };
 };
 
 #endif //KOMPOZITOR_MAIN_MODEL_HPP
