@@ -44,10 +44,11 @@ ApplicationWindow {
 
         delegate: Column {
             Text {
-                text: "Track #"
+                text: "Track " + dataTrackNumber
             }
 
             Row {
+                spacing: 10.0
                 Button {
                     text: "Start recording \n(WIP)"
                 }
@@ -55,9 +56,9 @@ ApplicationWindow {
                 Track {
                     width: 400
                     height: 100
-
-                    // Simulate array of different notes, only for testing purposes
-                    notes: mainModel.notes
+                    notes: dataNotes
+                    // temporary implementation of dataTrackType, for testing purposes
+                    color: dataTrackType == 1 ? "green" : "blue"
                 }
             }
 
