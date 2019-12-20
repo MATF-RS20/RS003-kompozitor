@@ -21,14 +21,16 @@ QVariant TracksListModel::data(const QModelIndex &index, int role) const {
         return QVariant();
     }
 
+    Track* track = _data[index.row()];
+
     switch (role) {
         case TRACK_DATA:
-            return QVariant::fromValue(_data[index.row()]);
+            return QVariant::fromValue(track->notes());
         case TRACK_NUMBER:
-            return QVariant::fromValue(index.row() + 1);
+            return QVariant::fromValue(track->id());
         case TRACK_TYPE:
             // Temporary value for testing
-            return QVariant::fromValue(index.row() % 2);
+            return QVariant::fromValue((int) track->trackType());
         default:
             return QVariant();
     }

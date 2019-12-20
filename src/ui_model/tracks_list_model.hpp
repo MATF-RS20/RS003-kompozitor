@@ -3,6 +3,7 @@
 
 #include <QtCore/QAbstractListModel>
 #include "track_note.hpp"
+#include "track.hpp"
 
 class TracksListModel: public QAbstractListModel {
 
@@ -31,17 +32,17 @@ public:
 
 private:
     // Temporary data for testing
-    std::vector<QList<QObject*>> _data {
-        QList<QObject*> {
+    std::vector<Track*> _data {
+        new Track(1, Track::KEYBOARD, {
                 new TrackNote(2, 0, 2),
                 new TrackNote(5, 3, 4)
-        },
-        QList<QObject*> {
+        }),
+        new Track(2, Track::MICROPHONE, {
                 new TrackNote(3, 0, 2),
                 new TrackNote(5, 2, 5),
                 new TrackNote(2, 4, 6),
                 new TrackNote(7, 7, 10)
-        }
+        })
     };
 };
 
