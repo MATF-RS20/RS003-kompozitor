@@ -8,6 +8,7 @@
 class TracksListModel: public QAbstractListModel {
 
 Q_OBJECT
+Q_PROPERTY(QList<Track*> tracks READ tracks WRITE set_tracks NOTIFY onTracksChanged)
 
 public:
     enum RoleType {
@@ -30,20 +31,16 @@ public:
     [[nodiscard]]
     QHash<int, QByteArray> roleNames() const override;
 
+    [[nodiscard]]
+    QList<Track*> tracks() const;
+
+    void set_tracks(const QList<Track*>& tracks);
+
+signals:
+    void onTracksChanged();
+
 private:
-    // Temporary data for testing
-    std::vector<Track*> _data {
-        new Track(1, Track::KEYBOARD, {
-                new TrackNote(2, 0, 2),
-                new TrackNote(5, 3, 4)
-        }),
-        new Track(2, Track::MICROPHONE, {
-                new TrackNote(3, 0, 2),
-                new TrackNote(5, 2, 5),
-                new TrackNote(2, 4, 6),
-                new TrackNote(7, 7, 10)
-        })
-    };
+    QList<Track*> _tracks;
 };
 
 #endif //KOMPOZITOR_TRACKS_LIST_MODEL_HPP

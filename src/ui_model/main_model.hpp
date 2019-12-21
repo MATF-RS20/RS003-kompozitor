@@ -4,12 +4,13 @@
 #include <QObject>
 #include <QtCore/QTimer>
 #include "track_note.hpp"
+#include "track.hpp"
 
 class MainModel : public QObject {
 
 Q_OBJECT
 Q_PROPERTY(bool isRecording READ isRecording NOTIFY isRecordingChanged)
-Q_PROPERTY(QList<QObject*> notes READ trackNotes NOTIFY trackNotesChanged)
+Q_PROPERTY(QList<Track*> tracks READ tracks WRITE set_tracks NOTIFY onTracksChanged)
 
 public:
     QTimer* timer = new QTimer(this);
@@ -19,33 +20,49 @@ public:
     }
 
     [[nodiscard]]
-    QList<QObject*> trackNotes() const;
+    QList<Track*> tracks() const;
 
-    void setTrackNotes(QList<QObject*>);
+    void set_tracks(QList<Track*>);
 
 public slots:
+
     void playSomething();
+
     void recordSomething();
+
     void playNote(float frequency);
+
     void MyTimerSlot();
 
     void stopNote(float frequency);
 
     void startRecording();
+
     void stopRecording();
 
+    void addMicrophoneTrack();
+
+    void addKeyboardTrack();
 signals:
     void isRecordingChanged();
 
-    void trackNotesChanged();
+    void onTracksChanged();
 
 private:
     bool _isRecording = false;
 
     // Test data, for now
-    QList<QObject*> _trackNotes {
-            new TrackNote(2, 0, 2),
-            new TrackNote(5, 3, 4)
+    QList<Track*> _tracks {
+            new Track(1, Track::KEYBOARD, {
+                    new TrackNote(2, 0, 2),
+                    new TrackNote(5, 3, 4)
+            }),
+            new Track(2, Track::MICROPHONE, {
+                    new TrackNote(3, 0, 2),
+                    new TrackNote(5, 2, 5),
+                    new TrackNote(2, 4, 6),
+                    new TrackNote(7, 7, 10)
+            })
     };
 };
 

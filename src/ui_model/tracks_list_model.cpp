@@ -1,7 +1,7 @@
 #include "tracks_list_model.hpp"
 
 int TracksListModel::rowCount(const QModelIndex &parent) const {
-    return _data.size();
+    return _tracks.size();
 }
 
 int TracksListModel::columnCount(const QModelIndex &parent) const {
@@ -21,7 +21,7 @@ QVariant TracksListModel::data(const QModelIndex &index, int role) const {
         return QVariant();
     }
 
-    Track* track = _data[index.row()];
+    Track* track = _tracks[index.row()];
 
     switch (role) {
         case TRACK_DATA:
@@ -34,4 +34,15 @@ QVariant TracksListModel::data(const QModelIndex &index, int role) const {
         default:
             return QVariant();
     }
+}
+
+QList<Track*> TracksListModel::tracks() const{
+    return _tracks;
+}
+
+void TracksListModel::set_tracks(const QList<Track*>& tracks) {
+    emit layoutAboutToBeChanged();
+    _tracks = tracks;
+    emit onTracksChanged();
+    emit layoutChanged();
 }

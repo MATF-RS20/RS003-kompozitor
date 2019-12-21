@@ -16,11 +16,17 @@ ApplicationWindow {
         spacing: 10
 
         Button {
-            text: "Add microphone track (WIP)"
+            text: "Add microphone track"
+            onClicked: {
+                mainModel.addMicrophoneTrack()
+            }
         }
 
         Button {
-            text: "Add keyboard track (WIP)"
+            text: "Add keyboard track"
+            onClicked: {
+                mainModel.addKeyboardTrack()
+            }
         }
 
         Button {
@@ -40,7 +46,7 @@ ApplicationWindow {
         width: 300
         height: 400
 
-        model: TrackListModel {}
+        model: TrackListModel { tracks: mainModel.tracks }
 
         delegate: Column {
             Text {
