@@ -68,7 +68,7 @@ ApplicationWindow {
                                     height: 100,
                                     notes: dataNotes,
                                     // temporary implementation of dataTrackType, for testing purposes
-                                    color: dataTrackType == 1 ? "green" : "blue"
+                                    color: "green"
                                 })
                         } else {
                             setSource("SampleTrack.qml",
@@ -77,7 +77,7 @@ ApplicationWindow {
                                     height: 100,
                                     //notes: dataNotes,
                                     // temporary implementation of dataTrackType, for testing purposes
-                                    color: dataTrackType == 1 ? "green" : "blue"
+                                    color: "blue"
                                 })
                         }
 

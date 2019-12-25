@@ -3,6 +3,7 @@
 #include <utility>
 #include "main_model.hpp"
 #include "playback/playback.hpp"
+#include "sample_track.hpp"
 
 #pragma ide diagnostic ignored "OCUnusedGlobalDeclarationInspection" // Qt uses this function
 #pragma ide diagnostic ignored "MemberFunctionCanBeStatic"
@@ -38,21 +39,17 @@ void MainModel::stopRecording() {
     emit isRecordingChanged();
 }
 
-QList<NoteTrack *> MainModel::tracks() const {
+QList<Track *> MainModel::tracks() const {
     return _tracks;
 }
 
-void MainModel::set_tracks(QList<NoteTrack *> tracks) {
+void MainModel::set_tracks(QList<Track *> tracks) {
     _tracks = std::move(tracks);
     emit onTracksChanged();
 }
 
 void MainModel::addMicrophoneTrack() {
-    _tracks.push_back(new NoteTrack(2, {
-            new TrackNote(3, 0, 2),
-            new TrackNote(10, 0, 3),
-            new TrackNote(7, 4, 10),
-    }));
+    _tracks.push_back(new SampleTrack(1, QList{0.0, 1.0, 0.0}));
     emit onTracksChanged();
 }
 

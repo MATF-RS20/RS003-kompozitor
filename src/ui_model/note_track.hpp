@@ -9,12 +9,7 @@ Q_OBJECT
 
 public:
     NoteTrack(int id, QList<QObject*>  notes)
-            : _id(id), _notes(std::move(notes)) {}
-
-    [[nodiscard]]
-    int id() const {
-        return _id;
-    }
+            : Track(id), _notes(std::move(notes)) {}
 
     [[nodiscard]]
     QList<QObject*> notes() const{
@@ -22,7 +17,6 @@ public:
     }
 
 private:
-    int _id;
     QList<QObject* > _notes;
 };
 

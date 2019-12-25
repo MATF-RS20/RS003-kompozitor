@@ -5,12 +5,13 @@
 #include <QtCore/QTimer>
 #include "track_note.hpp"
 #include "note_track.hpp"
+#include "track.hpp"
 
 class MainModel : public QObject {
 
 Q_OBJECT
 Q_PROPERTY(bool isRecording READ isRecording NOTIFY isRecordingChanged)
-Q_PROPERTY(QList<NoteTrack*> tracks READ tracks WRITE set_tracks NOTIFY onTracksChanged)
+Q_PROPERTY(QList<Track*> tracks READ tracks WRITE set_tracks NOTIFY onTracksChanged)
 
 public:
     QTimer* timer = new QTimer(this);
@@ -20,9 +21,9 @@ public:
     }
 
     [[nodiscard]]
-    QList<NoteTrack*> tracks() const;
+    QList<Track*> tracks() const;
 
-    void set_tracks(QList<NoteTrack*>);
+    void set_tracks(QList<Track*>);
 
 public slots:
 
@@ -52,7 +53,7 @@ private:
     bool _isRecording = false;
 
     // Test data, for now
-    QList<NoteTrack*> _tracks {
+    QList<Track*> _tracks {
             new NoteTrack(1, {
                     new TrackNote(2, 0, 2),
                     new TrackNote(5, 3, 4)
