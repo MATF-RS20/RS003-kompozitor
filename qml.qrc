@@ -3,5 +3,6 @@
         <file alias="main.qml">src/qml/main.qml</file>
         <file alias="Track.qml">src/qml/Track.qml</file>
         <file alias="TrackNote.qml">src/qml/TrackNote.qml</file>
+        <file alias="SampleTrack.qml">src/qml/SampleTrack.qml</file>
     </qresource>
 </RCC>
