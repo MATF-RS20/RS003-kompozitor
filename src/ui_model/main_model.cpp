@@ -5,6 +5,8 @@
 #include "sample_track.hpp"
 #include <iostream>
 #include <cmath>
+#include "sample_track.hpp"
+
 #pragma ide diagnostic ignored "OCUnusedGlobalDeclarationInspection" // Qt uses this function
 #pragma ide diagnostic ignored "MemberFunctionCanBeStatic"
 
