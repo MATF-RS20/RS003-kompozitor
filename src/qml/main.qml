@@ -170,6 +170,12 @@ ApplicationWindow {
 
     }
 
+    // Temporary placing, for testing only
+    SampleTrack {
+        width: 1000
+        height: 100
+    }
+
     Frame {
         id: frame
         anchors.top: trackListView.bottom
