@@ -38,17 +38,17 @@ void MainModel::stopRecording() {
     emit isRecordingChanged();
 }
 
-QList<Track *> MainModel::tracks() const {
+QList<NoteTrack *> MainModel::tracks() const {
     return _tracks;
 }
 
-void MainModel::set_tracks(QList<Track *> tracks) {
+void MainModel::set_tracks(QList<NoteTrack *> tracks) {
     _tracks = std::move(tracks);
     emit onTracksChanged();
 }
 
 void MainModel::addMicrophoneTrack() {
-    _tracks.push_back(new Track(2, Track::MICROPHONE, {
+    _tracks.push_back(new NoteTrack(2, {
             new TrackNote(3, 0, 2),
             new TrackNote(10, 0, 3),
             new TrackNote(7, 4, 10),
@@ -57,7 +57,7 @@ void MainModel::addMicrophoneTrack() {
 }
 
 void MainModel::addKeyboardTrack() {
-    _tracks.push_back(new Track(2, Track::KEYBOARD, {
+    _tracks.push_back(new NoteTrack(2, {
             new TrackNote(3, 0, 2),
             new TrackNote(10, 0, 3),
             new TrackNote(7, 4, 10),

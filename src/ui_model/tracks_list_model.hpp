@@ -3,12 +3,12 @@
 
 #include <QtCore/QAbstractListModel>
 #include "track_note.hpp"
-#include "track.hpp"
+#include "note_track.hpp"
 
 class TracksListModel: public QAbstractListModel {
 
 Q_OBJECT
-Q_PROPERTY(QList<Track*> tracks READ tracks WRITE set_tracks NOTIFY onTracksChanged)
+Q_PROPERTY(QList<NoteTrack*> tracks READ tracks WRITE set_tracks NOTIFY onTracksChanged)
 
 public:
     enum RoleType {
@@ -32,15 +32,15 @@ public:
     QHash<int, QByteArray> roleNames() const override;
 
     [[nodiscard]]
-    QList<Track*> tracks() const;
+    QList<NoteTrack*> tracks() const;
 
-    void set_tracks(const QList<Track*>& tracks);
+    void set_tracks(const QList<NoteTrack*>& tracks);
 
 signals:
     void onTracksChanged();
 
 private:
-    QList<Track*> _tracks;
+    QList<NoteTrack*> _tracks;
 };
 
 #endif //KOMPOZITOR_TRACKS_LIST_MODEL_HPP

@@ -1,4 +1,5 @@
 #include "tracks_list_model.hpp"
+#include "note_track.hpp"
 
 int TracksListModel::rowCount(const QModelIndex &parent) const {
     return _tracks.size();
@@ -23,24 +24,25 @@ QVariant TracksListModel::data(const QModelIndex &index, int role) const {
 
     Track* track = _tracks[index.row()];
 
-    switch (role) {
-        case TRACK_DATA:
-            return QVariant::fromValue(track->notes());
-        case TRACK_NUMBER:
-            return QVariant::fromValue(track->id());
-        case TRACK_TYPE:
-            // Temporary value for testing
-            return QVariant::fromValue((int) track->trackType());
-        default:
-            return QVariant();
+    if (auto *note_track = dynamic_cast<NoteTrack*>(track)) {
+        switch (role) {
+            case TRACK_DATA:
+                return QVariant::fromValue(note_track->notes());
+            case TRACK_NUMBER:
+                return QVariant::fromValue(note_track->id());
+            case TRACK_TYPE:
+                return QVariant::fromValue(1);
+            default:
+                return QVariant();
+        }
     }
 }
 
-QList<Track*> TracksListModel::tracks() const{
+QList<NoteTrack*> TracksListModel::tracks() const{
     return _tracks;
 }
 
-void TracksListModel::set_tracks(const QList<Track*>& tracks) {
+void TracksListModel::set_tracks(const QList<NoteTrack*>& tracks) {
     emit layoutAboutToBeChanged();
     _tracks = tracks;
     emit onTracksChanged();
