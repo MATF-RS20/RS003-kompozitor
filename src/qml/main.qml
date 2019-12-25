@@ -58,13 +58,30 @@ ApplicationWindow {
                 Button {
                     text: "Start recording \n(WIP)"
                 }
+                // Load Track or SampleTrack based on the data
+                Loader {
+                    Component.onCompleted: {
+                        if (dataTrackType == 1) {
+                            setSource("Track.qml",
+                                {
+                                    width: 400,
+                                    height: 100,
+                                    notes: dataNotes,
+                                    // temporary implementation of dataTrackType, for testing purposes
+                                    color: dataTrackType == 1 ? "green" : "blue"
+                                })
+                        } else {
+                            setSource("SampleTrack.qml",
+                                {
+                                    width: 400,
+                                    height: 100,
+                                    //notes: dataNotes,
+                                    // temporary implementation of dataTrackType, for testing purposes
+                                    color: dataTrackType == 1 ? "green" : "blue"
+                                })
+                        }
 
-                Track {
-                    width: 400
-                    height: 100
-                    notes: dataNotes
-                    // temporary implementation of dataTrackType, for testing purposes
-                    color: dataTrackType == 1 ? "green" : "blue"
+                    }
                 }
             }
 
@@ -72,12 +89,6 @@ ApplicationWindow {
 
         spacing: 10.0
 
-    }
-
-    // Temporary placing, for testing only
-    SampleTrack {
-        width: 1000
-        height: 100
     }
 
     Frame {
