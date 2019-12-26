@@ -12,7 +12,18 @@ void MainModel::playSomething() {
 }
 
 void MainModel::recordSomething() {
-    Playback::record();
+    std::vector<sf::Int16> recorded_samples = Playback::record();
+
+    QList<double> normalized_samples;
+
+    normalized_samples.reserve(recorded_samples.size());
+
+    for (const auto &sample : recorded_samples) {
+        normalized_samples.push_back(static_cast<double>(sample) / INT16_MAX);
+    }
+
+    _tracks.push_back(new SampleTrack(0, normalized_samples));
+    emit onTracksChanged();
 }
 
 void MainModel::playNote(float frequency) {

@@ -2,38 +2,28 @@ import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQuick.Controls 2.12
 
-Rectangle {
+Canvas {
     id: track
     property var samples : []
 
-    color: "gray"
+    antialiasing: false
+    smooth: false
+    renderStrategy: Canvas.Threaded
 
-    Component.onCompleted: {
+    onPaint: {
 
-        // Test data, for now
-        for (var i = 0; i < 441000; i++) {
-            samples.push(Math.random() * 2 - 1)
-        }
+        var ctx = getContext("2d")
 
-        var samplesPerPixel = samples.length / track.width
+        ctx.fillStyle = Qt.rgba(0.5, 0.5, 1, 1);
+        ctx.fillRect(0, 0, width, height);
 
-        var component = Qt.createComponent("TrackNote.qml")
-
-        var maxHeight = track.height / 2
-
-        for (var i = 0; i < track.width; i++) {
-
-            var rectHeight = samples[i * samplesPerPixel] * maxHeight
-
-            // Different positioning based on whether the sample has a positive or a negative value
-            var y = rectHeight < 0 ? maxHeight : maxHeight - rectHeight
-            rectHeight = Math.abs(rectHeight)
-
-            component.createObject(track,
-                            {"x": i,
-                             "y": y,
-                             "height": rectHeight,
-                             "width": 1})
-        }
+        ctx.lineWidth = 1
+        ctx.strokeStyle = "black"
+        ctx.beginPath()
+            ctx.moveTo(0, track.height / 2)
+            for(var i = 0; i < samples.length; i++) {
+                ctx.lineTo(i * track.width / samples.length, (samples[i] + 1) / 2 * track.height)
+            }
+        ctx.stroke()
     }
 }

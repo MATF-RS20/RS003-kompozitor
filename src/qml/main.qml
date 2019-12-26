@@ -75,7 +75,7 @@ ApplicationWindow {
                                 {
                                     width: 400,
                                     height: 100,
-                                    //notes: dataNotes,
+                                    samples: dataNotes,
                                     // temporary implementation of dataTrackType, for testing purposes
                                     color: "blue"
                                 })
