@@ -39,6 +39,15 @@ ApplicationWindow {
         }
     }
 
+    TextField {
+        id: octaveNumber
+        placeholderText: qsTr("Oktava")
+        x: 400
+        y: 520
+        width: 70
+        onAccepted: mainModel.octaveChanged(octaveNumber.getText(0,1))
+    }
+
     ListView {
         id: trackListView
         anchors.top: trackListControls.bottom

@@ -44,6 +44,8 @@ public slots:
     void addMicrophoneTrack();
 
     void addKeyboardTrack();
+
+    void octaveChanged(QString);
 signals:
     void isRecordingChanged();
 
