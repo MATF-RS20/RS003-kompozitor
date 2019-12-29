@@ -3,6 +3,7 @@
 #include <utility>
 #include "main_model.hpp"
 #include "playback/playback.hpp"
+#include <iostream>
 
 #pragma ide diagnostic ignored "OCUnusedGlobalDeclarationInspection" // Qt uses this function
 #pragma ide diagnostic ignored "MemberFunctionCanBeStatic"
@@ -63,4 +64,9 @@ void MainModel::addKeyboardTrack() {
             new TrackNote(7, 4, 10),
     }));
     emit onTracksChanged();
+}
+
+void MainModel::octaveChanged(QString octave) {
+    std::cout << octave.toStdString() << std::endl;
+
 }
