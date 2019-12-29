@@ -75,6 +75,16 @@ void MainModel::addKeyboardTrack() {
 }
 
 void MainModel::octaveChanged(QString octave) {
-    std::cout << octave.toStdString() << std::endl;
+    std::string octaveString = octave.toStdString();
 
+    if (!std::isdigit(octaveString[0])) {
+        std::cout << "Non valid entry!" << std::endl;
+        return;
+    }
+    int octaveNumber = std::stoi(octaveString);
+    if (octaveNumber < 0 || octaveNumber > 8) {
+        std::cout << "Non valid entry!" << std::endl;
+        return;
+    }
+    std::cout << octaveNumber << std::endl;
 }
