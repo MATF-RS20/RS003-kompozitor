@@ -11,7 +11,7 @@
 static float freq(float frequency, int current_octave, int fixed_octave){
     int octave_diff = current_octave - fixed_octave;
     float freq_return = frequency * pow(2,octave_diff);
-    std::cout << freq_return << std::endl;
+    //std::cout << freq_return << std::endl;
     return freq_return;
 }
 
@@ -85,8 +85,26 @@ void MainModel::octaveChanged(QString octave) {
         return;
     }
     current_octave = octaveNumber;
-    std::cout << current_octave << std::endl;
+    //std::cout << current_octave << std::endl;
 
+}
+
+void MainModel::calculateOctave(int x) {
+    //TODO on half of octave change current octave
+    //std::cout << x << std::endl;
+    int stotina = x / 100;
+    int desetica = (x / 10) % 10;
+    if (stotina != 4 && stotina != 5)
+        current_octave = stotina;
+    else if (stotina == 5)
+        current_octave = 6;
+    else if (stotina == 4 && desetica >= 9){
+        current_octave = 5;
+    }else{
+        current_octave = 4;
+    }
+    current_octave += 1;
+    //std::cout << current_octave << std::endl;
 }
 
 
