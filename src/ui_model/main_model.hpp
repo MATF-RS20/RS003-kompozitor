@@ -26,7 +26,7 @@ public:
 
 public slots:
 
-    void playSomething();
+    void playMelody1();
 
     void recordSomething();
 

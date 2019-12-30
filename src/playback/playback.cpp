@@ -1,4 +1,5 @@
 #include "playback.hpp"
+#include "sound_manager.hpp"
 #include <vector>
 #include <thread>
 #include <chrono>
@@ -62,8 +63,8 @@ static sf::SoundBuffer bufferFromFrequencies(const std::vector<float>& freqs, fl
     std::vector<sf::Int16> samples;
 
     for (const auto &freq : freqs) {
-//        auto tmp_sample = create_sample(freq, duration);
-//        samples.insert(samples.end(), tmp_sample.begin(), tmp_sample.end());
+       auto tmp_sample = create_sample(freq, duration);
+       samples.insert(samples.end(), tmp_sample.begin(), tmp_sample.end());
     }
 
     // Lower the volume of the ending interval to avoid glitching sounds
@@ -77,13 +78,17 @@ static sf::SoundBuffer bufferFromFrequencies(const std::vector<float>& freqs, fl
 }
 
 void Playback::play() {
-    //TODO let's keep this, Kristina will need it later
-    sf::SoundBuffer my_buffer = bufferFromFrequencies({
+    std::vector<float> frequecies {
             E5, Gs5, E5, Gs5, E5, Gs5, E5, Gs5,
             Ds5, Gs5, Ds5, Gs5,
             E5, E5, E5, Ds5, E5, E5, E5
-            }, 0.45);
+            };
 
+    for (const auto &frequency: frequecies){
+        SoundManager::get_instance().add_note(frequency);
+        std::this_thread::sleep_for(std::chrono::milliseconds(450));
+        SoundManager::get_instance().remove_note(frequency);
+    }
 }
 
 void Playback::record() {

@@ -15,8 +15,8 @@ static float freq(float frequency, int current_octave, int fixed_octave){
     return freq_return;
 }
 
-void MainModel::playSomething() {
-
+void MainModel::playMelody1() {
+    Playback::play();
 }
 
 void MainModel::recordSomething() {
