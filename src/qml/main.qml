@@ -46,6 +46,18 @@ ApplicationWindow {
         height: 120
     }
 
+    Rectangle {
+        id: octaveImage
+        width: 96
+        height: 50
+        color: "#330000FF"
+        border.color: "black"
+        border.width: 2
+        radius: 10
+        x: 309
+        y: 430
+    }
+
     TextField {
         id: octaveNumber
         placeholderText: qsTr("Octave")
