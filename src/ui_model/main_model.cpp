@@ -16,7 +16,7 @@ static float freq(float frequency, int current_octave, int fixed_octave){
 }
 
 void MainModel::playSomething() {
-    Playback::play(timer);
+
 }
 
 void MainModel::recordSomething() {
@@ -29,11 +29,8 @@ void MainModel::playNote(float frequency) {
 }
 
 void MainModel::stopNote(float frequency) {
+    frequency = freq(frequency,current_octave, fixed_octave);
     SoundManager::get_instance().remove_note(frequency);
-}
-
-void MainModel::MyTimerSlot() {
-    Playback::my_timer_slot();
 }
 
 void MainModel::startRecording() {
