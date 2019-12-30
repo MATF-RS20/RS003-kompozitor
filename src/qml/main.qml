@@ -7,7 +7,7 @@ import kompozitor 1.0
 ApplicationWindow {
 
     visible: true
-    width: 800
+    width: 900
     height: 600
     title: "Kompozitor"
 
@@ -47,6 +47,18 @@ ApplicationWindow {
         width: 70
         onAccepted: mainModel.octaveChanged(octaveNumber.getText(0,1))
     }
+
+    Button {
+        id: playMelody1
+        x: 600
+        y: 0
+        //width:
+        //height:
+        text: "Melody1"
+        onPressed: mainModel.playMelody1()
+
+    }
+
 
     ListView {
         id: trackListView
