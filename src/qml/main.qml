@@ -38,6 +38,13 @@ ApplicationWindow {
             onClicked: mainModel.isRecording ? mainModel.stopRecording() : mainModel.startRecording()
         }
     }
+    Image {
+        source: "piano-keyboard.png"
+        x: 0
+        y: 400
+        width: 700
+        height: 120
+    }
 
     TextField {
         id: octaveNumber
@@ -45,6 +52,7 @@ ApplicationWindow {
         x: 400
         y: 520
         width: 70
+        focus: false
         onAccepted: mainModel.octaveChanged(octaveNumber.getText(0,1))
     }
 
@@ -52,11 +60,8 @@ ApplicationWindow {
         id: playMelody1
         x: 600
         y: 0
-        //width:
-        //height:
         text: "Melody1"
         onPressed: mainModel.playMelody1()
-
     }
 
 
