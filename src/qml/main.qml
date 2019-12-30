@@ -48,22 +48,23 @@ ApplicationWindow {
 
     Rectangle {
         id: octaveImage
-        width: 95
+        width: 108
         height: 50
         color: "#770000FF"
         border.color: "black"
-        border.width: 2
+        border.width: 1
         radius: 10
         x: 309
         y: 430
         MouseArea {
-                    anchors.fill: parent
-                    onClicked: console.log("Clicked")
-                    drag.target: parent;
-                    drag.axis: "XAxis"
-                    drag.minimumX: 5
-                    drag.maximumX: 600
-                }
+                anchors.fill: parent
+                drag.target: parent;
+                drag.axis: "XAxis"
+                drag.minimumX: 5
+                drag.maximumX: 589
+                onReleased: mainModel.calculateOctave(octaveImage.x)
+                //console.log(octaveImage.x)
+            }
     }
 
     TextField {
