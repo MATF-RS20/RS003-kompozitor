@@ -15,8 +15,6 @@ Q_PROPERTY(QList<Track*> tracks READ tracks WRITE set_tracks NOTIFY onTracksChan
 
 public:
     QTimer* timer = new QTimer(this);
-    int current_octave = 4;
-    int fixed_octave = 4;
 
     bool isRecording() {
         return _isRecording;
@@ -34,8 +32,6 @@ public slots:
     void recordSomething();
 
     void playNote(float frequency);
-
-    void MyTimerSlot();
 
     void stopNote(float frequency);
 
@@ -69,6 +65,8 @@ private:
                     new TrackNote(7, 7, 10)
             })
     };
+    int current_octave = 4;
+    int fixed_octave = 4;
 };
 
 #endif //KOMPOZITOR_MAIN_MODEL_HPP

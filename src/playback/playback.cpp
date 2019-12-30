@@ -8,9 +8,6 @@
 #include <unordered_set>
 #include<climits>
 
-sf::Sound sound; // FIXME avoid global variables
-std::unique_ptr<sf::SoundBuffer> buffer;
-
 // Empirically chosen
 const double ENDING_INTERVAL = 44100 * 0.005;
 
@@ -79,19 +76,14 @@ static sf::SoundBuffer bufferFromFrequencies(const std::vector<float>& freqs, fl
     return my_buffer;
 }
 
-void Playback::play(QTimer *timer) {
+void Playback::play() {
+    //TODO let's keep this, Kristina will need it later
     sf::SoundBuffer my_buffer = bufferFromFrequencies({
             E5, Gs5, E5, Gs5, E5, Gs5, E5, Gs5,
             Ds5, Gs5, Ds5, Gs5,
             E5, E5, E5, Ds5, E5, E5, E5
             }, 0.45);
 
-    buffer = std::make_unique<sf::SoundBuffer>(my_buffer);
-    sound.setBuffer(*buffer);
-    sound.play();
-
-    auto milliseconds = 1000*((int) ceil(static_cast<double>(my_buffer.getSampleCount()) / my_buffer.getSampleRate()) + 1);
-    make_timer(timer, milliseconds);
 }
 
 void Playback::record() {
@@ -117,19 +109,6 @@ void Playback::record() {
     buffer.saveToFile("andja_record.ogg");
 }
 
-void Playback::make_timer(QTimer* timer, int time) {
-    QObject::connect(timer, SIGNAL(timeout()),
-                     timer->parent(), SLOT(MyTimerSlot()));
-    timer->setSingleShot(true);
-    timer->start(time);
-}
-
-void Playback::my_timer_slot() {
-    std::cout << "Music finished..." << std::endl;
-    auto over = std::move(buffer);
-    if (!buffer)
-        std::cout << "Memory deallocated!" << std::endl;
-}
 
 
 

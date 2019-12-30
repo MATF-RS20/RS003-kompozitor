@@ -41,7 +41,7 @@ ApplicationWindow {
 
     TextField {
         id: octaveNumber
-        placeholderText: qsTr("Oktava")
+        placeholderText: qsTr("Octave")
         x: 400
         y: 520
         width: 70
