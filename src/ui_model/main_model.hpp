@@ -15,6 +15,8 @@ Q_PROPERTY(QList<Track*> tracks READ tracks WRITE set_tracks NOTIFY onTracksChan
 
 public:
     QTimer* timer = new QTimer(this);
+    int current_octave = 4;
+    int fixed_octave = 4;
 
     bool isRecording() {
         return _isRecording;

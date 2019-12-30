@@ -5,9 +5,17 @@
 #include "playback/playback.hpp"
 #include "sample_track.hpp"
 #include <iostream>
-
+#include <cmath>
 #pragma ide diagnostic ignored "OCUnusedGlobalDeclarationInspection" // Qt uses this function
 #pragma ide diagnostic ignored "MemberFunctionCanBeStatic"
+
+static float freq(float frequency, int current_octave, int fixed_octave){
+    int octave_diff = current_octave - fixed_octave;
+    float freq_return = frequency * pow(2,octave_diff);
+    std::cout << freq_return << std::endl;
+    return freq_return;
+}
+
 void MainModel::playSomething() {
     Playback::play(timer);
 }
@@ -28,6 +36,7 @@ void MainModel::recordSomething() {
 }
 
 void MainModel::playNote(float frequency) {
+    frequency = freq(frequency,current_octave, fixed_octave);
     SoundManager::get_instance().add_note(frequency);
 }
 
@@ -86,5 +95,9 @@ void MainModel::octaveChanged(QString octave) {
         std::cout << "Non valid entry!" << std::endl;
         return;
     }
-    std::cout << octaveNumber << std::endl;
+    current_octave = octaveNumber;
+    std::cout << current_octave << std::endl;
+
 }
+
+
