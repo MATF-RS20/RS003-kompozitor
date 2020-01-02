@@ -45,10 +45,12 @@ void MainModel::stopNote(float frequency) {
 }
 
 void MainModel::addRecordNote(float frequency){
+    frequency = freq(frequency,current_octave, fixed_octave);
     RecordManager::get_instance().add_note(frequency);
 }
 
 void MainModel::removeRecordNote(float frequency){
+    frequency = freq(frequency,current_octave, fixed_octave);
     RecordManager::get_instance().remove_note(frequency);
 }
 
