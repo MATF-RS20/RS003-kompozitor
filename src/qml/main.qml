@@ -35,7 +35,16 @@ ApplicationWindow {
         }
         Button {
             text: mainModel.isRecording ? "Stop recording" : "Start recording"
-            onClicked: mainModel.isRecording ? mainModel.stopRecording() : mainModel.startRecording()
+            onClicked: {
+                if(mainModel.isRecording){
+                    mainModel.stopRecording();
+                    frame.focus = "false";
+                }
+                else {
+                   mainModel.startRecording();
+                   frame.focus = "true";
+                }
+            }
         }
     }
     Image {
@@ -139,20 +148,98 @@ ApplicationWindow {
             event.accepted=true;
 
             switch (event.key) {
-                case Qt.Key_A: mainModel.playNote(261.63); break;
-                case Qt.Key_W: mainModel.playNote(277.18); break;
-                case Qt.Key_S: mainModel.playNote(293.66); break;
-                case Qt.Key_E: mainModel.playNote(311.13); break;
-                case Qt.Key_D: mainModel.playNote(329.63); break;
-                case Qt.Key_F: mainModel.playNote(349.23); break;
-                case Qt.Key_T: mainModel.playNote(369.99); break;
-                case Qt.Key_G: mainModel.playNote(392.00); break;
+                case Qt.Key_A: {
+                    if(mainModel.isRecording){
+                        mainModel.addRecordNote(261.63);
+                    }
+                    mainModel.playNote(261.63);
+                    break;
+                }
+                case Qt.Key_W: {
+                    if(mainModel.isRecording){
+                        mainModel.addRecordNote(277.18);
+                    }
+                    mainModel.playNote(277.18);
+                    break;
+                }
+                case Qt.Key_S: {
+                    if(mainModel.isRecording){
+                        mainModel.addRecordNote(293.66);
+                    }
+                    mainModel.playNote(293.66);
+                    break;
+                }
+                case Qt.Key_E: {
+                    if(mainModel.isRecording){
+                        mainModel.addRecordNote(311.13);
+                    }
+                    mainModel.playNote(311.13);
+                    break;
+                }
+                case Qt.Key_D: {
+                    if(mainModel.isRecording){
+                        mainModel.addRecordNote(329.63);
+                    }
+                    mainModel.playNote(329.63);
+                    break;
+                }
+                case Qt.Key_F: {
+                    if(mainModel.isRecording){
+                        mainModel.addRecordNote(349.23);
+                    }
+                    mainModel.playNote(349.23);
+                    break;
+                }
+                case Qt.Key_T: {
+                    if(mainModel.isRecording){
+                        mainModel.addRecordNote(369.99);
+                    }
+                    mainModel.playNote(369.99);
+                    break;
+                }
+                case Qt.Key_G: {
+                    if(mainModel.isRecording){
+                        mainModel.addRecordNote(392.00);
+                    }
+                    mainModel.playNote(392.00);
+                    break;
+                }
                 case Qt.Key_Y:
-                case Qt.Key_Z: mainModel.playNote(415.30); break;
-                case Qt.Key_H: mainModel.playNote(440.00); break;
-                case Qt.Key_U: mainModel.playNote(466.16); break;
-                case Qt.Key_J: mainModel.playNote(493.88); break;
-                case Qt.Key_K: mainModel.playNote(523.25); break;
+                case Qt.Key_Z: {
+                    if(mainModel.isRecording){
+                        mainModel.addRecordNote(415.30);
+                    }
+                    mainModel.playNote(415.30);
+                    break;
+                }
+                case Qt.Key_H: {
+                    if(mainModel.isRecording){
+                        mainModel.addRecordNote(440.00);
+                    }
+                    mainModel.playNote(440.00);
+                    break;
+                }
+                case Qt.Key_U: {
+                    if(mainModel.isRecording){
+                        mainModel.addRecordNote(466.16);
+                    }
+                    mainModel.playNote(466.16);
+                    break;
+                }
+                case Qt.Key_J: {
+                    if(mainModel.isRecording){
+                        mainModel.addRecordNote(493.88);
+                    }
+                    mainModel.playNote(493.88);
+                    break;
+                }
+                case Qt.Key_K: {
+                    if(mainModel.isRecording){
+                        mainModel.addRecordNote(523.25);
+                    }
+                    mainModel.playNote(523.25);
+                    break;
+                }
                 default: event.accepted=false;
             }
         }
@@ -164,20 +251,98 @@ ApplicationWindow {
             event.accepted=true;
 
             switch (event.key) {
-                case Qt.Key_A: mainModel.stopNote(261.63); break;
-                case Qt.Key_W: mainModel.stopNote(277.18); break;
-                case Qt.Key_S: mainModel.stopNote(293.66); break;
-                case Qt.Key_E: mainModel.stopNote(311.13); break;
-                case Qt.Key_D: mainModel.stopNote(329.63); break;
-                case Qt.Key_F: mainModel.stopNote(349.23); break;
-                case Qt.Key_T: mainModel.stopNote(369.99); break;
-                case Qt.Key_G: mainModel.stopNote(392.00); break;
+                case Qt.Key_A: {
+                    if(mainModel.isRecording){
+                        mainModel.removeRecordNote(261.63);
+                    }
+                    mainModel.stopNote(261.63);
+                    break;
+                }
+                case Qt.Key_W: {
+                    if(mainModel.isRecording){
+                        mainModel.removeRecordNote(277.18);
+                    }
+                    mainModel.stopNote(277.18);
+                    break;
+                }
+                case Qt.Key_S: {
+                    if(mainModel.isRecording){
+                        mainModel.removeRecordNote(293.66);
+                    }
+                    mainModel.stopNote(293.66);
+                    break;
+                }
+                case Qt.Key_E: {
+                    if(mainModel.isRecording){
+                        mainModel.removeRecordNote(311.13);
+                    }
+                    mainModel.stopNote(311.13);
+                    break;
+                }
+                case Qt.Key_D: {
+                    if(mainModel.isRecording){
+                        mainModel.removeRecordNote(329.63);
+                    }
+                    mainModel.stopNote(329.63);
+                    break;
+                }
+                case Qt.Key_F: {
+                    if(mainModel.isRecording){
+                        mainModel.removeRecordNote(349.23);
+                    }
+                    mainModel.stopNote(349.23);
+                    break;
+                }
+                case Qt.Key_T: {
+                    if(mainModel.isRecording){
+                        mainModel.removeRecordNote(369.99);
+                    }
+                    mainModel.stopNote(369.99);
+                    break;
+                }
+                case Qt.Key_G: {
+                    if(mainModel.isRecording){
+                        mainModel.removeRecordNote(392.00);
+                    }
+                    mainModel.stopNote(392.00);
+                    break;
+                }
                 case Qt.Key_Y:
-                case Qt.Key_Z: mainModel.stopNote(415.30); break;
-                case Qt.Key_H: mainModel.stopNote(440.00); break;
-                case Qt.Key_U: mainModel.stopNote(466.16); break;
-                case Qt.Key_J: mainModel.stopNote(493.88); break;
-                case Qt.Key_K: mainModel.stopNote(523.25); break;
+                case Qt.Key_Z: {
+                    if(mainModel.isRecording){
+                        mainModel.removeRecordNote(415.30);
+                    }
+                    mainModel.stopNote(415.30);
+                    break;
+                }
+                case Qt.Key_H: {
+                    if(mainModel.isRecording){
+                        mainModel.removeRecordNote(440.00);
+                    }
+                    mainModel.stopNote(440.00);
+                    break;
+                }
+                case Qt.Key_U: {
+                    if(mainModel.isRecording){
+                        mainModel.removeRecordNote(466.16);
+                    }
+                    mainModel.stopNote(466.16);
+                    break;
+                }
+                case Qt.Key_J: {
+                    if(mainModel.isRecording){
+                        mainModel.removeRecordNote(493.88);
+                    }
+                    mainModel.stopNote(493.88);
+                    break;
+                }
+                case Qt.Key_K: {
+                    if(mainModel.isRecording){
+                        mainModel.removeRecordNote(523.25);
+                    }
+                    mainModel.stopNote(523.25);
+                    break;
+                }
                 default: event.accepted=false;
             }
         }
