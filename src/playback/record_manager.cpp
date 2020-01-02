@@ -12,9 +12,10 @@ void RecordManager::stop_recording() {
     float time_diff_secs = time_diff.count();
     std::cout << "End time registered: " << time_diff_secs << '\n';
 
-//    for (int i = 0; i < _track_final_data.size(); i++){
-//        std::cout << "Note info: " << _track_final_data.at(i).pitch() << std::endl;
-//    }
+    for (auto & i : _track_final_data){
+        std::cout << "Note info:  " <<  i->pitch() << "    "
+                  << i->start() << "    " << i->end() << std::endl;
+    }
 
 }
 
@@ -43,16 +44,12 @@ void RecordManager::remove_note(double freq) {
 
     for (auto beg = _record_data.begin(); beg < _record_data.end(); beg++) {
         if (beg->freq == currentNote.freq){
-            TrackNote tmp(currentNote.freq,
-                          relative_time(_start_time, beg->note_time_point).count(),
-                          relative_time(_start_time, currentNote.note_time_point).count());
+            auto* tmp = new TrackNote(static_cast<int>(currentNote.freq),
+                                      relative_time(_start_time, beg->note_time_point).count(),
+                                      relative_time(_start_time, currentNote.note_time_point).count());
 
             _record_data.erase(beg);
-            std::cout << "Note info:  " <<  tmp.pitch() << "    "
-                      << tmp.start() << "    " << tmp.end() << std::endl;
-
-            // TODO figure out why push_back is not working
-//            _track_final_data.push_back(TrackNote(2,3,4));
+            _track_final_data.push_back(tmp);
             break;
         }
     }

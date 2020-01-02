@@ -40,7 +40,7 @@ private:
     RecordManager() = default;
 
     std::vector<NoteEvent> _record_data;
-    std::vector<TrackNote> _track_final_data;
+    std::vector<TrackNote*> _track_final_data;
     std::chrono::time_point<std::chrono::system_clock> _start_time;
     std::chrono::time_point<std::chrono::system_clock> _end_time;
 };
