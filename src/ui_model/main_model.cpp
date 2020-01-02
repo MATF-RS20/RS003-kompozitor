@@ -1,6 +1,5 @@
 #include <playback/sound_manager.hpp>
 #include <src/playback/record_manager.hpp>
-#include <utility>
 #include "main_model.hpp"
 #include "playback/playback.hpp"
 #include "sample_track.hpp"
@@ -43,6 +42,14 @@ void MainModel::playNote(float frequency) {
 void MainModel::stopNote(float frequency) {
     frequency = freq(frequency,current_octave, fixed_octave);
     SoundManager::get_instance().remove_note(frequency);
+}
+
+void MainModel::addRecordNote(float frequency){
+    RecordManager::get_instance().add_note(frequency);
+}
+
+void MainModel::removeRecordNote(float frequency){
+    RecordManager::get_instance().remove_note(frequency);
 }
 
 void MainModel::startRecording() {
