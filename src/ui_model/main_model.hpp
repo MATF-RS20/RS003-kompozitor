@@ -45,6 +45,11 @@ public slots:
     void octaveChanged(QString);
 
     void calculateOctave(int);
+
+    void addRecordNote(float frequency);
+
+    void removeRecordNote(float frequency);
+
 signals:
     void isRecordingChanged();
 
