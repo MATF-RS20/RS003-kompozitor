@@ -50,7 +50,9 @@ void MainModel::startRecording() {
 
 void MainModel::stopRecording() {
     _isRecording = false;
-    RecordManager::get_instance().stop_recording();
+    std::vector<TrackNote*> result = RecordManager::get_instance().stop_recording();
+
+    // TODO TrackNote* must be transformed to fit into Track class
     emit isRecordingChanged();
 }
 

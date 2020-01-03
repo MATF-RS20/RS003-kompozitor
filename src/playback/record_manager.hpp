@@ -31,7 +31,7 @@ public:
     RecordManager& operator=(RecordManager&& other) = delete;
 
     void start_recording();
-    void stop_recording();
+    std::vector<TrackNote*> stop_recording();
 
     void add_note(double freq);
     void remove_note(double freq);
