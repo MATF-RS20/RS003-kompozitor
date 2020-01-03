@@ -38,6 +38,10 @@ public slots:
 
     void stopRecordingKeyboard();
 
+    void startRecordingVoice();
+
+    void stopRecordingVoice();
+
     void addMicrophoneTrack();
 
     void addKeyboardTrack();

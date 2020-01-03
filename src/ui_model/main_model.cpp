@@ -113,4 +113,12 @@ void MainModel::calculateOctave(int x) {
     current_octave += 1;
 }
 
+void MainModel::startRecordingVoice() {
+    MicrophoneRecorder::get_instance().record();
+}
+
+void MainModel::stopRecordingVoice() {
+    MicrophoneRecorder::get_instance().record_stop();
+}
+
 

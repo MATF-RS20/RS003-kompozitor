@@ -19,6 +19,7 @@ public:
     void record();
     sf::SoundBuffer record_stop();
 
+
 private:
     MicrophoneRecorder() = default;
 

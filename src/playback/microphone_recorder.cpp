@@ -21,3 +21,4 @@ sf::SoundBuffer MicrophoneRecorder::record_stop() {
     buffer.saveToFile("recorded_by_microphone.ogg");
     return buffer;
 }
+
