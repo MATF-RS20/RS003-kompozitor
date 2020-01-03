@@ -91,18 +91,19 @@ void Playback::play() {
     }
 }
 
-void Playback::record() {
-    // TODO this function needs improving and removal of the debug output
+sf::SoundBuffer Playback::record() {
+    // TODO this function needs improving
     sf::SoundBufferRecorder recorder;
     recorder.start();
 
     std::this_thread::sleep_for(std::chrono::seconds(3));
     recorder.stop();
 
-    const sf::SoundBuffer& buffer = recorder.getBuffer();
+    sf::SoundBuffer buffer = recorder.getBuffer();
     std::this_thread::sleep_for(std::chrono::seconds(10));
 
     buffer.saveToFile("recorded_by_microphone.ogg");
+    return buffer;
 }
 
 
