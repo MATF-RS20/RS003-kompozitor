@@ -1,6 +1,7 @@
 import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQuick.Controls 2.12
+import QtQuick.Dialogs 1.1
 
 import kompozitor 1.0
 
@@ -39,6 +40,7 @@ ApplicationWindow {
                 if(mainModel.isRecording){
                     mainModel.stopRecording();
                     frame.focus = "false";
+                    dialog.visible = "true";
                 }
                 else {
                    mainModel.startRecording();
@@ -47,6 +49,27 @@ ApplicationWindow {
             }
         }
     }
+
+    Dialog {
+        id: dialog
+        title: "Saving..."
+        Label {
+            text: "Do you want to save this recording?"
+        }
+        visible: false
+        x: (parent.width - width) / 2
+        y: (parent.height - height) / 3
+        standardButtons: Dialog.Yes | Dialog.No
+
+        onAccepted: {
+            console.log("Yes clicked")
+            // TODO call save_composition() or whatever function
+        }
+        onRejected: {
+            console.log("No clicked")
+        }
+    }
+
     Image {
         source: "piano-keyboard.png"
         x: 0
