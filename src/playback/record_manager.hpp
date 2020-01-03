@@ -6,6 +6,8 @@
 #include <ctime>
 #include <vector>
 #include <src/ui_model/track_note.hpp>
+#include "playback.hpp"
+#include "sound_manager.hpp"
 
 enum State {
     UP,
@@ -33,6 +35,12 @@ public:
 
     void add_note(double freq);
     void remove_note(double freq);
+
+    void save_composition();
+
+    float end_time() {
+        return relative_time(_start_time, _end_time).count();
+    }
 
     static std::chrono::duration<float> relative_time(std::chrono::time_point<std::chrono::system_clock> start_time,
                                                       std::chrono::time_point<std::chrono::system_clock> compare_time);

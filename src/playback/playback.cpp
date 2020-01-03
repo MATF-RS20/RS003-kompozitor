@@ -12,7 +12,7 @@
 // Empirically chosen
 const double ENDING_INTERVAL = 44100 * 0.005;
 
-static std::vector<double> create_sample(unsigned frequency = 440, double duration = 10, unsigned sample_rate = 44100) {
+std::vector<double> Playback::create_sample(unsigned frequency, double duration, unsigned sample_rate) {
 
     static double last_value;
 
@@ -63,7 +63,7 @@ static sf::SoundBuffer bufferFromFrequencies(const std::vector<float>& freqs, fl
     std::vector<sf::Int16> samples;
 
     for (const auto &freq : freqs) {
-       auto tmp_sample = create_sample(freq, duration);
+       auto tmp_sample = Playback::create_sample(freq, duration);
        samples.insert(samples.end(), tmp_sample.begin(), tmp_sample.end());
     }
 
