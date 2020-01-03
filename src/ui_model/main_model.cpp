@@ -66,16 +66,12 @@ void MainModel::set_tracks(QList<Track *> tracks) {
 }
 
 void MainModel::addMicrophoneTrack() {
-    _tracks.push_back(new Track(2, Track::MICROPHONE, {
-            new TrackNote(3, 0, 2),
-            new TrackNote(10, 0, 3),
-            new TrackNote(7, 4, 10),
-    }));
+    // TODO add a sample track
     emit onTracksChanged();
 }
 
 void MainModel::addKeyboardTrack() {
-    _tracks.push_back(new Track(2, Track::KEYBOARD, {
+    _tracks.push_back(new NoteTrack(2, {
             new TrackNote(3, 0, 2),
             new TrackNote(10, 0, 3),
             new TrackNote(7, 4, 10),
