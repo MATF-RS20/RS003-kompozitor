@@ -2,6 +2,7 @@
 #include <src/playback/record_manager.hpp>
 #include "main_model.hpp"
 #include "playback/playback.hpp"
+#include "playback/microphone_recorder.hpp"
 #include <iostream>
 #include <cmath>
 #pragma ide diagnostic ignored "OCUnusedGlobalDeclarationInspection" // Qt uses this function
@@ -18,7 +19,7 @@ void MainModel::playMelody1() {
 }
 
 void MainModel::recordSomething() {
-    Playback::record();
+    MicrophoneRecorder::get_instance().record();
 }
 
 void MainModel::playNote(float frequency) {

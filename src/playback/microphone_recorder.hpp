@@ -3,19 +3,28 @@
 
 #include <SFML/Audio/Sound.hpp>
 #include <SFML/Audio/SoundBuffer.hpp>
+#include <SFML/Audio.hpp>
+#include <QtCore/QTimer>
 
-class MichrophoneRecorder {
+class MicrophoneRecorder {
 public:
     [[nodiscard]]
-    static MichrophoneRecorder& get_instance();
+    static MicrophoneRecorder& get_instance();
 
-    MichrophoneRecorder(const MichrophoneRecorder& other) = delete;
-    MichrophoneRecorder& operator=(const MichrophoneRecorder& other) = delete;
-    MichrophoneRecorder(MichrophoneRecorder&& other) = delete;
-    MichrophoneRecorder& operator=(MichrophoneRecorder&& other) = delete;
+    MicrophoneRecorder(const MicrophoneRecorder& other) = delete;
+    MicrophoneRecorder& operator=(const MicrophoneRecorder& other) = delete;
+    MicrophoneRecorder(MicrophoneRecorder&& other) = delete;
+    MicrophoneRecorder& operator=(MicrophoneRecorder&& other) = delete;
+
+    void record();
+    sf::SoundBuffer record_stop();
 
 private:
-    MichrophoneRecorder();
+    MicrophoneRecorder() = default;
+
+    sf::Sound sound;
+    sf::SoundBuffer soundBuffer;
+    sf::SoundBufferRecorder recorder;
 };
 
 #endif //KOMPOZITOR_MICROPHONE_RECORDER_HPP
