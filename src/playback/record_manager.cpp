@@ -6,26 +6,21 @@ RecordManager &RecordManager::get_instance() {
     return instance;
 }
 
-void RecordManager::stop_recording() {
+std::vector<TrackNote*> RecordManager::stop_recording() {
     _end_time = std::chrono::system_clock::now();
-
-    std::chrono::duration<float> time_diff = relative_time(_start_time, _end_time);
-    float time_diff_secs = time_diff.count();
 
     for (auto & i : _track_final_data){
         std::cout << "Note info:  " <<  i->pitch() << "    "
                   << i->start() << "    " << i->end() << std::endl;
     }
-    save_composition();
+//    save_composition();
+    return _track_final_data;
 }
 
 void RecordManager::start_recording() {
     _start_time = std::chrono::system_clock::now();
     _record_data.clear();
     _track_final_data.clear();
-
-    std::chrono::duration<float> time_diff = relative_time(_start_time, _start_time);
-    float time_diff_secs = time_diff.count();
 }
 
 void RecordManager::add_note(double freq) {
@@ -99,6 +94,8 @@ void RecordManager::save_composition() {
     soundBuffer.loadFromSamples(&buffer_data[0], buffer_data.size(), 1, 44100);
     soundBuffer.saveToFile("test_save_recording.ogg");
 
-    // TODO after we add pop-up window for asking if user wants to save melody, we can remove this test
-    SoundManager::get_instance().play_sound_buffer(buffer_data);
+    // TODO after we add pop-up window for asking if user wants to save melody
+
+//    testing recorded melody
+//    SoundManager::get_instance().play_sound_buffer(buffer_data);
 }
