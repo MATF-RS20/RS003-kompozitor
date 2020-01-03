@@ -93,25 +93,16 @@ void Playback::play() {
 
 void Playback::record() {
     // TODO this function needs improving and removal of the debug output
-    std::vector<std::string> availableDevices = sf::SoundRecorder::getAvailableDevices();
-
-    std::string inputDevice = availableDevices[0];
     sf::SoundBufferRecorder recorder;
-    for (const auto& device: availableDevices){
-        std::cout << device << std::endl;
-    }
-
     recorder.start();
-    std::this_thread::sleep_for(std::chrono::seconds(2));
+
+    std::this_thread::sleep_for(std::chrono::seconds(3));
     recorder.stop();
 
-    const sf::SoundBuffer& buffer = recorder.getBuffer(); // FIXME remove global variable `buffer`
-    sf::Sound sound(buffer); // FIXME remove global variable `sound`
-    sound.play();
-    std::cout << buffer.getSamples() << std::endl;
+    const sf::SoundBuffer& buffer = recorder.getBuffer();
     std::this_thread::sleep_for(std::chrono::seconds(10));
 
-    buffer.saveToFile("andja_record.ogg");
+    buffer.saveToFile("recorded_by_microphone.ogg");
 }
 
 
