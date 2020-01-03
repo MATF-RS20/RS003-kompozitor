@@ -2,6 +2,7 @@
 #include <src/playback/record_manager.hpp>
 #include "main_model.hpp"
 #include "playback/playback.hpp"
+#include "sample_track.hpp"
 #include <iostream>
 #include <cmath>
 #pragma ide diagnostic ignored "OCUnusedGlobalDeclarationInspection" // Qt uses this function
@@ -66,7 +67,7 @@ void MainModel::set_tracks(QList<Track *> tracks) {
 }
 
 void MainModel::addMicrophoneTrack() {
-    // TODO add a sample track
+    _tracks.push_back(new SampleTrack(3, {}));
     emit onTracksChanged();
 }
 

@@ -147,7 +147,6 @@ ApplicationWindow {
                                     width: 400,
                                     height: 100,
                                     notes: dataNotes,
-                                    // temporary implementation of dataTrackType, for testing purposes
                                     color: "green"
                                 })
                         } else {
@@ -155,9 +154,7 @@ ApplicationWindow {
                                 {
                                     width: 400,
                                     height: 100,
-                                    samples: dataNotes,
-                                    // temporary implementation of dataTrackType, for testing purposes
-                                    color: "blue"
+                                    samples: dataSamples,
                                 })
                         }
 

@@ -12,7 +12,8 @@ Q_PROPERTY(QList<Track*> tracks READ tracks WRITE set_tracks NOTIFY onTracksChan
 
 public:
     enum RoleType {
-        TRACK_DATA = Qt::UserRole + 1,
+        TRACK_NOTES = Qt::UserRole + 1,
+        TRACK_SAMPLES,
         TRACK_NUMBER,
         TRACK_TYPE
     };
