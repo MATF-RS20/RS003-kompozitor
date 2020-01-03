@@ -20,7 +20,19 @@ void MainModel::playMelody1() {
 }
 
 void MainModel::recordSomething() {
-    Playback::record();
+    sf::SoundBuffer recorded_buffer = Playback::record();
+
+    QList<double> normalized_samples;
+
+    normalized_samples.reserve(recorded_buffer.getSampleCount());
+
+    for (int i = 0; i < recorded_buffer.getSampleCount(); i++) {
+        double normalized_sample = static_cast<double>(recorded_buffer.getSamples()[i]) / INT16_MAX;
+        normalized_samples.push_back(normalized_sample);
+    }
+
+    _tracks.push_back(new SampleTrack(0, normalized_samples));
+    emit onTracksChanged();
 }
 
 void MainModel::playNote(float frequency) {

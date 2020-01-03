@@ -31,11 +31,11 @@ ApplicationWindow {
         }
 
         Button {
-            text: "Record"
+            text: "Record microphone"
             onClicked: mainModel.recordSomething()
         }
         Button {
-            text: mainModel.isRecording ? "Stop recording" : "Start recording"
+            text: mainModel.isRecording ? "Stop keyboard recording" : "Start keyboard recording"
             onClicked: {
                 if(mainModel.isRecording){
                     mainModel.stopRecording();
