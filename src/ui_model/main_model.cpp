@@ -42,18 +42,18 @@ void MainModel::removeRecordNote(float frequency){
     RecordManager::get_instance().remove_note(frequency);
 }
 
-void MainModel::startRecording() {
-    _isRecording = true;
+void MainModel::startRecordingKeyboard() {
+    _isRecordingKeyboard = true;
     RecordManager::get_instance().start_recording();
-    emit isRecordingChanged();
+    emit isRecordingKeyboardChanged();
 }
 
-void MainModel::stopRecording() {
-    _isRecording = false;
+void MainModel::stopRecordingKeyboard() {
+    _isRecordingKeyboard = false;
     std::vector<TrackNote*> result = RecordManager::get_instance().stop_recording();
 
     // TODO TrackNote* must be transformed to fit into Track class
-    emit isRecordingChanged();
+    emit isRecordingKeyboardChanged();
 }
 
 QList<Track *> MainModel::tracks() const {

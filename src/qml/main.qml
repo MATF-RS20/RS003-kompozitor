@@ -31,19 +31,29 @@ ApplicationWindow {
         }
 
         Button {
-            text: "Record"
-            onClicked: mainModel.recordSomething()
+            text: mainModel.isRecordingVoice ? "Voice record stop" : "Voice record start"
+            onClicked: {
+                if(mainModel.isRecordingVoice){
+                   mainModel.stopRecordingVoice();
+                   frame.focus = "false";
+                   dialog.visible = "true";
+                }
+                else {
+                  mainModel.startRecordingVoice();
+                  frame.focus = "true";
+                }
+            }
         }
         Button {
-            text: mainModel.isRecording ? "Stop recording" : "Start recording"
+            text: mainModel.isRecordingKeyboard ? "Keyboard record stop" : "Keyboard record start"
             onClicked: {
-                if(mainModel.isRecording){
-                    mainModel.stopRecording();
+                if(mainModel.isRecordingKeyboard){
+                    mainModel.stopRecordingKeyboard();
                     frame.focus = "false";
                     dialog.visible = "true";
                 }
                 else {
-                   mainModel.startRecording();
+                   mainModel.startRecordingKeyboard();
                    frame.focus = "true";
                 }
             }
@@ -111,7 +121,7 @@ ApplicationWindow {
 
     Button {
         id: playMelody1
-        x: 600
+        x: 700
         y: 0
         text: "Melody1"
         onPressed: mainModel.playMelody1()
