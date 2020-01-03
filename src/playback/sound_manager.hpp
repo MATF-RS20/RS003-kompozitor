@@ -18,6 +18,7 @@ public:
     void add_note(double freq);
 
     void remove_note(double freq);
+    void play_sound_buffer(std::vector<sf::Int16> buffer_data);
 private:
     SoundManager() {
         sound.setBuffer(soundBuffer);

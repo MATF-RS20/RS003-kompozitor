@@ -27,3 +27,13 @@ void SoundManager::play_notes() {
         sound.stop();
     }
 }
+
+void SoundManager::play_sound_buffer(std::vector<sf::Int16> buffer_data) {
+    sound.setLoop(false);
+    if(!buffer_data.empty()) {
+        soundBuffer.loadFromSamples(&buffer_data[0], buffer_data.size(), 1, 44100);
+        sound.play();
+    } else {
+        sound.stop();
+    }
+}

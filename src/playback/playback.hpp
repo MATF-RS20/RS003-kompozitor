@@ -25,6 +25,7 @@ namespace Playback {
     void record();
 
     std::vector<sf::Int16> buffer_data_from_multiple_notes(const std::unordered_set<double> &notes, unsigned duration = 5, unsigned sample_rate = 44100);
+    std::vector<double> create_sample(unsigned frequency = 440, double duration = 10, unsigned sample_rate = 44100);
 }
 
 #endif //KOMPOZITOR_PLAYBACK_HPP
