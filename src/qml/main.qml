@@ -138,7 +138,7 @@ ApplicationWindow {
                     text: "Start recording \n(WIP)"
                 }
 
-                Track {
+                NoteTrack {
                     width: 400
                     height: 100
                     notes: dataNotes
