@@ -100,7 +100,6 @@ sf::SoundBuffer Playback::record() {
     recorder.stop();
 
     sf::SoundBuffer buffer = recorder.getBuffer();
-    std::this_thread::sleep_for(std::chrono::seconds(10));
 
     buffer.saveToFile("recorded_by_microphone.ogg");
     return buffer;
