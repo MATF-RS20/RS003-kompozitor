@@ -78,11 +78,12 @@ static sf::SoundBuffer bufferFromFrequencies(const std::vector<float>& freqs, fl
 }
 
 void Playback::play() {
+    //TODO play different melodies
     std::vector<float> frequecies {
             E5, Gs5, E5, Gs5, E5, Gs5, E5, Gs5,
             Ds5, Gs5, Ds5, Gs5,
             E5, E5, E5, Ds5, E5, E5, E5
-            };
+    };
 
     for (const auto &frequency: frequecies){
         SoundManager::get_instance().add_note(frequency);
