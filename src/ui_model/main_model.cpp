@@ -5,8 +5,9 @@
 #include "sample_track.hpp"
 #include <iostream>
 #include <cmath>
-
-#pragma ide diagnostic ignored "OCUnusedGlobalDeclarationInspection" // Qt uses these functions
+#include <iostream>
+#include <cmath>
+#pragma ide diagnostic ignored "OCUnusedGlobalDeclarationInspection" // Qt uses this function
 #pragma ide diagnostic ignored "MemberFunctionCanBeStatic"
 
 static float freq(float frequency, int current_octave, int fixed_octave){
