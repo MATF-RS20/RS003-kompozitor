@@ -5,9 +5,8 @@
 #include "sample_track.hpp"
 #include <iostream>
 #include <cmath>
-#include "sample_track.hpp"
 
-#pragma ide diagnostic ignored "OCUnusedGlobalDeclarationInspection" // Qt uses this function
+#pragma ide diagnostic ignored "OCUnusedGlobalDeclarationInspection" // Qt uses these functions
 #pragma ide diagnostic ignored "MemberFunctionCanBeStatic"
 
 static float freq(float frequency, int current_octave, int fixed_octave){
@@ -22,14 +21,15 @@ void MainModel::playMelody1() {
 }
 
 void MainModel::recordSomething() {
-    std::vector<sf::Int16> recorded_samples = Playback::record();
+    sf::SoundBuffer recorded_buffer = Playback::record();
 
     QList<double> normalized_samples;
 
-    normalized_samples.reserve(recorded_samples.size());
+    normalized_samples.reserve(recorded_buffer.getSampleCount());
 
-    for (const auto &sample : recorded_samples) {
-        normalized_samples.push_back(static_cast<double>(sample) / INT16_MAX);
+    for (int i = 0; i < recorded_buffer.getSampleCount(); i++) {
+        double normalized_sample = static_cast<double>(recorded_buffer.getSamples()[i]) / INT16_MAX;
+        normalized_samples.push_back(normalized_sample);
     }
 
     _tracks.push_back(new SampleTrack(0, normalized_samples));
