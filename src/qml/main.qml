@@ -138,12 +138,30 @@ ApplicationWindow {
                     text: "Start recording \n(WIP)"
                 }
 
-                NoteTrack {
-                    width: 400
-                    height: 100
-                    notes: dataNotes
-                    // temporary implementation of dataTrackType, for testing purposes
-                    color: dataTrackType == 1 ? "green" : "blue"
+                // Load Track or SampleTrack based on the data
+                Loader {
+                    Component.onCompleted: {
+                        if (dataTrackType == 1) {
+                            setSource("NoteTrack.qml",
+                                {
+                                    width: 400,
+                                    height: 100,
+                                    notes: dataNotes,
+                                    // temporary implementation of dataTrackType, for testing purposes
+                                    color: "green"
+                                })
+                        } else {
+                            setSource("SampleTrack.qml",
+                                {
+                                    width: 400,
+                                    height: 100,
+                                    samples: dataNotes,
+                                    // temporary implementation of dataTrackType, for testing purposes
+                                    color: "blue"
+                                })
+                        }
+
+                    }
                 }
             }
 
