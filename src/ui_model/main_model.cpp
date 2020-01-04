@@ -59,9 +59,9 @@ void MainModel::startRecordingMicrophone() {
 
 void MainModel::stopRecordingMicrophone() {
     _isRecordingMicrophone = false;
+    //TODO which kind of result do we need for visualisation ?
     sf::SoundBuffer result = MicrophoneRecorder::get_instance().stop_recording();
     emit isRecordingMicrophoneChanged();
-    //return result;
 }
 
 QList<Track *> MainModel::tracks() const {

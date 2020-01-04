@@ -23,9 +23,8 @@ public:
 private:
     MicrophoneRecorder() = default;
 
-    sf::Sound sound;
-    sf::SoundBuffer soundBuffer;
-    sf::SoundBufferRecorder recorder;
+    sf::SoundBufferRecorder _recorder;
+    sf::SoundBuffer _buffer;
 };
 
 #endif //KOMPOZITOR_MICROPHONE_RECORDER_HPP

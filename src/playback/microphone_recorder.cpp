@@ -8,7 +8,7 @@ MicrophoneRecorder &MicrophoneRecorder::get_instance() {
 }
 
 void MicrophoneRecorder::start_recording() {
-    recorder.start();
+    _recorder.start();
 
     auto time = std::chrono::system_clock::now();
     auto t_time = std::chrono::system_clock::to_time_t(time);
@@ -16,8 +16,9 @@ void MicrophoneRecorder::start_recording() {
 }
 
 sf::SoundBuffer MicrophoneRecorder::stop_recording() {
-    recorder.stop();
-    sf::SoundBuffer buffer = recorder.getBuffer();
+    _recorder.stop();
+    sf::SoundBuffer buffer = _recorder.getBuffer();
+    //TODO za sada se odmah cuva snimak sa mikrofona u fajl
     buffer.saveToFile("recorded_by_microphone.ogg");
     return buffer;
 }
