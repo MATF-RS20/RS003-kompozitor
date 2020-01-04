@@ -31,15 +31,15 @@ ApplicationWindow {
         }
 
         Button {
-            text: mainModel.isRecordingVoice ? "Voice record stop" : "Voice record start"
+            text: mainModel.isRecordingMicrophone ? "Voice record stop" : "Voice record start"
             onClicked: {
-                if(mainModel.isRecordingVoice){
-                   mainModel.stopRecordingVoice();
+                if(mainModel.isRecordingMicrophone){
+                   mainModel.stopRecordingMicrophone();
                    frame.focus = "false";
                    dialog.visible = "true";
                 }
                 else {
-                  mainModel.startRecordingVoice();
+                  mainModel.startRecordingMicrophone();
                   frame.focus = "true";
                 }
             }

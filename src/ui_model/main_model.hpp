@@ -3,6 +3,9 @@
 
 #include <QObject>
 #include <QtCore/QTimer>
+#include <SFML/Audio/Sound.hpp>
+#include <SFML/Audio/SoundBuffer.hpp>
+#include <SFML/Audio.hpp>
 #include "track_note.hpp"
 #include "track.hpp"
 
@@ -10,6 +13,7 @@ class MainModel : public QObject {
 
 Q_OBJECT
 Q_PROPERTY(bool isRecordingKeyboard READ isRecordingKeyboard NOTIFY isRecordingKeyboardChanged)
+Q_PROPERTY(bool isRecordingMicrophone READ isRecordingMicrophone NOTIFY isRecordingMicrophoneChanged)
 Q_PROPERTY(QList<Track*> tracks READ tracks WRITE set_tracks NOTIFY onTracksChanged)
 
 public:
@@ -17,6 +21,9 @@ public:
 
     bool isRecordingKeyboard() {
         return _isRecordingKeyboard;
+    }
+    bool isRecordingMicrophone(){
+        return _isRecordingMicrophone;
     }
 
     [[nodiscard]]
@@ -28,8 +35,6 @@ public slots:
 
     void playMelody1();
 
-    void recordSomething();
-
     void playNote(float frequency);
 
     void stopNote(float frequency);
@@ -38,9 +43,9 @@ public slots:
 
     void stopRecordingKeyboard();
 
-    void startRecordingVoice();
+    void startRecordingMicrophone();
 
-    void stopRecordingVoice();
+    void stopRecordingMicrophone();
 
     void addMicrophoneTrack();
 
@@ -57,10 +62,14 @@ public slots:
 signals:
     void isRecordingKeyboardChanged();
 
+    void isRecordingMicrophoneChanged();
+
     void onTracksChanged();
 
 private:
     bool _isRecordingKeyboard = false;
+
+    bool _isRecordingMicrophone = false;
 
     // Test data, for now
     QList<Track*> _tracks {

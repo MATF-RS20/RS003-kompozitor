@@ -18,10 +18,6 @@ void MainModel::playMelody1() {
     Playback::play();
 }
 
-void MainModel::recordSomething() {
-    MicrophoneRecorder::get_instance().record();
-}
-
 void MainModel::playNote(float frequency) {
     frequency = freq(frequency,current_octave, fixed_octave);
     SoundManager::get_instance().add_note(frequency);
@@ -54,6 +50,18 @@ void MainModel::stopRecordingKeyboard() {
 
     // TODO TrackNote* must be transformed to fit into Track class
     emit isRecordingKeyboardChanged();
+}
+void MainModel::startRecordingMicrophone() {
+    _isRecordingMicrophone = true;
+    MicrophoneRecorder::get_instance().start_recording();
+    emit isRecordingMicrophoneChanged();
+}
+
+void MainModel::stopRecordingMicrophone() {
+    _isRecordingMicrophone = false;
+    sf::SoundBuffer result = MicrophoneRecorder::get_instance().stop_recording();
+    emit isRecordingMicrophoneChanged();
+    //return result;
 }
 
 QList<Track *> MainModel::tracks() const {
@@ -113,12 +121,5 @@ void MainModel::calculateOctave(int x) {
     current_octave += 1;
 }
 
-void MainModel::startRecordingVoice() {
-    MicrophoneRecorder::get_instance().record();
-}
-
-void MainModel::stopRecordingVoice() {
-    MicrophoneRecorder::get_instance().record_stop();
-}
 
 

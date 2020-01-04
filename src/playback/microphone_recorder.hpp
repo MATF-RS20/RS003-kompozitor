@@ -16,8 +16,8 @@ public:
     MicrophoneRecorder(MicrophoneRecorder&& other) = delete;
     MicrophoneRecorder& operator=(MicrophoneRecorder&& other) = delete;
 
-    void record();
-    sf::SoundBuffer record_stop();
+    void start_recording();
+    sf::SoundBuffer stop_recording();
 
 
 private:
