@@ -19,22 +19,6 @@ void MainModel::playMelody(int melody) {
     Playback::play(melody);
 }
 
-/*void MainModel::recordSomething() {
-    sf::SoundBuffer recorded_buffer = Playback::record();
-
-    QList<double> normalized_samples;
-
-    normalized_samples.reserve(recorded_buffer.getSampleCount());
-
-    for (int i = 0; i < recorded_buffer.getSampleCount(); i++) {
-        double normalized_sample = static_cast<double>(recorded_buffer.getSamples()[i]) / INT16_MAX;
-        normalized_samples.push_back(normalized_sample);
-    }
-
-    _tracks.push_back(new SampleTrack(0, normalized_samples));
-    emit onTracksChanged();
-}*/
-
 void MainModel::playNote(float frequency) {
     frequency = freq(frequency,current_octave, fixed_octave);
     SoundManager::get_instance().add_note(frequency);
@@ -76,8 +60,18 @@ void MainModel::startRecordingMicrophone() {
 
 void MainModel::stopRecordingMicrophone() {
     _isRecordingMicrophone = false;
-    //TODO which kind of result do we need for visualisation ?
-    sf::SoundBuffer result = MicrophoneRecorder::get_instance().stop_recording();
+    sf::SoundBuffer recorded_buffer = MicrophoneRecorder::get_instance().stop_recording();
+    QList<double> normalized_samples;
+
+    normalized_samples.reserve(recorded_buffer.getSampleCount());
+
+    for (int i = 0; i < recorded_buffer.getSampleCount(); i++) {
+        double normalized_sample = static_cast<double>(recorded_buffer.getSamples()[i]) / INT16_MAX;
+        normalized_samples.push_back(normalized_sample);
+    }
+
+    _tracks.push_back(new SampleTrack(0, normalized_samples));
+    emit onTracksChanged();
     emit isRecordingMicrophoneChanged();
 }
 
