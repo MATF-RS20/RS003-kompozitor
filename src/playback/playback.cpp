@@ -77,33 +77,47 @@ static sf::SoundBuffer bufferFromFrequencies(const std::vector<float>& freqs, fl
     return my_buffer;
 }
 
-void Playback::play() {
-    std::vector<float> frequecies {
+void Playback::play(int melody) {
+    //TODO play different melodies
+    if (melody == -1)
+        return;
+    std::vector<float> frequencies1 {
             E5, Gs5, E5, Gs5, E5, Gs5, E5, Gs5,
             Ds5, Gs5, Ds5, Gs5,
             E5, E5, E5, Ds5, E5, E5, E5
-            };
+    };
+    std::vector<float> frequencies2 {
+            E5, D5, C5, D5, E5, E5, E5, E5, D5, D5,
+            D5, E5, G5, G5,
+            E5, D5, C5, D5, E5, E5, E5, E5,
+            D5, D5, E5, D5, C5
+    };
+    std::vector<float> *active_frequencies;
+    if (melody == 0)
+        active_frequencies = &frequencies1;
+    else if (melody == 1)
+        active_frequencies = &frequencies2;
 
-    for (const auto &frequency: frequecies){
+    for (const auto &frequency: *active_frequencies){
         SoundManager::get_instance().add_note(frequency);
         std::this_thread::sleep_for(std::chrono::milliseconds(450));
         SoundManager::get_instance().remove_note(frequency);
     }
 }
 
-sf::SoundBuffer Playback::record() {
-    // TODO this function needs improving
-    sf::SoundBufferRecorder recorder;
-    recorder.start();
-
-    std::this_thread::sleep_for(std::chrono::seconds(3));
-    recorder.stop();
-
-    sf::SoundBuffer buffer = recorder.getBuffer();
-
-    buffer.saveToFile("recorded_by_microphone.ogg");
-    return buffer;
-}
+//sf::SoundBuffer Playback::record() {
+//    // TODO this function needs improving
+//    sf::SoundBufferRecorder recorder;
+//    recorder.start();
+//
+//    std::this_thread::sleep_for(std::chrono::seconds(3));
+//    recorder.stop();
+//
+//    sf::SoundBuffer buffer = recorder.getBuffer();
+//
+//    buffer.saveToFile("recorded_by_microphone.ogg");
+//    return buffer;
+//}
 
 
 

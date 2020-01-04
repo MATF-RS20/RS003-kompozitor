@@ -3,6 +3,7 @@
 #include "main_model.hpp"
 #include "playback/playback.hpp"
 #include "sample_track.hpp"
+#include "playback/microphone_recorder.hpp"
 #include <iostream>
 #include <cmath>
 #pragma ide diagnostic ignored "OCUnusedGlobalDeclarationInspection" // Qt uses this function
@@ -11,15 +12,14 @@
 static float freq(float frequency, int current_octave, int fixed_octave){
     int octave_diff = current_octave - fixed_octave;
     float freq_return = frequency * pow(2,octave_diff);
-    //std::cout << freq_return << std::endl;
     return freq_return;
 }
 
-void MainModel::playMelody1() {
-    Playback::play();
+void MainModel::playMelody(int melody) {
+    Playback::play(melody);
 }
 
-void MainModel::recordSomething() {
+/*void MainModel::recordSomething() {
     sf::SoundBuffer recorded_buffer = Playback::record();
 
     QList<double> normalized_samples;
@@ -33,7 +33,7 @@ void MainModel::recordSomething() {
 
     _tracks.push_back(new SampleTrack(0, normalized_samples));
     emit onTracksChanged();
-}
+}*/
 
 void MainModel::playNote(float frequency) {
     frequency = freq(frequency,current_octave, fixed_octave);
@@ -55,18 +55,30 @@ void MainModel::removeRecordNote(float frequency){
     RecordManager::get_instance().remove_note(frequency);
 }
 
-void MainModel::startRecording() {
-    _isRecording = true;
+void MainModel::startRecordingKeyboard() {
+    _isRecordingKeyboard = true;
     RecordManager::get_instance().start_recording();
-    emit isRecordingChanged();
+    emit isRecordingKeyboardChanged();
 }
 
-void MainModel::stopRecording() {
-    _isRecording = false;
+void MainModel::stopRecordingKeyboard() {
+    _isRecordingKeyboard = false;
     std::vector<TrackNote*> result = RecordManager::get_instance().stop_recording();
 
     // TODO TrackNote* must be transformed to fit into Track class
-    emit isRecordingChanged();
+    emit isRecordingKeyboardChanged();
+}
+void MainModel::startRecordingMicrophone() {
+    _isRecordingMicrophone = true;
+    MicrophoneRecorder::get_instance().start_recording();
+    emit isRecordingMicrophoneChanged();
+}
+
+void MainModel::stopRecordingMicrophone() {
+    _isRecordingMicrophone = false;
+    //TODO which kind of result do we need for visualisation ?
+    sf::SoundBuffer result = MicrophoneRecorder::get_instance().stop_recording();
+    emit isRecordingMicrophoneChanged();
 }
 
 QList<Track *> MainModel::tracks() const {
@@ -105,13 +117,9 @@ void MainModel::octaveChanged(QString octave) {
         return;
     }
     current_octave = octaveNumber;
-    //std::cout << current_octave << std::endl;
-
 }
 
 void MainModel::calculateOctave(int x) {
-    //TODO on half of octave change current octave
-    //std::cout << x << std::endl;
     int stotina = x / 100;
     int desetica = (x / 10) % 10;
     if (stotina != 4 && stotina != 5)
@@ -124,7 +132,7 @@ void MainModel::calculateOctave(int x) {
         current_octave = 4;
     }
     current_octave += 1;
-    //std::cout << current_octave << std::endl;
 }
+
 
 

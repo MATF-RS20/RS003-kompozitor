@@ -3,6 +3,9 @@
 
 #include <QObject>
 #include <QtCore/QTimer>
+#include <SFML/Audio/Sound.hpp>
+#include <SFML/Audio/SoundBuffer.hpp>
+#include <SFML/Audio.hpp>
 #include "track_note.hpp"
 #include "track.hpp"
 #include "note_track.hpp"
@@ -10,14 +13,18 @@
 class MainModel : public QObject {
 
 Q_OBJECT
-Q_PROPERTY(bool isRecording READ isRecording NOTIFY isRecordingChanged)
+Q_PROPERTY(bool isRecordingKeyboard READ isRecordingKeyboard NOTIFY isRecordingKeyboardChanged)
+Q_PROPERTY(bool isRecordingMicrophone READ isRecordingMicrophone NOTIFY isRecordingMicrophoneChanged)
 Q_PROPERTY(QList<Track*> tracks READ tracks WRITE set_tracks NOTIFY onTracksChanged)
 
 public:
     QTimer* timer = new QTimer(this);
 
-    bool isRecording() {
-        return _isRecording;
+    bool isRecordingKeyboard() {
+        return _isRecordingKeyboard;
+    }
+    bool isRecordingMicrophone(){
+        return _isRecordingMicrophone;
     }
 
     [[nodiscard]]
@@ -27,17 +34,19 @@ public:
 
 public slots:
 
-    void playMelody1();
-
-    void recordSomething();
+    void playMelody(int melody);
 
     void playNote(float frequency);
 
     void stopNote(float frequency);
 
-    void startRecording();
+    void startRecordingKeyboard();
 
-    void stopRecording();
+    void stopRecordingKeyboard();
+
+    void startRecordingMicrophone();
+
+    void stopRecordingMicrophone();
 
     void addMicrophoneTrack();
 
@@ -52,12 +61,16 @@ public slots:
     void removeRecordNote(float frequency);
 
 signals:
-    void isRecordingChanged();
+    void isRecordingKeyboardChanged();
+
+    void isRecordingMicrophoneChanged();
 
     void onTracksChanged();
 
 private:
-    bool _isRecording = false;
+    bool _isRecordingKeyboard = false;
+
+    bool _isRecordingMicrophone = false;
 
     // Test data, for now
     QList<Track *> _tracks{

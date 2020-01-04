@@ -8,7 +8,7 @@ import kompozitor 1.0
 ApplicationWindow {
 
     visible: true
-    width: 900
+    width: 1000
     height: 600
     title: "Kompozitor"
 
@@ -31,19 +31,30 @@ ApplicationWindow {
         }
 
         Button {
-            text: "Record microphone"
-            onClicked: mainModel.recordSomething()
-        }
-        Button {
-            text: mainModel.isRecording ? "Stop keyboard recording" : "Start keyboard recording"
+            text: mainModel.isRecordingMicrophone ? "Voice record stop" : "Voice record start"
             onClicked: {
-                if(mainModel.isRecording){
-                    mainModel.stopRecording();
+                if(mainModel.isRecordingMicrophone){
+                   mainModel.stopRecordingMicrophone();
+                   frame.focus = "false";
+                   dialog.visible = "true";
+                }
+                else {
+                  mainModel.startRecordingMicrophone();
+                  frame.focus = "true";
+                }
+            }
+        }
+        
+        Button {
+            text: mainModel.isRecordingKeyboard ? "Keyboard record stop" : "Keyboard record start"
+            onClicked: {
+                if(mainModel.isRecordingKeyboard){
+                    mainModel.stopRecordingKeyboard();
                     frame.focus = "false";
                     dialog.visible = "true";
                 }
                 else {
-                   mainModel.startRecording();
+                   mainModel.startRecordingKeyboard();
                    frame.focus = "true";
                 }
             }
@@ -102,7 +113,7 @@ ApplicationWindow {
     TextField {
         id: octaveNumber
         placeholderText: qsTr("Octave")
-        x: 400
+        x: 600
         y: 520
         width: 70
         focus: false
@@ -111,10 +122,17 @@ ApplicationWindow {
 
     Button {
         id: playMelody1
-        x: 600
+        x: 700
         y: 0
         text: "Melody1"
-        onPressed: mainModel.playMelody1()
+        onPressed: mainModel.playMelody(0)
+    }
+    Button {
+        id: playMelody2
+        x: 810
+        y: 0
+        text: "Melody2"
+        onPressed: mainModel.playMelody(1)
     }
 
 
@@ -172,8 +190,9 @@ ApplicationWindow {
         id: frame
         anchors.top: trackListView.bottom
         anchors.topMargin: 50
-        anchors.left: parent.left
-        anchors.rightMargin: 50
+        anchors.left: parent.center
+        anchors.rightMargin: 100
+        x: 180
 
         width: 389
         height: 110

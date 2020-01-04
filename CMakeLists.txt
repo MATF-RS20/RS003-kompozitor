@@ -28,7 +28,9 @@ add_executable(Kompozitor
         src/ui_model/tracks_list_model.cpp src/ui_model/tracks_list_model.hpp
         src/ui_model/track.hpp
         src/ui_model/note_track.hpp
-        src/ui_model/sample_track.hpp)
+        src/ui_model/sample_track.hpp
+        src/playback/microphone_recorder.cpp src/playback/microphone_recorder.hpp)
+
 
 target_include_directories(Kompozitor PRIVATE src)
 
