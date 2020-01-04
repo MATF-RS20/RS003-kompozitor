@@ -8,7 +8,7 @@ import kompozitor 1.0
 ApplicationWindow {
 
     visible: true
-    width: 900
+    width: 1000
     height: 600
     title: "Kompozitor"
 
@@ -124,7 +124,14 @@ ApplicationWindow {
         x: 700
         y: 0
         text: "Melody1"
-        onPressed: mainModel.playMelody1()
+        onPressed: mainModel.playMelody(0)
+    }
+    Button {
+        id: playMelody2
+        x: 810
+        y: 0
+        text: "Melody2"
+        onPressed: mainModel.playMelody(1)
     }
 
 

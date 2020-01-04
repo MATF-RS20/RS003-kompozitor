@@ -33,7 +33,7 @@ public:
 
 public slots:
 
-    void playMelody1();
+    void playMelody(int melody);
 
     void playNote(float frequency);
 

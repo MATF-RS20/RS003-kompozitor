@@ -21,8 +21,8 @@ const float B5 = 493.88;
 const float C6 = 523.25;
 
 namespace Playback {
-    void play();
-    sf::SoundBuffer record();
+    void play(int melody_played);
+    //sf::SoundBuffer record();
 
     std::vector<sf::Int16> buffer_data_from_multiple_notes(const std::unordered_set<double> &notes, unsigned duration = 5, unsigned sample_rate = 44100);
     std::vector<double> create_sample(unsigned frequency = 440, double duration = 10, unsigned sample_rate = 44100);
