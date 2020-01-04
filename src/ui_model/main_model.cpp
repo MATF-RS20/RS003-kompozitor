@@ -2,6 +2,7 @@
 #include <src/playback/record_manager.hpp>
 #include "main_model.hpp"
 #include "playback/playback.hpp"
+#include "sample_track.hpp"
 #include "playback/microphone_recorder.hpp"
 #include <iostream>
 #include <cmath>
@@ -59,8 +60,18 @@ void MainModel::startRecordingMicrophone() {
 
 void MainModel::stopRecordingMicrophone() {
     _isRecordingMicrophone = false;
-    //TODO which kind of result do we need for visualisation ?
-    sf::SoundBuffer result = MicrophoneRecorder::get_instance().stop_recording();
+    sf::SoundBuffer recorded_buffer = MicrophoneRecorder::get_instance().stop_recording();
+    QList<double> normalized_samples;
+
+    normalized_samples.reserve(recorded_buffer.getSampleCount());
+
+    for (int i = 0; i < recorded_buffer.getSampleCount(); i++) {
+        double normalized_sample = static_cast<double>(recorded_buffer.getSamples()[i]) / INT16_MAX;
+        normalized_samples.push_back(normalized_sample);
+    }
+
+    _tracks.push_back(new SampleTrack(0, normalized_samples));
+    emit onTracksChanged();
     emit isRecordingMicrophoneChanged();
 }
 
@@ -74,16 +85,12 @@ void MainModel::set_tracks(QList<Track *> tracks) {
 }
 
 void MainModel::addMicrophoneTrack() {
-    _tracks.push_back(new Track(2, Track::MICROPHONE, {
-            new TrackNote(3, 0, 2),
-            new TrackNote(10, 0, 3),
-            new TrackNote(7, 4, 10),
-    }));
+    _tracks.push_back(new SampleTrack(3, {}));
     emit onTracksChanged();
 }
 
 void MainModel::addKeyboardTrack() {
-    _tracks.push_back(new Track(2, Track::KEYBOARD, {
+    _tracks.push_back(new NoteTrack(2, {
             new TrackNote(3, 0, 2),
             new TrackNote(10, 0, 3),
             new TrackNote(7, 4, 10),

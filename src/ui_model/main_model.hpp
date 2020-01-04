@@ -8,6 +8,7 @@
 #include <SFML/Audio.hpp>
 #include "track_note.hpp"
 #include "track.hpp"
+#include "note_track.hpp"
 
 class MainModel : public QObject {
 
@@ -72,12 +73,12 @@ private:
     bool _isRecordingMicrophone = false;
 
     // Test data, for now
-    QList<Track*> _tracks {
-            new Track(1, Track::KEYBOARD, {
+    QList<Track *> _tracks{
+            new NoteTrack(1, {
                     new TrackNote(2, 0, 2),
                     new TrackNote(5, 3, 4)
             }),
-            new Track(2, Track::MICROPHONE, {
+            new NoteTrack(2, {
                     new TrackNote(3, 0, 2),
                     new TrackNote(5, 2, 5),
                     new TrackNote(2, 4, 6),
