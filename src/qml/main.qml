@@ -112,7 +112,7 @@ ApplicationWindow {
     TextField {
         id: octaveNumber
         placeholderText: qsTr("Octave")
-        x: 400
+        x: 600
         y: 520
         width: 70
         focus: false
@@ -167,8 +167,9 @@ ApplicationWindow {
         id: frame
         anchors.top: trackListView.bottom
         anchors.topMargin: 50
-        anchors.left: parent.left
-        anchors.rightMargin: 50
+        anchors.left: parent.center
+        anchors.rightMargin: 100
+        x: 180
 
         width: 389
         height: 110
