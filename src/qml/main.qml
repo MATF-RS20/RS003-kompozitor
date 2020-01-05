@@ -209,6 +209,7 @@ ApplicationWindow {
                     if(mainModel.isRecording){
                         mainModel.addRecordNote(261.63);
                     }
+                    button1.down = "true";
                     mainModel.playNote(261.63);
                     break;
                 }
@@ -216,6 +217,7 @@ ApplicationWindow {
                     if(mainModel.isRecording){
                         mainModel.addRecordNote(277.18);
                     }
+                    button4.down = "true";
                     mainModel.playNote(277.18);
                     break;
                 }
@@ -223,6 +225,7 @@ ApplicationWindow {
                     if(mainModel.isRecording){
                         mainModel.addRecordNote(293.66);
                     }
+                    button2.down = "true";
                     mainModel.playNote(293.66);
                     break;
                 }
@@ -230,6 +233,7 @@ ApplicationWindow {
                     if(mainModel.isRecording){
                         mainModel.addRecordNote(311.13);
                     }
+                    button5.down = "true";
                     mainModel.playNote(311.13);
                     break;
                 }
@@ -237,6 +241,7 @@ ApplicationWindow {
                     if(mainModel.isRecording){
                         mainModel.addRecordNote(329.63);
                     }
+                    button3.down = "true";
                     mainModel.playNote(329.63);
                     break;
                 }
@@ -244,6 +249,7 @@ ApplicationWindow {
                     if(mainModel.isRecording){
                         mainModel.addRecordNote(349.23);
                     }
+                    button6.down = "true";
                     mainModel.playNote(349.23);
                     break;
                 }
@@ -251,6 +257,7 @@ ApplicationWindow {
                     if(mainModel.isRecording){
                         mainModel.addRecordNote(369.99);
                     }
+                    button11.down = "true";
                     mainModel.playNote(369.99);
                     break;
                 }
@@ -258,6 +265,7 @@ ApplicationWindow {
                     if(mainModel.isRecording){
                         mainModel.addRecordNote(392.00);
                     }
+                    button7.down = "true";
                     mainModel.playNote(392.00);
                     break;
                 }
@@ -266,6 +274,7 @@ ApplicationWindow {
                     if(mainModel.isRecording){
                         mainModel.addRecordNote(415.30);
                     }
+                    button12.down = "true";
                     mainModel.playNote(415.30);
                     break;
                 }
@@ -273,6 +282,7 @@ ApplicationWindow {
                     if(mainModel.isRecording){
                         mainModel.addRecordNote(440.00);
                     }
+                    button8.down = "true";
                     mainModel.playNote(440.00);
                     break;
                 }
@@ -280,6 +290,7 @@ ApplicationWindow {
                     if(mainModel.isRecording){
                         mainModel.addRecordNote(466.16);
                     }
+                    button13.down = "true";
                     mainModel.playNote(466.16);
                     break;
                 }
@@ -287,6 +298,7 @@ ApplicationWindow {
                     if(mainModel.isRecording){
                         mainModel.addRecordNote(493.88);
                     }
+                    button9.down = "true";
                     mainModel.playNote(493.88);
                     break;
                 }
@@ -294,6 +306,7 @@ ApplicationWindow {
                     if(mainModel.isRecording){
                         mainModel.addRecordNote(523.25);
                     }
+                    button10.down = "true";
                     mainModel.playNote(523.25);
                     break;
                 }
@@ -312,6 +325,7 @@ ApplicationWindow {
                     if(mainModel.isRecording){
                         mainModel.removeRecordNote(261.63);
                     }
+                    button1.down = !button1.down;
                     mainModel.stopNote(261.63);
                     break;
                 }
@@ -319,6 +333,7 @@ ApplicationWindow {
                     if(mainModel.isRecording){
                         mainModel.removeRecordNote(277.18);
                     }
+                    button4.down = !button4.down;
                     mainModel.stopNote(277.18);
                     break;
                 }
@@ -326,6 +341,7 @@ ApplicationWindow {
                     if(mainModel.isRecording){
                         mainModel.removeRecordNote(293.66);
                     }
+                    button2.down = !button2.down;
                     mainModel.stopNote(293.66);
                     break;
                 }
@@ -333,6 +349,7 @@ ApplicationWindow {
                     if(mainModel.isRecording){
                         mainModel.removeRecordNote(311.13);
                     }
+                    button5.down = !button5.down;
                     mainModel.stopNote(311.13);
                     break;
                 }
@@ -340,6 +357,7 @@ ApplicationWindow {
                     if(mainModel.isRecording){
                         mainModel.removeRecordNote(329.63);
                     }
+                    button3.down = !button3.down;
                     mainModel.stopNote(329.63);
                     break;
                 }
@@ -347,6 +365,7 @@ ApplicationWindow {
                     if(mainModel.isRecording){
                         mainModel.removeRecordNote(349.23);
                     }
+                    button6.down = !button6.down;
                     mainModel.stopNote(349.23);
                     break;
                 }
@@ -354,6 +373,7 @@ ApplicationWindow {
                     if(mainModel.isRecording){
                         mainModel.removeRecordNote(369.99);
                     }
+                    button11.down = !button11.down;
                     mainModel.stopNote(369.99);
                     break;
                 }
@@ -361,6 +381,7 @@ ApplicationWindow {
                     if(mainModel.isRecording){
                         mainModel.removeRecordNote(392.00);
                     }
+                    button7.down = !button7.down;
                     mainModel.stopNote(392.00);
                     break;
                 }
@@ -369,6 +390,7 @@ ApplicationWindow {
                     if(mainModel.isRecording){
                         mainModel.removeRecordNote(415.30);
                     }
+                    button12.down = !button12.down;
                     mainModel.stopNote(415.30);
                     break;
                 }
@@ -376,6 +398,7 @@ ApplicationWindow {
                     if(mainModel.isRecording){
                         mainModel.removeRecordNote(440.00);
                     }
+                    button8.down = !button8.down;
                     mainModel.stopNote(440.00);
                     break;
                 }
@@ -383,6 +406,7 @@ ApplicationWindow {
                     if(mainModel.isRecording){
                         mainModel.removeRecordNote(466.16);
                     }
+                    button13.down = !button13.down;
                     mainModel.stopNote(466.16);
                     break;
                 }
@@ -390,6 +414,7 @@ ApplicationWindow {
                     if(mainModel.isRecording){
                         mainModel.removeRecordNote(493.88);
                     }
+                    button9.down = !button9.down;
                     mainModel.stopNote(493.88);
                     break;
                 }
@@ -397,6 +422,7 @@ ApplicationWindow {
                     if(mainModel.isRecording){
                         mainModel.removeRecordNote(523.25);
                     }
+                    button10.down = !button10.down;
                     mainModel.stopNote(523.25);
                     break;
                 }
@@ -410,8 +436,14 @@ ApplicationWindow {
             width: 46
             height: 110
             text: "A"
-            onPressed: mainModel.playNote(261.63)
-            onReleased: mainModel.stopNote(261.63)
+            onPressed: {
+                button1.down = "true";
+                mainModel.playNote(261.63)
+            }
+            onReleased: {
+                button1.down = !button1.down;
+                mainModel.stopNote(261.63)
+            }
         }
 
         Button {
@@ -421,8 +453,14 @@ ApplicationWindow {
             width: 46
             height: 110
             text: "S"
-            onPressed: mainModel.playNote(293.66)
-            onReleased: mainModel.stopNote(293.66)
+            onPressed: {
+                button2.down = "true";
+                mainModel.playNote(293.66)
+            }
+            onReleased: {
+                button2.down = !button2.down;
+                mainModel.stopNote(293.66)
+            }
 
         }
 
@@ -433,8 +471,14 @@ ApplicationWindow {
             width: 46
             height: 110
             text: "D"
-            onPressed: mainModel.playNote(329.63)
-            onReleased: mainModel.stopNote(329.63)
+            onPressed: {
+                button3.down = "true";
+                mainModel.playNote(329.63)
+            }
+            onReleased: {
+                button3.down = !button3.down;
+                mainModel.stopNote(329.63)
+            }
         }
 
         Button {
@@ -445,18 +489,25 @@ ApplicationWindow {
             height: 45
             text: "W"
             background: Rectangle {
-                color: "black"
+                color: button4.down ? "#404040" : "#0d0d0d";
+                radius: 4;
             }
             contentItem: Text {
                 font: button4.font
-                color: button4.down ? "red" : "white"
+                color: "white"
                 text: button4.text
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
                 elide: Text.ElideRight
             }
-            onPressed: mainModel.playNote(277.18)
-            onReleased: mainModel.stopNote(277.18)
+            onPressed: {
+                button4.down = "true";
+                mainModel.playNote(277.18);
+            }
+            onReleased: {
+                button4.down = !button4.down;
+                mainModel.stopNote(277.18)
+            }
         }
 
         Button {
@@ -466,19 +517,26 @@ ApplicationWindow {
             width: 45
             height: 45
             text: "E"
+            background: Rectangle {
+                color: button5.down ? "#404040" : "#0d0d0d";
+                radius: 4;
+            }
             contentItem: Text {
-                color: button5.down ? "red" : "white"
+                color: "white"
                 text: button5.text
                 font: button5.font
                 horizontalAlignment: Text.AlignHCenter
                 elide: Text.ElideRight
                 verticalAlignment: Text.AlignVCenter
             }
-            background: Rectangle {
-                color: "#000000"
+            onPressed: {
+                button5.down = "true";
+                mainModel.playNote(311.13)
             }
-            onPressed: mainModel.playNote(311.13)
-            onReleased: mainModel.stopNote(311.13)
+            onReleased: {
+                button5.down = !button5.down;
+                mainModel.stopNote(311.13)
+            }
         }
 
         Button {
@@ -488,8 +546,14 @@ ApplicationWindow {
             width: 46
             height: 110
             text: "F"
-            onPressed: mainModel.playNote(349.23)
-            onReleased: mainModel.stopNote(349.23)
+            onPressed: {
+                button6.down = "true";
+                mainModel.playNote(349.23)
+            }
+            onReleased: {
+                button6.down = !button6.down;
+                mainModel.stopNote(349.23)
+            }
         }
 
         Button {
@@ -499,8 +563,14 @@ ApplicationWindow {
             width: 46
             height: 110
             text: "G"
-            onPressed: mainModel.playNote(392.00)
-            onReleased: mainModel.stopNote(392.00)
+            onPressed: {
+                button7.down = "true";
+                mainModel.playNote(392.00)
+            }
+            onReleased: {
+                button7.down = !button7.down;
+                mainModel.stopNote(392.00)
+            }
         }
 
         Button {
@@ -510,8 +580,14 @@ ApplicationWindow {
             width: 46
             height: 110
             text: "H"
-            onPressed: mainModel.playNote(440.00)
-            onReleased: mainModel.stopNote(440.00)
+            onPressed: {
+                button8.down = "true";
+                mainModel.playNote(440.00)
+            }
+            onReleased: {
+                button8.down = !button8.down;
+                mainModel.stopNote(440.00)
+            }
         }
 
         Button {
@@ -521,8 +597,14 @@ ApplicationWindow {
             width: 46
             height: 110
             text: "J"
-            onPressed: mainModel.playNote(493.88)
-            onReleased: mainModel.stopNote(493.88)
+            onPressed: {
+                button9.down = "true";
+                mainModel.playNote(493.88)
+            }
+            onReleased: {
+                button9.down = !button9.down;
+                mainModel.stopNote(493.88)
+            }
         }
 
         Button {
@@ -532,8 +614,14 @@ ApplicationWindow {
             width: 46
             height: 110
             text: "K"
-            onPressed: mainModel.playNote(523.25)
-            onReleased: mainModel.stopNote(523.25)
+            onPressed: {
+                button10.down = "true";
+                mainModel.playNote(523.25)
+            }
+            onReleased: {
+                button10.down = !button10.down;
+                mainModel.stopNote(523.25)
+            }
         }
 
         Button {
@@ -543,19 +631,26 @@ ApplicationWindow {
             width: 45
             height: 45
             text: "T"
+            background: Rectangle {
+                color: button11.down ? "#404040" : "#0d0d0d";
+                radius: 4;
+            }
             contentItem: Text {
-                color: button11.down ? "red" : "white"
+                color: "white"
                 text: button11.text
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
                 font: button11.font
                 elide: Text.ElideRight
             }
-            background: Rectangle {
-                color: "#000000"
+            onPressed: {
+                button11.down = "true";
+                mainModel.playNote(369.99)
             }
-            onPressed: mainModel.playNote(369.99)
-            onReleased: mainModel.stopNote(369.99)
+            onReleased: {
+                button11.down = !button11.down;
+                mainModel.stopNote(369.99)
+            }
         }
 
         Button {
@@ -565,19 +660,26 @@ ApplicationWindow {
             width: 45
             height: 45
             text: "Y"
+            background: Rectangle {
+                color: button12.down ? "#404040" : "#0d0d0d";
+                radius: 4;
+            }
             contentItem: Text {
-                color: button12.down ? "red" : "white"
+                color: "white"
                 text: button12.text
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
                 font: button12.font
                 elide: Text.ElideRight
             }
-            background: Rectangle {
-                color: "#000000"
+            onPressed: {
+                button12.down = "true";
+                mainModel.playNote(415.30)
             }
-            onPressed: mainModel.playNote(415.30)
-            onReleased: mainModel.stopNote(415.30)
+            onReleased: {
+                button12.down = !button12.down;
+                mainModel.stopNote(415.30)
+            }
         }
 
         Button {
@@ -587,19 +689,26 @@ ApplicationWindow {
             width: 45
             height: 45
             text: "U"
+            background: Rectangle {
+                color: button13.down ? "#404040" : "#0d0d0d";
+                radius: 4;
+            }
             contentItem: Text {
-                color: button13.down ? "red" : "white"
+                color: "white"
                 text: button13.text
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
                 font: button13.font
                 elide: Text.ElideRight
             }
-            background: Rectangle {
-                color: "#000000"
+            onPressed: {
+                button13.down = "true";
+                mainModel.playNote(466.16)
             }
-            onPressed: mainModel.playNote(466.16)
-            onReleased: mainModel.stopNote(466.16)
+            onReleased: {
+                button13.down = !button13.down;
+                mainModel.stopNote(466.16)
+            }
         }
     }
 }
