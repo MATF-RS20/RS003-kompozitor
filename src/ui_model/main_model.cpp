@@ -29,14 +29,18 @@ void MainModel::stopNote(float frequency) {
     SoundManager::get_instance().remove_note(frequency);
 }
 
-void MainModel::addRecordNote(float frequency){
+void MainModel::addRecordNote(float frequency, int note_position){
     frequency = freq(frequency,current_octave, fixed_octave);
-    RecordManager::get_instance().add_note(frequency);
+    // current octave should be 5, not 4 ??
+    // TODO ask Kristina that
+    int pitch = (current_octave)*13 + note_position;
+    RecordManager::get_instance().add_note(frequency, pitch);
 }
 
-void MainModel::removeRecordNote(float frequency){
+void MainModel::removeRecordNote(float frequency, int note_position){
     frequency = freq(frequency,current_octave, fixed_octave);
-    RecordManager::get_instance().remove_note(frequency);
+    int pitch = (current_octave)*13 + note_position;
+    RecordManager::get_instance().remove_note(frequency, pitch);
 }
 
 void MainModel::startRecordingKeyboard() {
@@ -47,9 +51,10 @@ void MainModel::startRecordingKeyboard() {
 
 void MainModel::stopRecordingKeyboard() {
     _isRecordingKeyboard = false;
-    std::vector<TrackNote*> result = RecordManager::get_instance().stop_recording();
+    QList<QObject*> result = RecordManager::get_instance().stop_recording();
 
-    // TODO TrackNote* must be transformed to fit into Track class
+    _tracks.push_back(new NoteTrack(3, result));
+    emit onTracksChanged();
     emit isRecordingKeyboardChanged();
 }
 void MainModel::startRecordingMicrophone() {

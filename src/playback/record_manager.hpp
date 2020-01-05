@@ -18,6 +18,7 @@ struct NoteEvent {
     double freq = 0.0;
     std::chrono::time_point<std::chrono::system_clock> note_time_point;
     State current_state;
+    int pitch;
 };
 
 class RecordManager {
@@ -31,10 +32,10 @@ public:
     RecordManager& operator=(RecordManager&& other) = delete;
 
     void start_recording();
-    std::vector<TrackNote*> stop_recording();
+    QList<QObject*> stop_recording();
 
-    void add_note(double freq);
-    void remove_note(double freq);
+    void add_note(double freq, int pitch);
+    void remove_note(double freq, int pitch);
 
     void save_composition();
 
@@ -48,7 +49,7 @@ private:
     RecordManager() = default;
 
     std::vector<NoteEvent> _record_data;
-    std::vector<TrackNote*> _track_final_data;
+    QList<QObject*> _track_final_data;
     std::chrono::time_point<std::chrono::system_clock> _start_time;
     std::chrono::time_point<std::chrono::system_clock> _end_time;
 };

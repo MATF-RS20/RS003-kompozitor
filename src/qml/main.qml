@@ -207,7 +207,7 @@ ApplicationWindow {
             switch (event.key) {
                 case Qt.Key_A: {
                     if(mainModel.isRecordingKeyboard){
-                        mainModel.addRecordNote(261.63);
+                        mainModel.addRecordNote(261.63, 1);
                     }
                     button1.down = "true";
                     mainModel.playNote(261.63);
@@ -215,7 +215,7 @@ ApplicationWindow {
                 }
                 case Qt.Key_W: {
                     if(mainModel.isRecordingKeyboard){
-                        mainModel.addRecordNote(277.18);
+                        mainModel.addRecordNote(277.18, 2);
                     }
                     button4.down = "true";
                     mainModel.playNote(277.18);
@@ -223,7 +223,7 @@ ApplicationWindow {
                 }
                 case Qt.Key_S: {
                     if(mainModel.isRecordingKeyboard){
-                        mainModel.addRecordNote(293.66);
+                        mainModel.addRecordNote(293.66, 3);
                     }
                     button2.down = "true";
                     mainModel.playNote(293.66);
@@ -231,7 +231,7 @@ ApplicationWindow {
                 }
                 case Qt.Key_E: {
                     if(mainModel.isRecordingKeyboard){
-                        mainModel.addRecordNote(311.13);
+                        mainModel.addRecordNote(311.13, 4);
                     }
                     button5.down = "true";
                     mainModel.playNote(311.13);
@@ -239,7 +239,7 @@ ApplicationWindow {
                 }
                 case Qt.Key_D: {
                     if(mainModel.isRecordingKeyboard){
-                        mainModel.addRecordNote(329.63);
+                        mainModel.addRecordNote(329.63, 5);
                     }
                     button3.down = "true";
                     mainModel.playNote(329.63);
@@ -247,7 +247,7 @@ ApplicationWindow {
                 }
                 case Qt.Key_F: {
                     if(mainModel.isRecordingKeyboard){
-                        mainModel.addRecordNote(349.23);
+                        mainModel.addRecordNote(349.23, 6);
                     }
                     button6.down = "true";
                     mainModel.playNote(349.23);
@@ -255,7 +255,7 @@ ApplicationWindow {
                 }
                 case Qt.Key_T: {
                     if(mainModel.isRecordingKeyboard){
-                        mainModel.addRecordNote(369.99);
+                        mainModel.addRecordNote(369.99, 7);
                     }
                     button11.down = "true";
                     mainModel.playNote(369.99);
@@ -263,7 +263,7 @@ ApplicationWindow {
                 }
                 case Qt.Key_G: {
                     if(mainModel.isRecordingKeyboard){
-                        mainModel.addRecordNote(392.00);
+                        mainModel.addRecordNote(392.00, 8);
                     }
                     button7.down = "true";
                     mainModel.playNote(392.00);
@@ -272,7 +272,7 @@ ApplicationWindow {
                 case Qt.Key_Y:
                 case Qt.Key_Z: {
                     if(mainModel.isRecordingKeyboard){
-                        mainModel.addRecordNote(415.30);
+                        mainModel.addRecordNote(415.30, 9);
                     }
                     button12.down = "true";
                     mainModel.playNote(415.30);
@@ -280,7 +280,7 @@ ApplicationWindow {
                 }
                 case Qt.Key_H: {
                     if(mainModel.isRecordingKeyboard){
-                        mainModel.addRecordNote(440.00);
+                        mainModel.addRecordNote(440.00, 10);
                     }
                     button8.down = "true";
                     mainModel.playNote(440.00);
@@ -288,7 +288,7 @@ ApplicationWindow {
                 }
                 case Qt.Key_U: {
                     if(mainModel.isRecordingKeyboard){
-                        mainModel.addRecordNote(466.16);
+                        mainModel.addRecordNote(466.16, 11);
                     }
                     button13.down = "true";
                     mainModel.playNote(466.16);
@@ -296,7 +296,7 @@ ApplicationWindow {
                 }
                 case Qt.Key_J: {
                     if(mainModel.isRecordingKeyboard){
-                        mainModel.addRecordNote(493.88);
+                        mainModel.addRecordNote(493.88, 12);
                     }
                     button9.down = "true";
                     mainModel.playNote(493.88);
@@ -304,7 +304,7 @@ ApplicationWindow {
                 }
                 case Qt.Key_K: {
                     if(mainModel.isRecordingKeyboard){
-                        mainModel.addRecordNote(523.25);
+                        mainModel.addRecordNote(523.25, 13);
                     }
                     button10.down = "true";
                     mainModel.playNote(523.25);
@@ -323,7 +323,7 @@ ApplicationWindow {
             switch (event.key) {
                 case Qt.Key_A: {
                     if(mainModel.isRecordingKeyboard){
-                        mainModel.removeRecordNote(261.63);
+                        mainModel.removeRecordNote(261.63, 1);
                     }
                     button1.down = !button1.down;
                     mainModel.stopNote(261.63);
@@ -331,7 +331,7 @@ ApplicationWindow {
                 }
                 case Qt.Key_W: {
                     if(mainModel.isRecordingKeyboard){
-                        mainModel.removeRecordNote(277.18);
+                        mainModel.removeRecordNote(277.18, 2);
                     }
                     button4.down = !button4.down;
                     mainModel.stopNote(277.18);
@@ -339,7 +339,7 @@ ApplicationWindow {
                 }
                 case Qt.Key_S: {
                     if(mainModel.isRecordingKeyboard){
-                        mainModel.removeRecordNote(293.66);
+                        mainModel.removeRecordNote(293.66, 3);
                     }
                     button2.down = !button2.down;
                     mainModel.stopNote(293.66);
@@ -347,7 +347,7 @@ ApplicationWindow {
                 }
                 case Qt.Key_E: {
                     if(mainModel.isRecordingKeyboard){
-                        mainModel.removeRecordNote(311.13);
+                        mainModel.removeRecordNote(311.13, 4);
                     }
                     button5.down = !button5.down;
                     mainModel.stopNote(311.13);
@@ -355,7 +355,7 @@ ApplicationWindow {
                 }
                 case Qt.Key_D: {
                     if(mainModel.isRecordingKeyboard){
-                        mainModel.removeRecordNote(329.63);
+                        mainModel.removeRecordNote(329.63, 5);
                     }
                     button3.down = !button3.down;
                     mainModel.stopNote(329.63);
@@ -363,7 +363,7 @@ ApplicationWindow {
                 }
                 case Qt.Key_F: {
                     if(mainModel.isRecordingKeyboard){
-                        mainModel.removeRecordNote(349.23);
+                        mainModel.removeRecordNote(349.23, 6);
                     }
                     button6.down = !button6.down;
                     mainModel.stopNote(349.23);
@@ -371,7 +371,7 @@ ApplicationWindow {
                 }
                 case Qt.Key_T: {
                     if(mainModel.isRecordingKeyboard){
-                        mainModel.removeRecordNote(369.99);
+                        mainModel.removeRecordNote(369.99, 7);
                     }
                     button11.down = !button11.down;
                     mainModel.stopNote(369.99);
@@ -379,7 +379,7 @@ ApplicationWindow {
                 }
                 case Qt.Key_G: {
                     if(mainModel.isRecordingKeyboard){
-                        mainModel.removeRecordNote(392.00);
+                        mainModel.removeRecordNote(392.00, 8);
                     }
                     button7.down = !button7.down;
                     mainModel.stopNote(392.00);
@@ -388,7 +388,7 @@ ApplicationWindow {
                 case Qt.Key_Y:
                 case Qt.Key_Z: {
                     if(mainModel.isRecordingKeyboard){
-                        mainModel.removeRecordNote(415.30);
+                        mainModel.removeRecordNote(415.30, 9);
                     }
                     button12.down = !button12.down;
                     mainModel.stopNote(415.30);
@@ -396,7 +396,7 @@ ApplicationWindow {
                 }
                 case Qt.Key_H: {
                     if(mainModel.isRecordingKeyboard){
-                        mainModel.removeRecordNote(440.00);
+                        mainModel.removeRecordNote(440.00, 10);
                     }
                     button8.down = !button8.down;
                     mainModel.stopNote(440.00);
@@ -404,7 +404,7 @@ ApplicationWindow {
                 }
                 case Qt.Key_U: {
                     if(mainModel.isRecordingKeyboard){
-                        mainModel.removeRecordNote(466.16);
+                        mainModel.removeRecordNote(466.16, 11);
                     }
                     button13.down = !button13.down;
                     mainModel.stopNote(466.16);
@@ -412,7 +412,7 @@ ApplicationWindow {
                 }
                 case Qt.Key_J: {
                     if(mainModel.isRecordingKeyboard){
-                        mainModel.removeRecordNote(493.88);
+                        mainModel.removeRecordNote(493.88, 12);
                     }
                     button9.down = !button9.down;
                     mainModel.stopNote(493.88);
@@ -420,7 +420,7 @@ ApplicationWindow {
                 }
                 case Qt.Key_K: {
                     if(mainModel.isRecordingKeyboard){
-                        mainModel.removeRecordNote(523.25);
+                        mainModel.removeRecordNote(523.25, 13);
                     }
                     button10.down = !button10.down;
                     mainModel.stopNote(523.25);

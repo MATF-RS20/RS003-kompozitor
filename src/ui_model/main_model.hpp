@@ -56,9 +56,9 @@ public slots:
 
     void calculateOctave(int);
 
-    void addRecordNote(float frequency);
+    void addRecordNote(float frequency, int note_position);
 
-    void removeRecordNote(float frequency);
+    void removeRecordNote(float frequency, int note_position);
 
 signals:
     void isRecordingKeyboardChanged();

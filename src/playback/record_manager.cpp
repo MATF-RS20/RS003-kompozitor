@@ -6,12 +6,12 @@ RecordManager &RecordManager::get_instance() {
     return instance;
 }
 
-std::vector<TrackNote*> RecordManager::stop_recording() {
+QList<QObject*> RecordManager::stop_recording() {
     _end_time = std::chrono::system_clock::now();
 
     for (auto & i : _track_final_data){
-        std::cout << "Note info:  " <<  i->pitch() << "    "
-                  << i->start() << "    " << i->end() << std::endl;
+        std::cout << "Note info:  " << static_cast<TrackNote*>(i)->pitch() << "    "
+                  << static_cast<TrackNote*>(i)->start() << "    " << static_cast<TrackNote*>(i)->end() << std::endl;
     }
 //    save_composition();
     return _track_final_data;
@@ -23,24 +23,26 @@ void RecordManager::start_recording() {
     _track_final_data.clear();
 }
 
-void RecordManager::add_note(double freq) {
+void RecordManager::add_note(double freq, int pitch) {
     NoteEvent currentNote;
     currentNote.freq = freq;
     currentNote.note_time_point = std::chrono::system_clock::now();
     currentNote.current_state = DOWN;
+    currentNote.pitch = pitch;
 
     _record_data.push_back(currentNote);
 }
 
-void RecordManager::remove_note(double freq) {
+void RecordManager::remove_note(double freq, int pitch) {
     NoteEvent currentNote;
     currentNote.freq = freq;
     currentNote.note_time_point = std::chrono::system_clock::now();
     currentNote.current_state = UP;
+    currentNote.pitch = pitch;
 
     for (auto beg = _record_data.begin(); beg < _record_data.end(); beg++) {
-        if (beg->freq == currentNote.freq){
-            auto* tmp = new TrackNote(static_cast<int>(currentNote.freq),
+        if (beg->freq == currentNote.freq && beg->pitch == currentNote.pitch){
+            auto* tmp = new TrackNote(currentNote.pitch,
                                       relative_time(_start_time, beg->note_time_point).count(),
                                       relative_time(_start_time, currentNote.note_time_point).count());
 
@@ -67,12 +69,14 @@ void RecordManager::save_composition() {
     std::vector<double> raw_buffer_data(buffer_size);
     double max_amplitude = 0;
 
-
+    // TODO
+    // now, pitch is Aca's pitch and I need frequency here
+    // will do when needed
     for (auto i : _track_final_data){
-        std::cout << i->end()-i->start() << std::endl;
-        auto samples = Playback::create_sample(i->pitch(), i->end()-i->start(), 44100);
+        std::cout << static_cast<TrackNote*>(i)->end()-static_cast<TrackNote*>(i)->start() << std::endl;
+        auto samples = Playback::create_sample(static_cast<TrackNote*>(i)->pitch(), static_cast<TrackNote*>(i)->end()-static_cast<TrackNote*>(i)->start(), 44100);
         int k = 0;
-        for (unsigned j = 44100*i->start(); j < 44100*i->end(); j++) {
+        for (unsigned j = 44100*static_cast<TrackNote*>(i)->start(); j < 44100*static_cast<TrackNote*>(i)->end(); j++) {
             raw_buffer_data[j] += samples[k++];
             if (abs(raw_buffer_data[j]) > max_amplitude) {
                 max_amplitude = abs(raw_buffer_data[j]);
