@@ -118,6 +118,9 @@ ApplicationWindow {
         width: 70
         focus: false
         onAccepted: mainModel.octaveChanged(octaveNumber.getText(0,1))
+        onEditingFinished: {
+            frame.focus = "true";
+        }
     }
 
     Button {
