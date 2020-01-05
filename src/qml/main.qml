@@ -2,6 +2,7 @@ import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Dialogs 1.1
+import QtQuick.Layouts 1.3
 
 import kompozitor 1.0
 
@@ -163,10 +164,13 @@ ApplicationWindow {
         id: trackListView
         anchors.top: trackListControls.bottom
         anchors.left: parent.left
-        width: 300
-        height: 400
-
+        width: 550
+        height: 350
+        clip: true
         model: TrackListModel { tracks: mainModel.tracks }
+        Layout.fillWidth: true
+        Layout.fillHeight: true
+        ScrollBar.vertical: ScrollBar {}
 
         delegate: Column {
             Text {
@@ -211,8 +215,8 @@ ApplicationWindow {
 
     Frame {
         id: frame
-        anchors.top: trackListView.bottom
-        anchors.topMargin: 50
+        anchors.top: octaveImage.bottom
+        anchors.topMargin: 5
         anchors.left: parent.center
         anchors.rightMargin: 100
         x: 180
