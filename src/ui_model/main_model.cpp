@@ -133,5 +133,13 @@ void MainModel::calculateOctave(int x) {
     current_octave += 1;
 }
 
+void MainModel::saveKeyboardComposition() {
+    RecordManager::get_instance().save_composition();
+}
+
+void MainModel::saveMicrophoneComposition() {
+    MicrophoneRecorder::get_instance().save_recording();
+}
+
 
 

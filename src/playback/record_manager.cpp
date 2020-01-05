@@ -13,7 +13,6 @@ QList<QObject*> RecordManager::stop_recording() {
         std::cout << "Note info:  " << static_cast<TrackNote*>(i)->pitch() << "    "
                   << static_cast<TrackNote*>(i)->start() << "    " << static_cast<TrackNote*>(i)->end() << std::endl;
     }
-//    save_composition();
     return _track_final_data;
 }
 
@@ -48,6 +47,9 @@ void RecordManager::remove_note(double freq, int pitch) {
 
             _record_data.erase(beg);
             _track_final_data.push_back(tmp);
+            _record_data_by_frequency.push_back(new TrackNote((currentNote.freq),
+                                                relative_time(_start_time, beg->note_time_point).count(),
+                                                relative_time(_start_time, currentNote.note_time_point).count()));
             break;
         }
     }
@@ -69,10 +71,7 @@ void RecordManager::save_composition() {
     std::vector<double> raw_buffer_data(buffer_size);
     double max_amplitude = 0;
 
-    // TODO
-    // now, pitch is Aca's pitch and I need frequency here
-    // will do when needed
-    for (auto i : _track_final_data){
+    for (auto i : _record_data_by_frequency){
         std::cout << static_cast<TrackNote*>(i)->end()-static_cast<TrackNote*>(i)->start() << std::endl;
         auto samples = Playback::create_sample(static_cast<TrackNote*>(i)->pitch(), static_cast<TrackNote*>(i)->end()-static_cast<TrackNote*>(i)->start(), 44100);
         int k = 0;
@@ -96,9 +95,7 @@ void RecordManager::save_composition() {
     sound.setBuffer(soundBuffer);
 
     soundBuffer.loadFromSamples(&buffer_data[0], buffer_data.size(), 1, 44100);
-    soundBuffer.saveToFile("test_save_recording.ogg");
-
-    // TODO after we add pop-up window for asking if user wants to save melody
+    soundBuffer.saveToFile("recorded_by_keyboard.ogg");
 
 //    testing recorded melody
 //    SoundManager::get_instance().play_sound_buffer(buffer_data);

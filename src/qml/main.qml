@@ -36,7 +36,7 @@ ApplicationWindow {
                 if(mainModel.isRecordingMicrophone){
                    mainModel.stopRecordingMicrophone();
                    frame.focus = "false";
-                   dialog.visible = "true";
+                   dialogMicrophone.visible = "true";
                 }
                 else {
                   mainModel.startRecordingMicrophone();
@@ -51,7 +51,7 @@ ApplicationWindow {
                 if(mainModel.isRecordingKeyboard){
                     mainModel.stopRecordingKeyboard();
                     frame.focus = "false";
-                    dialog.visible = "true";
+                    dialogKeyboard.visible = "true";
                 }
                 else {
                    mainModel.startRecordingKeyboard();
@@ -62,7 +62,7 @@ ApplicationWindow {
     }
 
     Dialog {
-        id: dialog
+        id: dialogKeyboard
         title: "Saving..."
         Label {
             text: "Do you want to save this recording?"
@@ -74,11 +74,31 @@ ApplicationWindow {
 
         onAccepted: {
             console.log("Yes clicked")
-            // TODO call save_composition() or whatever function
+            mainModel.saveKeyboardComposition();
         }
         onRejected: {
             console.log("No clicked")
         }
+    }
+
+    Dialog {
+            id: dialogMicrophone
+            title: "Saving..."
+            Label {
+                text: "Do you want to save this recording?"
+            }
+            visible: false
+            x: (parent.width - width) / 2
+            y: (parent.height - height) / 3
+            standardButtons: Dialog.Yes | Dialog.No
+
+            onAccepted: {
+                console.log("Yes clicked")
+                mainModel.saveMicrophoneComposition();
+            }
+            onRejected: {
+                console.log("No clicked")
+            }
     }
 
     Image {

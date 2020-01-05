@@ -50,6 +50,7 @@ private:
 
     std::vector<NoteEvent> _record_data;
     QList<QObject*> _track_final_data;
+    std::vector<TrackNote*> _record_data_by_frequency;
     std::chrono::time_point<std::chrono::system_clock> _start_time;
     std::chrono::time_point<std::chrono::system_clock> _end_time;
 };

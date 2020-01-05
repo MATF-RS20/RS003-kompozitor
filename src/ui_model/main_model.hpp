@@ -60,6 +60,10 @@ public slots:
 
     void removeRecordNote(float frequency, int note_position);
 
+    void saveKeyboardComposition();
+
+    void saveMicrophoneComposition();
+
 signals:
     void isRecordingKeyboardChanged();
 
