@@ -104,10 +104,11 @@ ApplicationWindow {
 
     Image {
         source: "piano-keyboard.png"
-        x: 0
-        y: 400
         width: 700
         height: 120
+        anchors.bottom: frame.top
+        anchors.bottomMargin: -25
+        anchors.topMargin: 10
     }
 
     Rectangle {
@@ -118,8 +119,9 @@ ApplicationWindow {
         border.color: "black"
         border.width: 1
         radius: 10
+        anchors.bottom: frame.top
+        anchors.bottomMargin: 15.5
         x: 309
-        y: 430
         MouseArea {
                 anchors.fill: parent
                 drag.target: parent;
@@ -133,11 +135,13 @@ ApplicationWindow {
 
     TextField {
         id: octaveNumber
-        placeholderText: qsTr("Octave")
-        x: 600
-        y: 520
-        width: 70
+        placeholderText: qsTr("octave")
+        width: 65
         focus: false
+        anchors.left: frame.right
+        anchors.bottom: frame.bottom
+        anchors.leftMargin: 50
+        anchors.bottomMargin: 50
         onAccepted: mainModel.octaveChanged(octaveNumber.getText(0,1))
         onEditingFinished: {
             frame.focus = "true";
@@ -164,8 +168,12 @@ ApplicationWindow {
         id: trackListView
         anchors.top: trackListControls.bottom
         anchors.left: parent.left
+        anchors.bottom: octaveImage.top
+        anchors.topMargin: 10
+        anchors.bottomMargin: 10
+        anchors.leftMargin: 5
+        anchors.rightMargin: 5
         width: 550
-        height: 350
         clip: true
         model: TrackListModel { tracks: mainModel.tracks }
         Layout.fillWidth: true
@@ -206,7 +214,6 @@ ApplicationWindow {
                     }
                 }
             }
-
         }
 
         spacing: 10.0
@@ -215,11 +222,11 @@ ApplicationWindow {
 
     Frame {
         id: frame
-        anchors.top: octaveImage.bottom
-        anchors.topMargin: 5
-        anchors.left: parent.center
+        anchors.left: parent.left
+        anchors.leftMargin: 130
         anchors.rightMargin: 100
-        x: 180
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 10
 
         width: 389
         height: 110
