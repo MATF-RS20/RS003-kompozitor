@@ -10,14 +10,19 @@ Rectangle {
 
     Component.onCompleted: {
 
-        var noteRange = 0
+        var rangeMin = 1000
+        var rangeMax = 0
         var trackDuration = 0
 
         for (var i = 0; i < notes.length; i++) {
             var note = notes[i]
 
-            if (note.pitch > noteRange) {
-                noteRange = note.pitch
+            if (note.pitch < rangeMin) {
+                rangeMin = note.pitch
+            }
+
+            if (note.pitch > rangeMax) {
+                rangeMax = note.pitch
             }
 
             if (note.end > trackDuration) {
@@ -26,7 +31,7 @@ Rectangle {
         }
 
         var pixelsPerSecond = track.width / trackDuration
-        var noteHeight = track.height / noteRange
+        var noteHeight = track.height / (rangeMax - rangeMin + 1)
 
         var component = Qt.createComponent("TrackNote.qml")
 
@@ -35,7 +40,7 @@ Rectangle {
             var note = notes[i];
             var noteStartX = note.start * pixelsPerSecond
             var noteWidth = (note.end - note.start) * pixelsPerSecond
-            var noteHeightOffset = (note.pitch - 1) * noteHeight
+            var noteHeightOffset = (rangeMax - note.pitch) * noteHeight
             component.createObject(track,
                 {"x": noteStartX,
                  "y": noteHeightOffset,
