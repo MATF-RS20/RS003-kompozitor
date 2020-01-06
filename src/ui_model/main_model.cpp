@@ -49,11 +49,16 @@ void MainModel::startRecordingKeyboard() {
     emit isRecordingKeyboardChanged();
 }
 
-void MainModel::stopRecordingKeyboard() {
+void MainModel::stopRecordingKeyboard(int index) {
     _isRecordingKeyboard = false;
     QList<QObject*> result = RecordManager::get_instance().stop_recording();
 
-    _tracks.push_back(new NoteTrack(3, result));
+    if (index == -1) {
+        _tracks.push_back(new NoteTrack(2, result));
+    }
+    else {
+        _tracks[index] = new NoteTrack(2, result);
+    }
     emit onTracksChanged();
     emit isRecordingKeyboardChanged();
 }
@@ -63,7 +68,7 @@ void MainModel::startRecordingMicrophone() {
     emit isRecordingMicrophoneChanged();
 }
 
-void MainModel::stopRecordingMicrophone() {
+void MainModel::stopRecordingMicrophone(int index) {
     _isRecordingMicrophone = false;
     sf::SoundBuffer recorded_buffer = MicrophoneRecorder::get_instance().stop_recording();
     QList<double> normalized_samples;
@@ -75,7 +80,12 @@ void MainModel::stopRecordingMicrophone() {
         normalized_samples.push_back(normalized_sample);
     }
 
-    _tracks.push_back(new SampleTrack(0, normalized_samples));
+    if (index == -1) {
+        _tracks.push_back(new SampleTrack(1, normalized_samples));
+    }
+    else {
+        _tracks[index] = new SampleTrack(1, normalized_samples);
+    }
     emit onTracksChanged();
     emit isRecordingMicrophoneChanged();
 }
@@ -90,16 +100,12 @@ void MainModel::set_tracks(QList<Track *> tracks) {
 }
 
 void MainModel::addMicrophoneTrack() {
-    _tracks.push_back(new SampleTrack(3, {}));
+    _tracks.push_back(new SampleTrack(1, {}));
     emit onTracksChanged();
 }
 
 void MainModel::addKeyboardTrack() {
-    _tracks.push_back(new NoteTrack(2, {
-            new TrackNote(3, 0, 2),
-            new TrackNote(10, 0, 3),
-            new TrackNote(7, 4, 10),
-    }));
+    _tracks.push_back(new NoteTrack(2, {}));
     emit onTracksChanged();
 }
 

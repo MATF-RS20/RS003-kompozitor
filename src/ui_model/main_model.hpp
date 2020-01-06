@@ -43,11 +43,11 @@ public slots:
 
     void startRecordingKeyboard();
 
-    void stopRecordingKeyboard();
+    void stopRecordingKeyboard(int index);
 
     void startRecordingMicrophone();
 
-    void stopRecordingMicrophone();
+    void stopRecordingMicrophone(int index);
 
     void addMicrophoneTrack();
 
@@ -79,19 +79,7 @@ private:
 
     bool _isRecordingMicrophone = false;
 
-    // Test data, for now
-    QList<Track *> _tracks{
-            new NoteTrack(1, {
-                    new TrackNote(2, 0, 2),
-                    new TrackNote(5, 3, 4)
-            }),
-            new NoteTrack(2, {
-                    new TrackNote(3, 0, 2),
-                    new TrackNote(5, 2, 5),
-                    new TrackNote(2, 4, 6),
-                    new TrackNote(7, 7, 10)
-            })
-    };
+    QList<Track *> _tracks;
     int current_octave = 4;
     int fixed_octave = 4;
 };

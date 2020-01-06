@@ -37,31 +37,35 @@ ApplicationWindow {
         }
 
         Button {
-            text: mainModel.isRecordingMicrophone ? "Voice record stop" : "Voice record start"
+            text: "Voice record start"
             onClicked: {
                 if(mainModel.isRecordingMicrophone){
-                   mainModel.stopRecordingMicrophone();
+                   text = "Voice record start";
+                   mainModel.stopRecordingMicrophone(-1);
                    frame.focus = "false";
                    dialogMicrophone.visible = "true";
                 }
                 else {
-                  mainModel.startRecordingMicrophone();
-                  frame.focus = "true";
+                   text = "Voice record stop";
+                   mainModel.startRecordingMicrophone();
+                   frame.focus = "true";
                 }
             }
         }
 
         Button {
-            text: mainModel.isRecordingKeyboard ? "Keyboard record stop" : "Keyboard record start"
+            text: "Keyboard record start"
             onClicked: {
                 if(mainModel.isRecordingKeyboard){
-                    mainModel.stopRecordingKeyboard();
+                    text = "Keyboard record start";
+                    mainModel.stopRecordingKeyboard(-1);
                     frame.focus = "false";
                     dialogKeyboard.visible = "true";
                 }
                 else {
-                   mainModel.startRecordingKeyboard();
-                   frame.focus = "true";
+                    text = "Keyboard record stop";
+                    mainModel.startRecordingKeyboard();
+                    frame.focus = "true";
                 }
             }
         }
@@ -195,11 +199,41 @@ ApplicationWindow {
             }
 
             Button {
+                width: 140
+                height: 50
                 anchors {
                     top: trackIdText.bottom
                 }
                 id: startRecordingButton
-                text: "Start recording \n(WIP)"
+                text: dataTrackType == 1 ? "Keyboard start" : "Voice start"
+                onClicked: {
+                    if (dataTrackType == 1){
+                        if(mainModel.isRecordingKeyboard){
+                           text = "Keyboard start";
+                           mainModel.stopRecordingKeyboard(index);
+                           frame.focus = "false";
+                           dialogKeyboard.visible = "true";
+                        }
+                        else {
+                          text = "Keyboard stop";
+                          mainModel.startRecordingKeyboard();
+                          frame.focus = "true";
+                        }
+                    }
+                    else if (dataTrackType == 0){
+                        if(mainModel.isRecordingMicrophone){
+                           text = "Voice start";
+                           mainModel.stopRecordingMicrophone(index);
+                           frame.focus = "false";
+                           dialogMicrophone.visible = "true";
+                        }
+                        else {
+                          text = "Voice stop";
+                          mainModel.startRecordingMicrophone();
+                          frame.focus = "true";
+                        }
+                    }
+                }
             }
 
             // Load Track or SampleTrack based on the data
