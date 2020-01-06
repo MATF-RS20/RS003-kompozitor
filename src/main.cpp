@@ -12,7 +12,6 @@ int main(int argc, char *argv[])
     MainModel mainModel;
 
     //Register type so that it can be used within QML
-    qmlRegisterType<TrackNote>("kompozitor", 1, 0, "TrackNote");
     qmlRegisterType<TracksListModel>("kompozitor", 1, 0, "TrackListModel");
 
     QQmlApplicationEngine engine;

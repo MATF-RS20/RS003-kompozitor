@@ -18,7 +18,6 @@ Q_PROPERTY(bool isRecordingMicrophone READ isRecordingMicrophone NOTIFY isRecord
 Q_PROPERTY(QList<Track*> tracks READ tracks WRITE set_tracks NOTIFY onTracksChanged)
 
 public:
-    QTimer* timer = new QTimer(this);
 
     bool isRecordingKeyboard() {
         return _isRecordingKeyboard;
@@ -34,6 +33,8 @@ public:
 
 public slots:
 
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "OCUnusedGlobalDeclarationInspection"
     void playMelody(int melody);
 
     void playNote(float frequency);
@@ -52,7 +53,7 @@ public slots:
 
     void addKeyboardTrack();
 
-    void octaveChanged(QString);
+    void octaveChanged(const QString&);
 
     void calculateOctave(int);
 
@@ -63,6 +64,8 @@ public slots:
     void saveKeyboardComposition();
 
     void saveMicrophoneComposition();
+
+#pragma clang diagnostic pop
 
 signals:
     void isRecordingKeyboardChanged();

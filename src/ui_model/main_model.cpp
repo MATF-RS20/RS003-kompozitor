@@ -11,7 +11,7 @@
 
 static float freq(float frequency, int current_octave, int fixed_octave){
     int octave_diff = current_octave - fixed_octave;
-    float freq_return = frequency * pow(2,octave_diff);
+    float freq_return = frequency * static_cast<float>(pow(2,octave_diff));
     return freq_return;
 }
 
@@ -103,7 +103,7 @@ void MainModel::addKeyboardTrack() {
     emit onTracksChanged();
 }
 
-void MainModel::octaveChanged(QString octave) {
+void MainModel::octaveChanged(const QString& octave) {
     std::string octaveString = octave.toStdString();
 
     if (!std::isdigit(octaveString[0])) {
@@ -125,9 +125,9 @@ void MainModel::calculateOctave(int x) {
         current_octave = stotina;
     else if (stotina == 5)
         current_octave = 6;
-    else if (stotina == 4 && desetica >= 9){
+    else if (desetica >= 9) {
         current_octave = 5;
-    }else{
+    }else {
         current_octave = 4;
     }
     current_octave += 1;

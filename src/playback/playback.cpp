@@ -4,10 +4,9 @@
 #include <thread>
 #include <chrono>
 #include <cmath>
-#include <iostream>
-#include <memory>
 #include <unordered_set>
-#include<climits>
+#include <climits>
+#include <QtDebug>
 
 // Empirically chosen
 const double ENDING_INTERVAL = 44100 * 0.005;
@@ -97,6 +96,10 @@ void Playback::play(int melody) {
         active_frequencies = &frequencies1;
     else if (melody == 1)
         active_frequencies = &frequencies2;
+    else {
+        qDebug() << "Unknown melody: " << melody;
+        return;
+    }
 
     for (const auto &frequency: *active_frequencies){
         SoundManager::get_instance().add_note(frequency);
