@@ -1,12 +1,17 @@
 import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQuick.Controls 2.12
+import QtQuick.Controls.Material 2.12
+
 import QtQuick.Dialogs 1.1
 import QtQuick.Layouts 1.3
 
 import kompozitor 1.0
 
 ApplicationWindow {
+
+    Material.theme: Material.Dark
+    Material.accent: Material.Orange
 
     visible: true
     width: 1000
@@ -45,7 +50,7 @@ ApplicationWindow {
                 }
             }
         }
-        
+
         Button {
             text: mainModel.isRecordingKeyboard ? "Keyboard record stop" : "Keyboard record start"
             onClicked: {
@@ -59,6 +64,16 @@ ApplicationWindow {
                    frame.focus = "true";
                 }
             }
+        }
+
+        Button {
+            text: "Melody1"
+            onPressed: mainModel.playMelody(0)
+        }
+
+        Button {
+            text: "Melody2"
+            onPressed: mainModel.playMelody(1)
         }
     }
 
@@ -107,7 +122,6 @@ ApplicationWindow {
         width: 700
         height: 120
         anchors.bottom: frame.top
-        anchors.bottomMargin: -25
         anchors.topMargin: 10
     }
 
@@ -120,7 +134,7 @@ ApplicationWindow {
         border.width: 1
         radius: 10
         anchors.bottom: frame.top
-        anchors.bottomMargin: 15.5
+        anchors.bottomMargin: 40.5
         x: 309
         MouseArea {
                 anchors.fill: parent
@@ -129,7 +143,6 @@ ApplicationWindow {
                 drag.minimumX: 5
                 drag.maximumX: 589
                 onReleased: mainModel.calculateOctave(octaveImage.x)
-                //console.log(octaveImage.x)
             }
     }
 
@@ -147,22 +160,6 @@ ApplicationWindow {
             frame.focus = "true";
         }
     }
-
-    Button {
-        id: playMelody1
-        x: 700
-        y: 0
-        text: "Melody1"
-        onPressed: mainModel.playMelody(0)
-    }
-    Button {
-        id: playMelody2
-        x: 810
-        y: 0
-        text: "Melody2"
-        onPressed: mainModel.playMelody(1)
-    }
-
 
     ListView {
         id: trackListView

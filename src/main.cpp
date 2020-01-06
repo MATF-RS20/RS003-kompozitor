@@ -3,11 +3,14 @@
 #include <QQmlContext>
 #include <src/ui_model/main_model.hpp>
 #include <src/ui_model/tracks_list_model.hpp>
+#include <QtQuickControls2/QQuickStyle>
 #include "src/ui_model/track_note.hpp"
 
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
+
+    QQuickStyle::setStyle("Material");
 
     MainModel mainModel;
 

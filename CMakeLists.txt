@@ -11,7 +11,7 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt5 COMPONENTS Core Quick Widgets REQUIRED)
+find_package(Qt5 COMPONENTS Core Quick Widgets QuickControls2 REQUIRED)
 if (APPLE)
     find_package(SFML COMPONENTS audio REQUIRED)
 endif()
@@ -40,6 +40,7 @@ target_link_libraries(Kompozitor
   PRIVATE   Qt5::Core
             Qt5::Quick
             Qt5::Widgets
+            Qt5::QuickControls2
             sfml-audio
             pthread)
 
