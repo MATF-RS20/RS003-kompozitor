@@ -166,52 +166,70 @@ ApplicationWindow {
 
     ListView {
         id: trackListView
-        anchors.top: trackListControls.bottom
-        anchors.left: parent.left
-        anchors.bottom: octaveImage.top
-        anchors.topMargin: 10
-        anchors.bottomMargin: 10
-        anchors.leftMargin: 5
-        anchors.rightMargin: 5
-        width: 550
+        anchors {
+            top: trackListControls.bottom
+            left: parent.left
+            bottom: octaveImage.top
+            right: parent.right
+            topMargin: 10
+            bottomMargin: 10
+            leftMargin: 5
+            rightMargin: 5
+        }
         clip: true
         model: TrackListModel { tracks: mainModel.tracks }
         Layout.fillWidth: true
         Layout.fillHeight: true
         ScrollBar.vertical: ScrollBar {}
 
-        delegate: Column {
+        delegate: Item {
+
+            // Resize to children
+            width: childrenRect.width
+            height: childrenRect.height
+
+            anchors {
+                left: parent.left
+                right: parent.right
+            }
+
             Text {
+                id: trackIdText
                 text: "Track " + dataTrackNumber
             }
 
-            Row {
-                spacing: 10.0
-                Button {
-                    text: "Start recording \n(WIP)"
+            Button {
+                anchors {
+                    top: trackIdText.bottom
+                }
+                id: startRecordingButton
+                text: "Start recording \n(WIP)"
+            }
+
+            // Load Track or SampleTrack based on the data
+            Loader {
+
+                anchors {
+                    left: startRecordingButton.right
+                    right: parent.right
+                    top: trackIdText.top
                 }
 
-                // Load Track or SampleTrack based on the data
-                Loader {
-                    Component.onCompleted: {
-                        if (dataTrackType == 1) {
-                            setSource("NoteTrack.qml",
-                                {
-                                    width: 400,
-                                    height: 100,
-                                    notes: dataNotes,
-                                    color: "green"
-                                })
-                        } else {
-                            setSource("SampleTrack.qml",
-                                {
-                                    width: 400,
-                                    height: 100,
-                                    samples: dataSamples,
-                                })
-                        }
-
+                Component.onCompleted: {
+                    if (dataTrackType == 1) {
+                        setSource("NoteTrack.qml",
+                            {
+                                height: 100,
+                                notes: dataNotes,
+                            })
+                    } else {
+                        setSource("SampleTrack.qml",
+                            {
+                                height: 100,
+                                samples: dataSamples,
+                            })
                     }
+
                 }
             }
         }
