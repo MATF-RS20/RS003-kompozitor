@@ -53,8 +53,6 @@ public slots:
 
     void addKeyboardTrack();
 
-    void octaveChanged(const QString&);
-
     void calculateOctave(int);
 
     void addRecordNote(float frequency, int note_position);

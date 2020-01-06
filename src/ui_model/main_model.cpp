@@ -109,21 +109,6 @@ void MainModel::addKeyboardTrack() {
     emit onTracksChanged();
 }
 
-void MainModel::octaveChanged(const QString& octave) {
-    std::string octaveString = octave.toStdString();
-
-    if (!std::isdigit(octaveString[0])) {
-        std::cout << "Non valid entry!" << std::endl;
-        return;
-    }
-    int octaveNumber = std::stoi(octaveString);
-    if (octaveNumber < 0 || octaveNumber > 8) {
-        std::cout << "Non valid entry!" << std::endl;
-        return;
-    }
-    current_octave = octaveNumber;
-}
-
 void MainModel::calculateOctave(int x) {
     int stotina = x / 100;
     int desetica = (x / 10) % 10;

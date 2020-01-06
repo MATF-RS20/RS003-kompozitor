@@ -142,30 +142,15 @@ ApplicationWindow {
         radius: 10
         anchors.bottom: item.top
         anchors.bottomMargin: 15
-        x: 309
+        x: 308
         MouseArea {
                 anchors.fill: parent
                 drag.target: parent;
                 drag.axis: "XAxis"
-                drag.minimumX: 5
-                drag.maximumX: 589
+                drag.minimumX: 0
+                drag.maximumX: 591
                 onReleased: mainModel.calculateOctave(octaveImage.x)
             }
-    }
-
-    TextField {
-        id: octaveNumber
-        placeholderText: qsTr("octave")
-        width: 65
-        focus: false
-        anchors.left: item.right
-        anchors.bottom: item.bottom
-        anchors.leftMargin: 50
-        anchors.bottomMargin: 50
-        onAccepted: mainModel.octaveChanged(octaveNumber.getText(0,1))
-        onEditingFinished: {
-            item.focus = "true";
-        }
     }
 
     ListView {
