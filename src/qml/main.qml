@@ -26,6 +26,7 @@ ApplicationWindow {
             text: "Add microphone track"
             onClicked: {
                 mainModel.addMicrophoneTrack()
+                item.focus = "true";
             }
         }
 
@@ -33,6 +34,7 @@ ApplicationWindow {
             text: "Add keyboard track"
             onClicked: {
                 mainModel.addKeyboardTrack()
+                item.focus = "true";
             }
         }
 
@@ -42,13 +44,13 @@ ApplicationWindow {
                 if(mainModel.isRecordingMicrophone){
                    text = "Voice record start";
                    mainModel.stopRecordingMicrophone(-1);
-                   frame.focus = "false";
+                   item.focus = "false";
                    dialogMicrophone.visible = "true";
                 }
                 else {
                    text = "Voice record stop";
                    mainModel.startRecordingMicrophone();
-                   frame.focus = "true";
+                   item.focus = "true";
                 }
             }
         }
@@ -59,13 +61,13 @@ ApplicationWindow {
                 if(mainModel.isRecordingKeyboard){
                     text = "Keyboard record start";
                     mainModel.stopRecordingKeyboard(-1);
-                    frame.focus = "false";
+                    item.focus = "true";
                     dialogKeyboard.visible = "true";
                 }
                 else {
                     text = "Keyboard record stop";
                     mainModel.startRecordingKeyboard();
-                    frame.focus = "true";
+                    item.focus = "true";
                 }
             }
         }
@@ -125,8 +127,9 @@ ApplicationWindow {
         source: "piano-keyboard.png"
         width: 700
         height: 50
-        anchors.bottom: frame.top
+        anchors.bottom: item.top
         anchors.topMargin: 10
+        anchors.bottomMargin: 15
     }
 
     Rectangle {
@@ -137,7 +140,8 @@ ApplicationWindow {
         border.color: "black"
         border.width: 1
         radius: 10
-        anchors.bottom: frame.top
+        anchors.bottom: item.top
+        anchors.bottomMargin: 15
         x: 309
         MouseArea {
                 anchors.fill: parent
@@ -154,13 +158,13 @@ ApplicationWindow {
         placeholderText: qsTr("octave")
         width: 65
         focus: false
-        anchors.left: frame.right
-        anchors.bottom: frame.bottom
+        anchors.left: item.right
+        anchors.bottom: item.bottom
         anchors.leftMargin: 50
         anchors.bottomMargin: 50
         onAccepted: mainModel.octaveChanged(octaveNumber.getText(0,1))
         onEditingFinished: {
-            frame.focus = "true";
+            item.focus = "true";
         }
     }
 
@@ -210,27 +214,28 @@ ApplicationWindow {
                     if (dataTrackType == 1){
                         if(mainModel.isRecordingKeyboard){
                            text = "Keyboard start";
+                           item.focus = "true";
                            mainModel.stopRecordingKeyboard(index);
-                           frame.focus = "false";
-                           dialogKeyboard.visible = "true";
+//                           dialogKeyboard.visible = "true";
+
                         }
                         else {
                           text = "Keyboard stop";
+                          item.focus = "true";
                           mainModel.startRecordingKeyboard();
-                          frame.focus = "true";
                         }
                     }
                     else if (dataTrackType == 0){
                         if(mainModel.isRecordingMicrophone){
                            text = "Voice start";
+                           item.focus = "false";
                            mainModel.stopRecordingMicrophone(index);
-                           frame.focus = "false";
-                           dialogMicrophone.visible = "true";
+//                           dialogMicrophone.visible = "true";
                         }
                         else {
                           text = "Voice stop";
+                          item.focus = !item.focus;
                           mainModel.startRecordingMicrophone();
-                          frame.focus = "true";
                         }
                     }
                 }
@@ -268,8 +273,8 @@ ApplicationWindow {
 
     }
 
-    Frame {
-        id: frame
+    Item {
+        id: item
         anchors.left: parent.left
         anchors.leftMargin: 130
         anchors.rightMargin: 100
