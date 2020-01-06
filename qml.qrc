@@ -3,6 +3,8 @@
         <file alias="main.qml">src/qml/main.qml</file>
         <file alias="NoteTrack.qml">src/qml/NoteTrack.qml</file>
         <file alias="SampleTrack.qml">src/qml/SampleTrack.qml</file>
+        <file alias="WhitePianoButton.qml">src/qml/WhitePianoButton.qml</file>
+        <file alias="BlackPianoButton.qml">src/qml/BlackPianoButton.qml</file>
         <file alias="piano-keyboard.png">src/piano-keyboard.png</file>
     </qresource>
 </RCC>

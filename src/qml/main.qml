@@ -478,286 +478,108 @@ ApplicationWindow {
                 default: event.accepted=false;
             }
         }
-        Button {
+        WhitePianoButton {
             id: button1
             x: -12
             y: -12
-            width: 46
-            height: 110
+            freq: 261.63
             text: "A"
-            onPressed: {
-                button1.down = "true";
-                mainModel.playNote(261.63)
-            }
-            onReleased: {
-                button1.down = !button1.down;
-                mainModel.stopNote(261.63)
-            }
         }
 
-        Button {
+        WhitePianoButton {
             id: button2
             x: 37
             y: -12
-            width: 46
-            height: 110
+            freq: 293.66
             text: "S"
-            onPressed: {
-                button2.down = "true";
-                mainModel.playNote(293.66)
-            }
-            onReleased: {
-                button2.down = !button2.down;
-                mainModel.stopNote(293.66)
-            }
-
         }
 
-        Button {
+        WhitePianoButton {
             id: button3
             x: 86
             y: -12
-            width: 46
-            height: 110
+            freq: 329.63
             text: "D"
-            onPressed: {
-                button3.down = "true";
-                mainModel.playNote(329.63)
-            }
-            onReleased: {
-                button3.down = !button3.down;
-                mainModel.stopNote(329.63)
-            }
         }
 
-        Button {
+        BlackPianoButton {
             id: button4
             x: 14
             y: -12
-            width: 45
-            height: 45
+            freq: 277.18
             text: "W"
-            background: Rectangle {
-                color: button4.down ? "#404040" : "#0d0d0d";
-                radius: 4;
-            }
-            contentItem: Text {
-                font: button4.font
-                color: "white"
-                text: button4.text
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                elide: Text.ElideRight
-            }
-            onPressed: {
-                button4.down = "true";
-                mainModel.playNote(277.18);
-            }
-            onReleased: {
-                button4.down = !button4.down;
-                mainModel.stopNote(277.18)
-            }
         }
 
-        Button {
+        BlackPianoButton {
             id: button5
             x: 63
             y: -12
-            width: 45
-            height: 45
+            freq: 311.13
             text: "E"
-            background: Rectangle {
-                color: button5.down ? "#404040" : "#0d0d0d";
-                radius: 4;
-            }
-            contentItem: Text {
-                color: "white"
-                text: button5.text
-                font: button5.font
-                horizontalAlignment: Text.AlignHCenter
-                elide: Text.ElideRight
-                verticalAlignment: Text.AlignVCenter
-            }
-            onPressed: {
-                button5.down = "true";
-                mainModel.playNote(311.13)
-            }
-            onReleased: {
-                button5.down = !button5.down;
-                mainModel.stopNote(311.13)
-            }
         }
 
-        Button {
+        WhitePianoButton {
             id: button6
             x: 135
             y: -12
-            width: 46
-            height: 110
+            freq: 349.23
             text: "F"
-            onPressed: {
-                button6.down = "true";
-                mainModel.playNote(349.23)
-            }
-            onReleased: {
-                button6.down = !button6.down;
-                mainModel.stopNote(349.23)
-            }
         }
 
-        Button {
+        WhitePianoButton {
             id: button7
             x: 184
             y: -12
-            width: 46
-            height: 110
+            freq: 392.00
             text: "G"
-            onPressed: {
-                button7.down = "true";
-                mainModel.playNote(392.00)
-            }
-            onReleased: {
-                button7.down = !button7.down;
-                mainModel.stopNote(392.00)
-            }
         }
 
-        Button {
+        WhitePianoButton {
             id: button8
             x: 233
             y: -12
-            width: 46
-            height: 110
+            freq: 440.00
             text: "H"
-            onPressed: {
-                button8.down = "true";
-                mainModel.playNote(440.00)
-            }
-            onReleased: {
-                button8.down = !button8.down;
-                mainModel.stopNote(440.00)
-            }
         }
 
-        Button {
+        WhitePianoButton {
             id: button9
             x: 282
             y: -12
-            width: 46
-            height: 110
+            freq: 493.88
             text: "J"
-            onPressed: {
-                button9.down = "true";
-                mainModel.playNote(493.88)
-            }
-            onReleased: {
-                button9.down = !button9.down;
-                mainModel.stopNote(493.88)
-            }
         }
 
-        Button {
+        WhitePianoButton {
             id: button10
             x: 331
             y: -12
-            width: 46
-            height: 110
+            freq: 523.25
             text: "K"
-            onPressed: {
-                button10.down = "true";
-                mainModel.playNote(523.25)
-            }
-            onReleased: {
-                button10.down = !button10.down;
-                mainModel.stopNote(523.25)
-            }
         }
 
-        Button {
+        BlackPianoButton {
             id: button11
             x: 161
             y: -12
-            width: 45
-            height: 45
+            freq: 369.99
             text: "T"
-            background: Rectangle {
-                color: button11.down ? "#404040" : "#0d0d0d";
-                radius: 4;
-            }
-            contentItem: Text {
-                color: "white"
-                text: button11.text
-                verticalAlignment: Text.AlignVCenter
-                horizontalAlignment: Text.AlignHCenter
-                font: button11.font
-                elide: Text.ElideRight
-            }
-            onPressed: {
-                button11.down = "true";
-                mainModel.playNote(369.99)
-            }
-            onReleased: {
-                button11.down = !button11.down;
-                mainModel.stopNote(369.99)
-            }
         }
 
-        Button {
+        BlackPianoButton {
             id: button12
             x: 210
             y: -12
-            width: 45
-            height: 45
+            freq: 415.30
             text: "Y"
-            background: Rectangle {
-                color: button12.down ? "#404040" : "#0d0d0d";
-                radius: 4;
-            }
-            contentItem: Text {
-                color: "white"
-                text: button12.text
-                verticalAlignment: Text.AlignVCenter
-                horizontalAlignment: Text.AlignHCenter
-                font: button12.font
-                elide: Text.ElideRight
-            }
-            onPressed: {
-                button12.down = "true";
-                mainModel.playNote(415.30)
-            }
-            onReleased: {
-                button12.down = !button12.down;
-                mainModel.stopNote(415.30)
-            }
         }
 
-        Button {
+        BlackPianoButton {
             id: button13
             x: 259
             y: -12
-            width: 45
-            height: 45
+            freq: 466.16
             text: "U"
-            background: Rectangle {
-                color: button13.down ? "#404040" : "#0d0d0d";
-                radius: 4;
-            }
-            contentItem: Text {
-                color: "white"
-                text: button13.text
-                verticalAlignment: Text.AlignVCenter
-                horizontalAlignment: Text.AlignHCenter
-                font: button13.font
-                elide: Text.ElideRight
-            }
-            onPressed: {
-                button13.down = "true";
-                mainModel.playNote(466.16)
-            }
-            onReleased: {
-                button13.down = !button13.down;
-                mainModel.stopNote(466.16)
-            }
         }
     }
 }
