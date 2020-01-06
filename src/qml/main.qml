@@ -120,7 +120,7 @@ ApplicationWindow {
     Image {
         source: "piano-keyboard.png"
         width: 700
-        height: 120
+        height: 50
         anchors.bottom: frame.top
         anchors.topMargin: 10
     }
@@ -134,7 +134,6 @@ ApplicationWindow {
         border.width: 1
         radius: 10
         anchors.bottom: frame.top
-        anchors.bottomMargin: 40.5
         x: 309
         MouseArea {
                 anchors.fill: parent

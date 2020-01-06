@@ -5,6 +5,6 @@
         <file alias="SampleTrack.qml">src/qml/SampleTrack.qml</file>
         <file alias="WhitePianoButton.qml">src/qml/WhitePianoButton.qml</file>
         <file alias="BlackPianoButton.qml">src/qml/BlackPianoButton.qml</file>
-        <file alias="piano-keyboard.png">src/piano-keyboard.png</file>
+        <file alias="piano-keyboard.png">res/piano-keyboard.png</file>
     </qresource>
 </RCC>
