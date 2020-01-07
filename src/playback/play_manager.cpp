@@ -85,15 +85,15 @@ void PlayManager::createVoiceSound(int index, SampleTrack *sample_track) {
 
     samples.reserve(normalized_samples.size());
 
-    for (int i = 0; i < normalized_samples.size(); i++) {
-        double sample = normalized_samples[i] * INT16_MAX;
+    for (double normalized_sample : normalized_samples) {
+        double sample = normalized_sample * INT16_MAX;
         samples.push_back(sample);
     }
 
     std::vector<sf::Int16> buffer_data(samples.size());
-    for (unsigned i = 0; i < buffer_data.size(); ++i) {
-        buffer_data[i] = static_cast<sf::Int16>(samples[i]);
-    }
+    std::copy(samples.begin(),
+              samples.end(),
+              buffer_data.begin());
 
     sound_data[index] = buffer_data;
 }
