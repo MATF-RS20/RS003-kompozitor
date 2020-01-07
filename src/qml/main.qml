@@ -230,6 +230,9 @@ ApplicationWindow {
                     left: parent.left
                 }
                 text: "Play"
+                onClicked: {
+                    mainModel.playTrack(index);
+                }
             }
 
             Button {

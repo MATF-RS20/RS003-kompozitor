@@ -63,6 +63,9 @@ public slots:
 
     void saveMicrophoneComposition();
 
+    void playTrack(int index);
+
+    void stopTrack(int index);
 #pragma clang diagnostic pop
 
 signals:

@@ -6,6 +6,7 @@
 #include "playback/microphone_recorder.hpp"
 #include <iostream>
 #include <cmath>
+#include <src/playback/play_manager.hpp>
 #pragma ide diagnostic ignored "OCUnusedGlobalDeclarationInspection" // Qt uses this function
 #pragma ide diagnostic ignored "MemberFunctionCanBeStatic"
 
@@ -31,8 +32,6 @@ void MainModel::stopNote(float frequency) {
 
 void MainModel::addRecordNote(float frequency, int note_position){
     frequency = freq(frequency,current_octave, fixed_octave);
-    // current octave should be 5, not 4 ??
-    // TODO ask Kristina that
     int pitch = (current_octave)*13 + note_position;
     RecordManager::get_instance().add_note(frequency, pitch);
 }
@@ -132,5 +131,13 @@ void MainModel::saveMicrophoneComposition() {
     MicrophoneRecorder::get_instance().save_recording();
 }
 
+void MainModel::playTrack(int index) {
+    Track* wanted_track = _tracks[index];
+    PlayManager::get_instance().play(index, wanted_track);
+}
+
+void MainModel::stopTrack(int index) {
+    PlayManager::get_instance().stop(index);
+}
 
 
