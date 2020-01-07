@@ -42,10 +42,14 @@ void MainModel::removeRecordNote(float frequency, int note_position){
     RecordManager::get_instance().remove_note(frequency, pitch);
 }
 
-void MainModel::startRecordingKeyboard() {
+void MainModel::startRecordingKeyboard(int index) {
     _isRecordingKeyboard = true;
     RecordManager::get_instance().start_recording();
-    emit isRecordingKeyboardChanged();
+    std::cout << _tracks[index]->isRecording() << std::endl;
+    _tracks[index]->setIsRecording(true);
+    emit onTracksChanged();
+    std::cout << _tracks[index]->isRecording() << std::endl;
+//    emit isRecordingKeyboardChanged();
 }
 
 void MainModel::stopRecordingKeyboard(int index) {
@@ -58,13 +62,16 @@ void MainModel::stopRecordingKeyboard(int index) {
     else {
         _tracks[index] = new NoteTrack(2, result);
     }
+    _tracks[index]->setIsRecording(false);
     emit onTracksChanged();
-    emit isRecordingKeyboardChanged();
+//    emit isRecordingKeyboardChanged();
 }
-void MainModel::startRecordingMicrophone() {
+void MainModel::startRecordingMicrophone(int index) {
     _isRecordingMicrophone = true;
     MicrophoneRecorder::get_instance().start_recording();
+    // ovde setIsRecording();
     emit isRecordingMicrophoneChanged();
+    // emit onTracksChanged();
 }
 
 void MainModel::stopRecordingMicrophone(int index) {
