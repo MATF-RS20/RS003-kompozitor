@@ -25,7 +25,7 @@ public:
 
 private:
     PlayManager() = default;
-    std::map<int, std::vector<sf::Int16>> sound_data;
+    std::map<int, std::pair<sf::Sound, sf::SoundBuffer>> sound_data;
     const std::vector<double> main_octave_frequencies {261.63, 277.18, 293.66, 311.13,
                                                        329.63, 349.23, 369.99, 392.00,
                                                        415.30, 440.00, 466.16, 493.88, 523.25};

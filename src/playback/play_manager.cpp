@@ -13,17 +13,19 @@ PlayManager &PlayManager::get_instance() {
 void PlayManager::play(int index, Track *track) {
     if (auto *note_track = dynamic_cast<NoteTrack *>(track)){
         createKeyboardSound(index, note_track);
-//        sound_data[index].play();
-        SoundManager::get_instance().play_sound_buffer(sound_data[index]);
-
     } else if (auto *sample_track = dynamic_cast<SampleTrack *>(track)) {
         createVoiceSound(index, sample_track);
-        SoundManager::get_instance().play_sound_buffer(sound_data[index]);
     }
+    sound_data[index].first.setBuffer(sound_data[index].second);
+    sound_data[index].first.play();
 }
 
 void PlayManager::stop(int index) {
-
+    if(sound_data.empty()){
+        return;
+    }
+    sound_data[index].first.setBuffer(sound_data[index].second);
+    sound_data[index].first.stop();
 }
 
 float PlayManager::pitch_to_frequency(int pitch) {
@@ -76,7 +78,14 @@ void PlayManager::createKeyboardSound(int index, NoteTrack *note_track) {
         buffer_data[i] = static_cast<sf::Int16>(raw_buffer_data[i] * amplification_ratio);
     }
 
-    sound_data[index] = buffer_data;
+    sf::Sound sound;
+    sf::SoundBuffer soundBuffer;
+    sound.setLoop(false);
+    soundBuffer.loadFromSamples(&buffer_data[0], buffer_data.size(), 1, 44100);
+    sound.setBuffer(soundBuffer);
+
+    std::pair<sf::Sound, sf::SoundBuffer> tmp {sound, soundBuffer};
+    sound_data[index] = tmp;
 }
 
 void PlayManager::createVoiceSound(int index, SampleTrack *sample_track) {
@@ -95,5 +104,12 @@ void PlayManager::createVoiceSound(int index, SampleTrack *sample_track) {
               samples.end(),
               buffer_data.begin());
 
-    sound_data[index] = buffer_data;
+    sf::Sound sound;
+    sf::SoundBuffer soundBuffer;
+    sound.setLoop(false);
+    soundBuffer.loadFromSamples(&buffer_data[0], buffer_data.size(), 1, 44100);
+    sound.setBuffer(soundBuffer);
+
+    std::pair<sf::Sound, sf::SoundBuffer> tmp {sound, soundBuffer};
+    sound_data[index] = tmp;
 }
