@@ -10,12 +10,15 @@ PlayManager &PlayManager::get_instance() {
     return instance;
 }
 
-void PlayManager::play(int index, Track *track) const {
+void PlayManager::play(int index, Track *track) {
     if (auto *note_track = dynamic_cast<NoteTrack *>(track)){
         createKeyboardSound(index, note_track);
+//        sound_data[index].play();
+        SoundManager::get_instance().play_sound_buffer(sound_data[index]);
 
     } else if (auto *sample_track = dynamic_cast<SampleTrack *>(track)) {
-        // TODO play recorded data
+        createVoiceSound(index, sample_track);
+        SoundManager::get_instance().play_sound_buffer(sound_data[index]);
     }
 }
 
@@ -23,7 +26,7 @@ void PlayManager::stop(int index) {
 
 }
 
-float PlayManager::pitch_to_frequency(int pitch) const {
+float PlayManager::pitch_to_frequency(int pitch) {
     int current_octave = pitch / 13;
     int note_in_octave = pitch % 13 - 1;
 
@@ -37,10 +40,10 @@ float PlayManager::pitch_to_frequency(int pitch) const {
     return freq_return;
 }
 
-void PlayManager::createKeyboardSound(int index, NoteTrack *note_track) const {
+void PlayManager::createKeyboardSound(int index, NoteTrack *note_track) {
     QList<QObject *> notes_data = note_track->notes();
 
-    if (notes_data.size() == 0) {
+    if (notes_data.empty()) {
         return;
     }
 
@@ -73,14 +76,24 @@ void PlayManager::createKeyboardSound(int index, NoteTrack *note_track) const {
         buffer_data[i] = static_cast<sf::Int16>(raw_buffer_data[i] * amplification_ratio);
     }
 
-    sf::Sound sound;
-    sf::SoundBuffer soundBuffer;
-    sound.setBuffer(soundBuffer);
+    sound_data[index] = buffer_data;
+}
 
-    soundBuffer.loadFromSamples(&buffer_data[0], buffer_data.size(), 1, 44100);
-    soundBuffer.saveToFile("recorded_by_keyboard.ogg");
+void PlayManager::createVoiceSound(int index, SampleTrack *sample_track) {
+    QList<double> normalized_samples = sample_track->samples();
+    QList<double> samples;
 
-    SoundManager::get_instance().play_sound_buffer(buffer_data);
+    samples.reserve(normalized_samples.size());
 
-//    sound_data[index] = sound;
+    for (int i = 0; i < normalized_samples.size(); i++) {
+        double sample = normalized_samples[i] * INT16_MAX;
+        samples.push_back(sample);
+    }
+
+    std::vector<sf::Int16> buffer_data(samples.size());
+    for (unsigned i = 0; i < buffer_data.size(); ++i) {
+        buffer_data[i] = static_cast<sf::Int16>(samples[i]);
+    }
+
+    sound_data[index] = buffer_data;
 }
