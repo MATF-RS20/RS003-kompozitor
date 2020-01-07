@@ -15,7 +15,9 @@ public:
         TRACK_NOTES = Qt::UserRole + 1,
         TRACK_SAMPLES,
         TRACK_NUMBER,
-        TRACK_TYPE
+        TRACK_TYPE,
+        TRACK_ISRECORDING,
+        TRACK_ISPLAYING
     };
 
     explicit TracksListModel(QObject* parent = nullptr) {};

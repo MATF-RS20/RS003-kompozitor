@@ -191,33 +191,30 @@ ApplicationWindow {
                     top: trackIdText.bottom
                 }
                 id: startRecordingButton
-                text: dataTrackType == 1 ? "Keyboard start" : "Voice start"
+                text: dataTrackType == 1 ?
+                    (dataTrackIsRecording ? "Keyboard stop" : "Keyboard start")
+                    : (dataTrackIsRecording ? "Voice stop" : "Voice start")
                 onClicked: {
                     if (dataTrackType == 1){
-                        if(mainModel.isRecordingKeyboard){
-                           text = "Keyboard start";
+                        if(dataTrackIsRecording){
                            item.focus = "true";
                            mainModel.stopRecordingKeyboard(index);
 //                           dialogKeyboard.visible = "true";
-
                         }
                         else {
-                          text = "Keyboard stop";
                           item.focus = "true";
-                          mainModel.startRecordingKeyboard();
+                          mainModel.startRecordingKeyboard(index);
                         }
                     }
                     else if (dataTrackType == 0){
                         if(mainModel.isRecordingMicrophone){
-                           text = "Voice start";
                            item.focus = "false";
                            mainModel.stopRecordingMicrophone(index);
 //                           dialogMicrophone.visible = "true";
                         }
                         else {
-                          text = "Voice stop";
                           item.focus = !item.focus;
-                          mainModel.startRecordingMicrophone();
+                          mainModel.startRecordingMicrophone(index);
                         }
                     }
                 }
@@ -229,9 +226,16 @@ ApplicationWindow {
                     top: startRecordingButton.bottom
                     left: parent.left
                 }
-                text: "Play"
+                text: (dataTrackIsPlaying ? "Stop" : "Start")
                 onClicked: {
-                    mainModel.playTrack(index);
+                 if(dataTrackIsPlaying){
+                      item.focus = "true";
+                      mainModel.stopTrack(index);
+                   }
+                   else {
+                     item.focus = "true";
+                     mainModel.playTrack(index);
+                   }
                 }
             }
 

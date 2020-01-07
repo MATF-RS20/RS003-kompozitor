@@ -41,11 +41,11 @@ public slots:
 
     void stopNote(float frequency);
 
-    void startRecordingKeyboard();
+    void startRecordingKeyboard(int index);
 
     void stopRecordingKeyboard(int index);
 
-    void startRecordingMicrophone();
+    void startRecordingMicrophone(int index);
 
     void stopRecordingMicrophone(int index);
 
