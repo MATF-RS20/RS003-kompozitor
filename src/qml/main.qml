@@ -200,7 +200,6 @@ ApplicationWindow {
                            item.focus = "true";
                            mainModel.stopRecordingKeyboard(index);
 //                           dialogKeyboard.visible = "true";
-
                         }
                         else {
                           item.focus = "true";
@@ -209,13 +208,11 @@ ApplicationWindow {
                     }
                     else if (dataTrackType == 0){
                         if(mainModel.isRecordingMicrophone){
-                           text = "Voice start";
                            item.focus = "false";
                            mainModel.stopRecordingMicrophone(index);
 //                           dialogMicrophone.visible = "true";
                         }
                         else {
-                          text = "Voice stop";
                           item.focus = !item.focus;
                           mainModel.startRecordingMicrophone(index);
                         }
@@ -229,9 +226,16 @@ ApplicationWindow {
                     top: startRecordingButton.bottom
                     left: parent.left
                 }
-                text: "Play"
+                text: (dataTrackIsPlaying ? "Stop" : "Start")
                 onClicked: {
-                    mainModel.playTrack(index);
+                 if(dataTrackIsPlaying){
+                      item.focus = "true";
+                      mainModel.stopTrack(index);
+                   }
+                   else {
+                     item.focus = "true";
+                     mainModel.playTrack(index);
+                   }
                 }
             }
 

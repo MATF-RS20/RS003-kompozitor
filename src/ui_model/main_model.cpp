@@ -4,7 +4,6 @@
 #include "playback/playback.hpp"
 #include "sample_track.hpp"
 #include "playback/microphone_recorder.hpp"
-#include <iostream>
 #include <cmath>
 #include <src/playback/play_manager.hpp>
 #pragma ide diagnostic ignored "OCUnusedGlobalDeclarationInspection" // Qt uses this function
@@ -47,7 +46,6 @@ void MainModel::startRecordingKeyboard(int index) {
     RecordManager::get_instance().start_recording();
     _tracks[index]->setIsRecording(true);
     emit onTracksChanged();
-//    emit isRecordingKeyboardChanged();
 }
 
 void MainModel::stopRecordingKeyboard(int index) {
@@ -62,14 +60,12 @@ void MainModel::stopRecordingKeyboard(int index) {
     }
     _tracks[index]->setIsRecording(false);
     emit onTracksChanged();
-//    emit isRecordingKeyboardChanged();
 }
 void MainModel::startRecordingMicrophone(int index) {
     _isRecordingMicrophone = true;
     MicrophoneRecorder::get_instance().start_recording();
-    // ovde setIsRecording();
-    emit isRecordingMicrophoneChanged();
-    // emit onTracksChanged();
+    _tracks[index]->setIsRecording(true);
+     emit onTracksChanged();
 }
 
 void MainModel::stopRecordingMicrophone(int index) {
@@ -90,8 +86,8 @@ void MainModel::stopRecordingMicrophone(int index) {
     else {
         _tracks[index] = new SampleTrack(1, normalized_samples);
     }
+    _tracks[index]->setIsRecording(false);
     emit onTracksChanged();
-    emit isRecordingMicrophoneChanged();
 }
 
 QList<Track *> MainModel::tracks() const {
@@ -139,10 +135,14 @@ void MainModel::saveMicrophoneComposition() {
 void MainModel::playTrack(int index) {
     Track* wanted_track = _tracks[index];
     PlayManager::get_instance().play(index, wanted_track);
+    _tracks[index]->setIsPlaying(true);
+    emit onTracksChanged();
 }
 
 void MainModel::stopTrack(int index) {
     PlayManager::get_instance().stop(index);
+    _tracks[index]->setIsPlaying(false);
+    emit onTracksChanged();
 }
 
 
