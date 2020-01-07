@@ -6,5 +6,14 @@
         <file alias="WhitePianoButton.qml">src/qml/WhitePianoButton.qml</file>
         <file alias="BlackPianoButton.qml">src/qml/BlackPianoButton.qml</file>
         <file alias="piano-keyboard.png">res/piano-keyboard.png</file>
+        <file alias="piano.svg">res/icons/piano.svg</file>
+        <file alias="microphone.svg">res/icons/microphone.svg</file>
+        <file alias="delete.svg">res/icons/delete.svg</file>
+        <file alias="pause.svg">res/icons/pause.svg</file>
+        <file alias="play.svg">res/icons/play.svg</file>
+        <file alias="record.svg">res/icons/record.svg</file>
+        <file alias="stop.svg">res/icons/stop.svg</file>
+        <file alias="volume-high.svg">res/icons/volume-high.svg</file>
+        <file alias="volume-off.svg">res/icons/volume-off.svg</file>
     </qresource>
 </RCC>
