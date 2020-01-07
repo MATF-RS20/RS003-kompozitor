@@ -191,20 +191,18 @@ ApplicationWindow {
                     top: trackIdText.bottom
                 }
                 id: startRecordingButton
-                text: dataTrackType == 1 ? "Keyboard start" : "Voice start"
+                text: dataTrackType == 1 ?
+                    (dataTrackIsRecording ? "Keyboard stop" : "Keyboard start")
+                    : (dataTrackIsRecording ? "Voice stop" : "Voice start")
                 onClicked: {
                     if (dataTrackType == 1){
                         if(dataTrackIsRecording){
-                           console.log(dataTrackIsRecording);
-                           text = "Keyboard start";
                            item.focus = "true";
                            mainModel.stopRecordingKeyboard(index);
 //                           dialogKeyboard.visible = "true";
 
                         }
                         else {
-                          console.log(dataTrackIsRecording);
-                          text = "Keyboard stop";
                           item.focus = "true";
                           mainModel.startRecordingKeyboard(index);
                         }

@@ -1,6 +1,7 @@
 #include "tracks_list_model.hpp"
 #include "note_track.hpp"
 #include "sample_track.hpp"
+#include <QDebug>
 
 int TracksListModel::rowCount(const QModelIndex &parent) const {
     return _tracks.size();
@@ -28,6 +29,12 @@ QVariant TracksListModel::data(const QModelIndex &index, int role) const {
 
     Track *track = _tracks[index.row()];
 
+    if (role == TRACK_ISRECORDING) {
+        return QVariant::fromValue(track->isRecording());
+    } else if (role == TRACK_ISPLAYING) {
+        return QVariant::fromValue(track->isPlaying());
+    }
+
     if (auto *note_track = dynamic_cast<NoteTrack *>(track)) {
         switch (role) {
             case TRACK_NOTES:
@@ -50,12 +57,6 @@ QVariant TracksListModel::data(const QModelIndex &index, int role) const {
             default:
                 return QVariant();
         }
-    }
-
-    if (role == TRACK_ISRECORDING) {
-        return QVariant::fromValue(track->isRecording());
-    } else if (role == TRACK_ISPLAYING) {
-        return QVariant::fromValue(track->isPlaying());
     }
 }
 

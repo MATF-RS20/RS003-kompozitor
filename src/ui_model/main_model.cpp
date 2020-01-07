@@ -45,10 +45,8 @@ void MainModel::removeRecordNote(float frequency, int note_position){
 void MainModel::startRecordingKeyboard(int index) {
     _isRecordingKeyboard = true;
     RecordManager::get_instance().start_recording();
-    std::cout << _tracks[index]->isRecording() << std::endl;
     _tracks[index]->setIsRecording(true);
     emit onTracksChanged();
-    std::cout << _tracks[index]->isRecording() << std::endl;
 //    emit isRecordingKeyboardChanged();
 }
 
