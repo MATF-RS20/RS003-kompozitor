@@ -8,11 +8,6 @@ RecordManager &RecordManager::get_instance() {
 
 QList<QObject*> RecordManager::stop_recording() {
     _end_time = std::chrono::system_clock::now();
-
-    for (auto & i : _track_final_data){
-        std::cout << "Note info:  " << static_cast<TrackNote*>(i)->pitch() << "    "
-                  << static_cast<TrackNote*>(i)->start() << "    " << static_cast<TrackNote*>(i)->end() << std::endl;
-    }
     return _track_final_data;
 }
 
@@ -20,6 +15,8 @@ void RecordManager::start_recording() {
     _start_time = std::chrono::system_clock::now();
     _record_data.clear();
     _track_final_data.clear();
+    _record_data_by_frequency.clear();
+    _end_time = _start_time;
 }
 
 void RecordManager::add_note(double freq, int pitch) {
@@ -72,13 +69,11 @@ void RecordManager::save_composition() {
     double max_amplitude = 0;
 
     for (auto i : _record_data_by_frequency){
-        std::cout << static_cast<TrackNote*>(i)->end()-static_cast<TrackNote*>(i)->start() << std::endl;
-        auto samples = Playback::create_sample(static_cast<TrackNote*>(i)->pitch(), static_cast<TrackNote*>(i)->end()-static_cast<TrackNote*>(i)->start(), 44100);
-        int k = 0;
-        for (unsigned j = 44100*static_cast<TrackNote*>(i)->start(); j < 44100*static_cast<TrackNote*>(i)->end(); j++) {
-            raw_buffer_data[j] += samples[k++];
-            if (abs(raw_buffer_data[j]) > max_amplitude) {
-                max_amplitude = abs(raw_buffer_data[j]);
+        auto samples = Playback::create_sample(i->pitch(), i->end()-i->start(), 44100);
+        for (unsigned j = 0; j < samples.size(); j++) {
+            raw_buffer_data[j + 44100 * i->start()] += samples[j];
+            if (abs(raw_buffer_data[j + 44100 * i->start()]) > max_amplitude) {
+                max_amplitude = abs(raw_buffer_data[j + 44100 * i->start()]);
             }
         }
     }
