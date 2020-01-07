@@ -22,11 +22,11 @@ Button {
         elide: Text.ElideRight
     }
     onPressed: {
-        button4.down = "true";
+        down = "true";
         mainModel.playNote(freq);
     }
     onReleased: {
-        button4.down = undefined;
+        down = undefined;
         mainModel.stopNote(freq)
     }
 }
