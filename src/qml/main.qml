@@ -39,20 +39,19 @@ ApplicationWindow {
         }
 
         Button {
-            text: "Voice record start"
-            onClicked: {
-                if(mainModel.isRecordingMicrophone){
-                   text = "Voice record start";
-                   mainModel.stopRecordingMicrophone(-1);
-                   item.focus = "false";
-                   dialogMicrophone.visible = "true";
-                }
-                else {
-                   text = "Voice record stop";
-                   mainModel.startRecordingMicrophone();
-                   item.focus = "true";
-                }
-            }
+            text: "Rewind"
+        }
+
+        Button {
+            text: "Play"
+        }
+
+        Button {
+            text: "Pause"
+        }
+
+        Button {
+            text: "Stop"
         }
 
         Button {
@@ -188,8 +187,6 @@ ApplicationWindow {
             }
 
             Button {
-                width: 140
-                height: 50
                 anchors {
                     top: trackIdText.bottom
                 }
@@ -226,6 +223,26 @@ ApplicationWindow {
                 }
             }
 
+            Button {
+                id: playButton
+                anchors {
+                    top: startRecordingButton.bottom
+                    left: parent.left
+                }
+                text: "Play"
+            }
+
+            Button {
+                id: deleteButton
+                anchors {
+                    top: playButton.bottom
+                    left: parent.left
+                }
+                text: "Delete"
+            }
+
+
+
             // Load Track or SampleTrack based on the data
             Loader {
 
@@ -233,19 +250,18 @@ ApplicationWindow {
                     left: startRecordingButton.right
                     right: parent.right
                     top: trackIdText.top
+                    bottom: deleteButton.bottom
                 }
 
                 Component.onCompleted: {
                     if (dataTrackType == 1) {
                         setSource("NoteTrack.qml",
                             {
-                                height: 100,
                                 notes: dataNotes,
                             })
                     } else {
                         setSource("SampleTrack.qml",
                             {
-                                height: 100,
                                 samples: dataSamples,
                             })
                     }
