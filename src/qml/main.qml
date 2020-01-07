@@ -194,7 +194,8 @@ ApplicationWindow {
                 text: dataTrackType == 1 ? "Keyboard start" : "Voice start"
                 onClicked: {
                     if (dataTrackType == 1){
-                        if(mainModel.isRecordingKeyboard){
+                        if(dataTrackIsRecording){
+                           console.log(dataTrackIsRecording);
                            text = "Keyboard start";
                            item.focus = "true";
                            mainModel.stopRecordingKeyboard(index);
@@ -202,9 +203,10 @@ ApplicationWindow {
 
                         }
                         else {
+                          console.log(dataTrackIsRecording);
                           text = "Keyboard stop";
                           item.focus = "true";
-                          mainModel.startRecordingKeyboard();
+                          mainModel.startRecordingKeyboard(index);
                         }
                     }
                     else if (dataTrackType == 0){
@@ -217,7 +219,7 @@ ApplicationWindow {
                         else {
                           text = "Voice stop";
                           item.focus = !item.focus;
-                          mainModel.startRecordingMicrophone();
+                          mainModel.startRecordingMicrophone(index);
                         }
                     }
                 }
