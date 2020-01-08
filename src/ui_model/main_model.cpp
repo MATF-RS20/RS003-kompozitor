@@ -61,6 +61,8 @@ void MainModel::stopRecordingKeyboard(int index) {
     else {
         _tracks[index] = new NoteTrack(2, result);
     }
+
+    PlayManager::get_instance().add(index, _tracks[index]);
     _tracks[index]->setIsRecording(false);
     _isDialog = true;
 
@@ -95,6 +97,8 @@ void MainModel::stopRecordingMicrophone(int index) {
     else {
         _tracks[index] = new SampleTrack(1, normalized_samples);
     }
+
+    PlayManager::get_instance().add(index, _tracks[index]);
     _tracks[index]->setIsRecording(false);
     _isDialog = true;
 
@@ -150,8 +154,7 @@ void MainModel::saveMicrophoneComposition(QString file_name) {
 }
 
 void MainModel::playTrack(int index) {
-    Track* wanted_track = _tracks[index];
-    PlayManager::get_instance().play(index, wanted_track);
+    PlayManager::get_instance().play(index);
     _tracks[index]->setIsPlaying(true);
     emit onTracksChanged();
 }
@@ -174,7 +177,9 @@ void MainModel::playAllTracks() {
 }
 
 void MainModel::pauseAllTracks() {
-    // TODO
+    for (int i = 0; i < _tracks.size(); i++) {
+        PlayManager::get_instance().pause(i);
+    }
 }
 
 void MainModel::stopAllTracks() {

@@ -20,8 +20,10 @@ public:
     PlayManager(PlayManager&& other) = delete;
     PlayManager& operator=(PlayManager&& other) = delete;
 
-    void play(int index, Track* track);
+    void play(int index);
     void stop(int index);
+    void pause(int index);
+    void add(int index, Track * track);
 
 private:
     PlayManager() = default;

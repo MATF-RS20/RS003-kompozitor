@@ -10,13 +10,7 @@ PlayManager &PlayManager::get_instance() {
     return instance;
 }
 
-void PlayManager::play(int index, Track *track) {
-    if (auto *note_track = dynamic_cast<NoteTrack *>(track)){
-        createKeyboardSound(index, note_track);
-    } else if (auto *sample_track = dynamic_cast<SampleTrack *>(track)) {
-        createVoiceSound(index, sample_track);
-    }
-    sound_data[index].first.setBuffer(sound_data[index].second);
+void PlayManager::play(int index) {
     sound_data[index].first.play();
 }
 
@@ -112,4 +106,17 @@ void PlayManager::createVoiceSound(int index, SampleTrack *sample_track) {
 
     std::pair<sf::Sound, sf::SoundBuffer> tmp {sound, soundBuffer};
     sound_data[index] = tmp;
+}
+
+void PlayManager::pause(int index) {
+    sound_data[index].first.pause();
+}
+
+void PlayManager::add(int index, Track *track) {
+    if (auto *note_track = dynamic_cast<NoteTrack *>(track)){
+        createKeyboardSound(index, note_track);
+    } else if (auto *sample_track = dynamic_cast<SampleTrack *>(track)) {
+        createVoiceSound(index, sample_track);
+    }
+    sound_data[index].first.setBuffer(sound_data[index].second);
 }
