@@ -62,7 +62,7 @@ std::chrono::duration<float> RecordManager::relative_time(std::chrono::time_poin
     return f_secs;
 }
 
-void RecordManager::save_composition() {
+void RecordManager::save_composition(std::string file_name) {
     float duration = end_time();
     unsigned buffer_size = duration * 44100;
     std::vector<double> raw_buffer_data(buffer_size);
@@ -90,7 +90,7 @@ void RecordManager::save_composition() {
     sound.setBuffer(soundBuffer);
 
     soundBuffer.loadFromSamples(&buffer_data[0], buffer_data.size(), 1, 44100);
-    soundBuffer.saveToFile("recorded_by_keyboard.ogg");
+    soundBuffer.saveToFile(file_name);
 
 //    testing recorded melody
 //    SoundManager::get_instance().play_sound_buffer(buffer_data);

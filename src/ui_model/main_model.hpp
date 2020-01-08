@@ -63,9 +63,9 @@ public slots:
 
     void removeRecordNote(float frequency, int note_position);
 
-    void saveKeyboardComposition();
+    void saveKeyboardComposition(QString file_name);
 
-    void saveMicrophoneComposition();
+    void saveMicrophoneComposition(QString file_name);
 
     void playTrack(int index);
 

@@ -67,6 +67,52 @@ ApplicationWindow {
     }
 
     Dialog {
+        id: fileNameKeyboard
+        title: "File Name (must be .ogg/.wav)"
+        width: 300
+        height: 100
+        x: (parent.width - width) / 3
+        y: (parent.height - height) / 3
+        TextField {
+            id: fileNameKeyboardInput
+            placeholderText: "file name"
+            cursorVisible: true
+            font.weight: Font.DemiBold
+            onAccepted: {
+                mainModel.saveKeyboardComposition(fileNameKeyboardInput.getText(0, fileNameKeyboardInput.length));
+                fileNameKeyboardInput.text = ""
+            }
+            onEditingFinished: {
+                fileNameKeyboard.visible = false;
+                item.focus = true;
+            }
+        }
+    }
+
+    Dialog {
+        id: fileNameVoice
+        title: "File Name (must be .ogg/.wav)"
+        width: 300
+        height: 100
+        x: (parent.width - width) / 3
+        y: (parent.height - height) / 3
+        TextField {
+            id: fileNameVoiceInput
+            placeholderText: "file name"
+            cursorVisible: true
+            font.weight: Font.DemiBold
+            onAccepted: {
+                mainModel.saveMicrophoneComposition(fileNameVoiceInput.getText(0, fileNameVoiceInput.length));
+                fileNameVoiceInput.text = ""
+            }
+            onEditingFinished: {
+                fileNameVoice.visible = false;
+                item.focus = true;
+            }
+        }
+    }
+
+    Dialog {
         id: dialogKeyboard
         title: "Saving..."
         Label {
@@ -79,7 +125,8 @@ ApplicationWindow {
 
         onAccepted: {
             console.log("Yes clicked")
-            mainModel.saveKeyboardComposition();
+            fileNameKeyboard.visible = true;
+            item.focus = false;
         }
         onRejected: {
             console.log("No clicked")
@@ -99,7 +146,8 @@ ApplicationWindow {
 
             onAccepted: {
                 console.log("Yes clicked")
-                mainModel.saveMicrophoneComposition();
+                fileNameVoice.visible = true;
+                item.focus = false;
             }
             onRejected: {
                 console.log("No clicked")

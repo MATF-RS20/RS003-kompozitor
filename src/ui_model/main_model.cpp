@@ -136,12 +136,17 @@ void MainModel::calculateOctave(int x) {
     current_octave += 1;
 }
 
-void MainModel::saveKeyboardComposition() {
-    RecordManager::get_instance().save_composition();
+void MainModel::saveKeyboardComposition(QString file_name) {
+    std::string name = file_name.toStdString();
+    std::size_t found_dot = name.find_last_of(".");
+    // 4 because .wav or .ogg are 4 chars long
+    RecordManager::get_instance().save_composition(name.substr(0, found_dot+4));
 }
 
-void MainModel::saveMicrophoneComposition() {
-    MicrophoneRecorder::get_instance().save_recording();
+void MainModel::saveMicrophoneComposition(QString file_name) {
+    std::string name = file_name.toStdString();
+    std::size_t found_dot = name.find_last_of(".");
+    MicrophoneRecorder::get_instance().save_recording(name.substr(0, found_dot+4));
 }
 
 void MainModel::playTrack(int index) {

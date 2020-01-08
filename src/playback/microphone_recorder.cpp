@@ -23,8 +23,8 @@ sf::SoundBuffer MicrophoneRecorder::stop_recording() {
     return buffer;
 }
 
-void MicrophoneRecorder::save_recording() {
+void MicrophoneRecorder::save_recording(std::string file_name) {
     sf::SoundBuffer buffer = _recorder.getBuffer();
-    buffer.saveToFile("recorded_by_microphone.ogg");
+    buffer.saveToFile(file_name);
 }
 

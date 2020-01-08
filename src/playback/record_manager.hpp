@@ -37,7 +37,7 @@ public:
     void add_note(double freq, int pitch);
     void remove_note(double freq, int pitch);
 
-    void save_composition();
+    void save_composition(std::string file_name);
 
     float end_time() {
         return relative_time(_start_time, _end_time).count();
