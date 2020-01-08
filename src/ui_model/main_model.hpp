@@ -66,6 +66,8 @@ public slots:
     void playTrack(int index);
 
     void stopTrack(int index);
+
+    void deleteTrack(int index);
 #pragma clang diagnostic pop
 
 signals:

@@ -250,8 +250,8 @@ ApplicationWindow {
                     top: playButton.bottom
                     left: parent.left
                 }
-                //text: "Delete"
                 icon.source: "delete.svg"
+                onClicked: mainModel.deleteTrack(index)
             }
 
 

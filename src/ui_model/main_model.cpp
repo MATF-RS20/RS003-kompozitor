@@ -145,4 +145,7 @@ void MainModel::stopTrack(int index) {
     emit onTracksChanged();
 }
 
-
+void MainModel::deleteTrack(int index) {
+    _tracks.removeAt(index);
+    onTracksChanged();
+}
