@@ -72,7 +72,7 @@ ApplicationWindow {
         Label {
             text: "Do you want to save this recording?"
         }
-        visible: false
+        visible: mainModel.isDialog
         x: (parent.width - width) / 2
         y: (parent.height - height) / 3
         standardButtons: Dialog.Yes | Dialog.No
@@ -206,7 +206,6 @@ ApplicationWindow {
                         if(dataTrackIsRecording){
                            item.focus = "true";
                            mainModel.stopRecordingKeyboard(index);
-//                           dialogKeyboard.visible = "true";
                         }
                         else {
                           item.focus = "true";
@@ -217,7 +216,6 @@ ApplicationWindow {
                         if(mainModel.isRecordingMicrophone){
                            item.focus = "false";
                            mainModel.stopRecordingMicrophone(index);
-//                           dialogMicrophone.visible = "true";
                         }
                         else {
                           item.focus = !item.focus;

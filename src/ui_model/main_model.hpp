@@ -15,6 +15,7 @@ class MainModel : public QObject {
 Q_OBJECT
 Q_PROPERTY(bool isRecordingKeyboard READ isRecordingKeyboard NOTIFY isRecordingKeyboardChanged)
 Q_PROPERTY(bool isRecordingMicrophone READ isRecordingMicrophone NOTIFY isRecordingMicrophoneChanged)
+Q_PROPERTY(bool isDialog READ isDialog NOTIFY dialogStateChanged)
 Q_PROPERTY(QList<Track*> tracks READ tracks WRITE set_tracks NOTIFY onTracksChanged)
 
 public:
@@ -24,6 +25,9 @@ public:
     }
     bool isRecordingMicrophone(){
         return _isRecordingMicrophone;
+    }
+    bool isDialog() {
+        return _isDialog;
     }
 
     [[nodiscard]]
@@ -83,10 +87,14 @@ signals:
 
     void onTracksChanged();
 
+    void dialogStateChanged();
+
 private:
     bool _isRecordingKeyboard = false;
 
     bool _isRecordingMicrophone = false;
+
+    bool _isDialog = false;
 
     QList<Track *> _tracks;
     int current_octave = 4;

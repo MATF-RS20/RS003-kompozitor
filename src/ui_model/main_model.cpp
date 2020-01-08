@@ -45,6 +45,9 @@ void MainModel::startRecordingKeyboard(int index) {
     _isRecordingKeyboard = true;
     RecordManager::get_instance().start_recording();
     _tracks[index]->setIsRecording(true);
+    _isDialog = false;
+
+    emit dialogStateChanged();
     emit onTracksChanged();
 }
 
@@ -59,13 +62,19 @@ void MainModel::stopRecordingKeyboard(int index) {
         _tracks[index] = new NoteTrack(2, result);
     }
     _tracks[index]->setIsRecording(false);
+    _isDialog = true;
+
+    emit dialogStateChanged();
     emit onTracksChanged();
 }
 void MainModel::startRecordingMicrophone(int index) {
     _isRecordingMicrophone = true;
     MicrophoneRecorder::get_instance().start_recording();
     _tracks[index]->setIsRecording(true);
-     emit onTracksChanged();
+    _isDialog = false;
+
+    emit dialogStateChanged();
+    emit onTracksChanged();
 }
 
 void MainModel::stopRecordingMicrophone(int index) {
@@ -87,6 +96,9 @@ void MainModel::stopRecordingMicrophone(int index) {
         _tracks[index] = new SampleTrack(1, normalized_samples);
     }
     _tracks[index]->setIsRecording(false);
+    _isDialog = true;
+
+    emit dialogStateChanged();
     emit onTracksChanged();
 }
 
@@ -147,7 +159,7 @@ void MainModel::stopTrack(int index) {
 
 void MainModel::deleteTrack(int index) {
     _tracks.removeAt(index);
-    onTracksChanged();
+    emit onTracksChanged();
 }
 
 void MainModel::playAllTracks() {
