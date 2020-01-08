@@ -18,7 +18,7 @@ public:
 
     void start_recording();
     sf::SoundBuffer stop_recording();
-    void save_recording(std::string file_name);
+    void save_recording(const std::string& file_name);
 
 private:
     MicrophoneRecorder() = default;

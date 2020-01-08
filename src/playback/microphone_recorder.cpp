@@ -18,12 +18,10 @@ void MicrophoneRecorder::start_recording() {
 sf::SoundBuffer MicrophoneRecorder::stop_recording() {
     _recorder.stop();
     sf::SoundBuffer buffer = _recorder.getBuffer();
-    //TODO za sada se odmah cuva snimak sa mikrofona u fajl
-//    buffer.saveToFile("recorded_by_microphone.ogg");
     return buffer;
 }
 
-void MicrophoneRecorder::save_recording(std::string file_name) {
+void MicrophoneRecorder::save_recording(const std::string& file_name) {
     sf::SoundBuffer buffer = _recorder.getBuffer();
     buffer.saveToFile(file_name);
 }

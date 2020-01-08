@@ -6,19 +6,19 @@
 #include <QtCore/QTimer>
 #include <unordered_set>
 
-const float C5 = 261.63;
-const float Cs5 = 277.18;
-const float D5 = 293.66;
-const float Ds5 = 311.13;
-const float E5 = 329.63;
-const float F5 = 349.23;
-const float Fs5 = 369.99;
-const float G5 = 392.00;
-const float Gs5 = 415.30;
-const float A5 = 440.00;
-const float As5 = 466.16;
-const float B5 = 493.88;
-const float C6 = 523.25;
+const float C4 = 261.63;
+const float Cs4 = 277.18;
+const float D4 = 293.66;
+const float Ds4 = 311.13;
+const float E4 = 329.63;
+const float F4 = 349.23;
+const float Fs4 = 369.99;
+const float G4 = 392.00;
+const float Gs4 = 415.30;
+const float A4 = 440.00;
+const float As4 = 466.16;
+const float B4 = 493.88;
+const float C5 = 523.25;
 
 namespace Playback {
     void play(int melody_played);

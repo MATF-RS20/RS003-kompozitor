@@ -80,15 +80,15 @@ void Playback::play(int melody) {
     if (melody == -1)
         return;
     std::vector<float> frequencies1 {
-            E5, Gs5, E5, Gs5, E5, Gs5, E5, Gs5,
-            Ds5, Gs5, Ds5, Gs5,
-            E5, E5, E5, Ds5, E5, E5, E5
+            E4, Gs4, E4, Gs4, E4, Gs4, E4, Gs4,
+            Ds4, Gs4, Ds4, Gs4,
+            E4, E4, E4, Ds4, E4, E4, E4
     };
     std::vector<float> frequencies2 {
-            E5, D5, C5, D5, E5, E5, E5, E5, D5, D5,
-            D5, E5, G5, G5,
-            E5, D5, C5, D5, E5, E5, E5, E5,
-            D5, D5, E5, D5, C5
+            E4, D4, C4, D4, E4, E4, E4, E4, D4, D4,
+            D4, E4, G4, G4,
+            E4, D4, C4, D4, E4, E4, E4, E4,
+            D4, D4, E4, D4, C4
     };
     std::vector<float> active_frequencies;
     if (melody == 0)
