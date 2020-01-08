@@ -265,6 +265,8 @@ ApplicationWindow {
                     right: parent.right
                     top: trackIdText.top
                     bottom: deleteButton.bottom
+                    leftMargin: 7
+                    rightMargin: 7
                 }
 
                 Component.onCompleted: {
