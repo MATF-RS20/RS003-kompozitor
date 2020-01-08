@@ -42,14 +42,17 @@ ApplicationWindow {
 
         Button {
             icon.source: "play.svg"
+            onClicked: mainModel.playAllTracks()
         }
 
         Button {
             icon.source: "pause.svg"
+            onClicked: mainModel.pauseAllTracks()
         }
 
         Button {
             icon.source: "stop.svg"
+            onClicked: mainModel.stopAllTracks()
         }
 
         Button {

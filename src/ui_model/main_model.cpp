@@ -149,3 +149,19 @@ void MainModel::deleteTrack(int index) {
     _tracks.removeAt(index);
     onTracksChanged();
 }
+
+void MainModel::playAllTracks() {
+    for (int i = 0; i < _tracks.size(); i++) {
+        playTrack(i);
+    }
+}
+
+void MainModel::pauseAllTracks() {
+    // TODO
+}
+
+void MainModel::stopAllTracks() {
+    for (int i = 0; i < _tracks.size(); i++) {
+        stopTrack(i);
+    }
+}
