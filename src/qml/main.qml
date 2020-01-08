@@ -260,7 +260,7 @@ ApplicationWindow {
             Loader {
 
                 anchors {
-                    left: startRecordingButton.right
+                    left: trackIdText.right
                     right: parent.right
                     top: typeImage.top
                     bottom: deleteButton.bottom
