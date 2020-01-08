@@ -2,7 +2,7 @@ import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Controls.Material 2.12
-
+import QtGraphicalEffects 1.0
 import QtQuick.Dialogs 1.1
 import QtQuick.Layouts 1.3
 
@@ -41,10 +41,6 @@ ApplicationWindow {
         }
 
         Button {
-            text: "Rewind"
-        }
-
-        Button {
             icon.source: "play.svg"
         }
 
@@ -54,24 +50,6 @@ ApplicationWindow {
 
         Button {
             icon.source: "stop.svg"
-        }
-
-        Button {
-            icon.source: "piano.svg"
-            text: "Keyboard record start"
-            onClicked: {
-                if(mainModel.isRecordingKeyboard){
-                    text = "Keyboard record start";
-                    mainModel.stopRecordingKeyboard(-1);
-                    item.focus = "true";
-                    dialogKeyboard.visible = "true";
-                }
-                else {
-                    text = "Keyboard record stop";
-                    mainModel.startRecordingKeyboard();
-                    item.focus = "true";
-                }
-            }
         }
 
         Button {
@@ -162,8 +140,6 @@ ApplicationWindow {
             left: parent.left
             bottom: octaveImage.top
             right: parent.right
-            topMargin: 10
-            bottomMargin: 10
             leftMargin: 5
             rightMargin: 5
         }
@@ -184,21 +160,44 @@ ApplicationWindow {
                 right: parent.right
             }
 
+            Item {
+                id: typeImage
+
+                // Resize to children
+                width: childrenRect.width
+                height: childrenRect.height
+
+                Image {
+                    id: typeIcon
+                    source: dataTrackType == 1 ? "piano.svg" : "microphone.svg"
+                    visible: false
+                }
+
+                ColorOverlay {
+                    anchors.fill: typeIcon
+                    source: typeIcon
+                    color: "white"
+                }
+             }
+
             Text {
                 id: trackIdText
-                text: "Track " + dataTrackNumber
+                anchors {
+                    left: typeImage.right
+                    leftMargin: 5
+                    bottom: typeImage.bottom
+                }
+                text: "Track " + (index + 1)
+                color: "white"
             }
 
             Button {
                 anchors {
-                    top: trackIdText.bottom
+                    top: typeImage.bottom
                 }
                 id: startRecordingButton
-                text: dataTrackType == 1 ?
-                    (dataTrackIsRecording ? "Keyboard stop" : "Keyboard start")
-                    : (dataTrackIsRecording ? "Voice stop" : "Voice start")
-                icon.source: dataTrackType == 1 ?
-                "piano.svg" : "microphone.svg"
+                icon.source: "record.svg"
+                icon.color: dataTrackIsRecording ? "white" : "red"
                 onClicked: {
                     if (dataTrackType == 1){
                         if(dataTrackIsRecording){
@@ -263,7 +262,7 @@ ApplicationWindow {
                 anchors {
                     left: startRecordingButton.right
                     right: parent.right
-                    top: trackIdText.top
+                    top: typeImage.top
                     bottom: deleteButton.bottom
                     leftMargin: 7
                     rightMargin: 7
