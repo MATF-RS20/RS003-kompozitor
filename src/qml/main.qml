@@ -14,7 +14,7 @@ ApplicationWindow {
     Material.accent: Material.Orange
 
     visible: true
-    width: 1000
+    width: 1200
     height: 600
     title: "Kompozitor"
 
@@ -23,6 +23,7 @@ ApplicationWindow {
         spacing: 10
 
         Button {
+            icon.source: "microphone.svg"
             text: "Add microphone track"
             onClicked: {
                 mainModel.addMicrophoneTrack()
@@ -31,6 +32,7 @@ ApplicationWindow {
         }
 
         Button {
+            icon.source: "piano.svg"
             text: "Add keyboard track"
             onClicked: {
                 mainModel.addKeyboardTrack()
@@ -43,18 +45,19 @@ ApplicationWindow {
         }
 
         Button {
-            text: "Play"
+            icon.source: "play.svg"
         }
 
         Button {
-            text: "Pause"
+            icon.source: "pause.svg"
         }
 
         Button {
-            text: "Stop"
+            icon.source: "stop.svg"
         }
 
         Button {
+            icon.source: "piano.svg"
             text: "Keyboard record start"
             onClicked: {
                 if(mainModel.isRecordingKeyboard){
@@ -194,6 +197,8 @@ ApplicationWindow {
                 text: dataTrackType == 1 ?
                     (dataTrackIsRecording ? "Keyboard stop" : "Keyboard start")
                     : (dataTrackIsRecording ? "Voice stop" : "Voice start")
+                icon.source: dataTrackType == 1 ?
+                "piano.svg" : "microphone.svg"
                 onClicked: {
                     if (dataTrackType == 1){
                         if(dataTrackIsRecording){
@@ -226,7 +231,8 @@ ApplicationWindow {
                     top: startRecordingButton.bottom
                     left: parent.left
                 }
-                text: (dataTrackIsPlaying ? "Stop" : "Start")
+                //text: (dataTrackIsPlaying ? "Stop" : "Start")
+                icon.source: dataTrackIsPlaying ? "stop.svg" : "play.svg"
                 onClicked: {
                  if(dataTrackIsPlaying){
                       item.focus = "true";
@@ -245,7 +251,8 @@ ApplicationWindow {
                     top: playButton.bottom
                     left: parent.left
                 }
-                text: "Delete"
+                //text: "Delete"
+                icon.source: "delete.svg"
             }
 
 
