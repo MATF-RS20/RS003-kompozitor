@@ -124,12 +124,11 @@ ApplicationWindow {
         standardButtons: Dialog.Yes | Dialog.No
 
         onAccepted: {
-            console.log("Yes clicked")
             fileNameKeyboard.visible = true;
             item.focus = false;
         }
         onRejected: {
-            console.log("No clicked")
+
         }
     }
 

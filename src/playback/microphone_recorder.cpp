@@ -9,10 +9,6 @@ MicrophoneRecorder &MicrophoneRecorder::get_instance() {
 
 void MicrophoneRecorder::start_recording() {
     _recorder.start();
-
-    auto time = std::chrono::system_clock::now();
-    auto t_time = std::chrono::system_clock::to_time_t(time);
-    std::cout << std::ctime(&t_time) << std::endl;
 }
 
 sf::SoundBuffer MicrophoneRecorder::stop_recording() {
